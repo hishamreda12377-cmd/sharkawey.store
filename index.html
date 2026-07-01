@@ -1,0 +1,693 @@
+﻿<!doctype html>
+<html lang="ar">
+<html>
+<head>
+    <meta name="google-site-verification" content="L7bxwh6Kzwk6kzln_kdk9gQC4Az_D1M7d4tCQtp_wMw" />
+    <link rel="icon" href="logo.png" alt="Logo">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> الشرقاوي لتوزيع المواد الغذائية والحلويات</title>
+    <meta name="keywords"
+    content="مواد غذائية, جملة, توزيع مواد غذائية, متجر الشرقاوي, طلبات اونلاين">
+    <meta name="description"
+    content="متجر الشرقاوي لتوزيع المواد الغذائية - اطلب المنتجات بسهولة مع خدمة توصيل سريعة وأسعار مميزة">
+    <meta name="description" content="متجر الشرقاوي يقدم أفضل تشكيلة من الحلويات والمنتجات عالية الجودة. اطلب الآن .">
+    <meta name="keywords" content="حلويات، الشرقاوي، متجر، طلبات، تسوق اونلاين">
+    <link rel="stylesheet" href="styles.css">
+    <meta name="robots" content="index,follow">
+    <link rel="stylesheet" id="dark-theme-link" href="dark.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="preconnect" href="https://cdn.jsdelivr.net">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    
+    <div id="loader">
+        <div class="loader-glow"></div>
+        <div class="loader-box">
+            <div class="loader-logo-wrap">
+                <div class="loader-ring-outer"></div>
+                <div class="loader-ring-inner"></div>
+                <img src="images/logo.png" alt="Logo">
+            </div>
+            <h2>الشرقاوي</h2>
+            <p>لتوزيع المواد الغذائية والحلويات</p>
+            <div class="loader-bar-track">
+                <div class="loader-bar">
+                    <div class="loader-progress"></div>
+                    <div class="loader-dot"></div>
+                </div>
+            </div>
+        </div>
+        <div class="loader-particle p1"></div>
+        <div class="loader-particle p2"></div>
+        <div class="loader-particle p3"></div>
+        <div class="loader-particle p4"></div>
+        <div class="loader-particle p5"></div>
+        <div class="loader-particle p6"></div>
+        <div class="loader-particle p7"></div>
+        <div class="loader-particle p8"></div>
+        <div class="loader-particle p9"></div>
+        <div class="loader-particle p10"></div>
+        <div class="loader-particle p11"></div>
+        <div class="loader-particle p12"></div>
+        <div class="loader-particle p13"></div>
+        <div class="loader-particle p14"></div>
+        <div class="loader-particle p15"></div>
+        <div class="loader-particle p16"></div>
+        <div class="loader-particle p17"></div>
+        <div class="loader-particle p18"></div>
+        <div class="loader-particle p19"></div>
+        <div class="loader-particle p20"></div>
+        <div class="loader-particle p21"></div>
+        <div class="loader-particle p22"></div>
+        <div class="loader-particle p23"></div>
+        <div class="loader-particle p24"></div>
+        <div class="loader-particle p25"></div>
+        <div class="loader-particle p26"></div>
+        <div class="loader-particle p27"></div>
+        <div class="loader-particle p28"></div>
+        <div class="loader-particle p29"></div>
+        <div class="loader-particle p30"></div>
+        <div class="loader-particle p31"></div>
+        <div class="loader-particle p32"></div>
+        <div class="loader-particle p33"></div>
+        <div class="loader-particle p34"></div>
+        <div class="loader-particle p35"></div>
+        <div class="loader-particle p36"></div>
+        <div class="loader-particle p37"></div>
+        <div class="loader-particle p38"></div>
+        <div class="loader-particle p39"></div>
+        <div class="loader-particle p40"></div>
+        <div class="loader-particle p41"></div>
+        <div class="loader-particle p42"></div>
+        <div class="loader-particle p43"></div>
+        <div class="loader-particle p44"></div>
+        <div class="loader-particle p45"></div>
+        <div class="loader-particle p46"></div>
+        <div class="loader-particle p47"></div>
+        <div class="loader-particle p48"></div>
+        <div class="loader-particle p49"></div>
+        <div class="loader-particle p50"></div>
+        <div class="loader-beam"></div>
+    </div>
+    <!-- <div class="hero-banner">
+    خصم 20% على جميع الطلبات اليوم
+</div> -->
+        <header class="header">
+        <img src="images/logo.png" alt="" width="135" height="100"> 
+    </header>
+    <button id="theme-toggle" class="theme-toggle-btn" onclick="toggleTheme()">
+    <svg id="theme-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path id="icon-path" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+    </svg>
+</button>
+
+<!-- خانة البحث -->
+    <button class="menu-btn" onclick="toggleMenu()">☰</button>
+    <div id="menu-overlay" class="menu-overlay" onclick="toggleMenu()"></div>
+    <input type="text" id="searchInput" onkeyup="searchProducts()" placeholder="🔍  ابحث عن منتج هنا..." class="search-bar">
+
+<!-- =========================================================================
+    4. القائمة الجانبية والنوافذ العائمة (Menu, Cart, BackToTop)
+    ==========================================================================  -->
+
+<!-- ====================================================================================================================================== -->
+<!-- 📦 -->
+<!-- القائمة الجانبية -->
+    <div id="side-menu" class="side-menu">
+        <a class="a" href="#" onclick="document.getElementById('profile-modal').showModal();return false">بياناتي</a> 
+        <a class="a" href="#" onclick="showMyOrders();return false">طلباتي</a>
+        <a class="a" href="#" onclick="document.getElementById('phoneWindow').showModal();return false">اتصل بنا</a>
+        <!-- <a class="a" href="https://wa.me/201281525050" target="_blank">واتساب</a> -->
+        <a class="a" href="#" onclick="openFilterModal();return false">فرز المنتجات</a>
+    </div>
+    
+<!-- ====================================================================================================================================== -->
+
+<!-- فرز المنتجات -->
+<dialog id="filter-modal" class="custom-modal">
+    <button class="close-modal-btn" onclick="document.getElementById('filter-modal').close()">×</button>
+    <h3>📂 فرز المنتجات</h3>
+    <button class="filter-btn" onclick="filterByCategory('all')">كل المنتجات</button>
+    <button class="filter-btn" onclick="filterByCategory('اصيل')">منتجات الاصيل</button>
+    <button class="filter-btn" onclick="filterByCategory('جامي')">منتجات جامي</button>
+    <button class="filter-btn" onclick="filterByCategory('سما')">منتجات سما</button>
+</dialog>
+
+<!-- ====================================================================================================================================== -->
+
+<!-- نافذة الطلبات -->
+<dialog id="orders-modal" class="orders-modal">
+    <div class="orders-header">
+        <h3 class="orders-title">طلباتي</h3>
+        <button class="orders-close-top" onclick="document.getElementById('orders-modal').close()">×</button>
+    </div>
+    <div id="orders-list" class="orders-list">
+        جاري التحميل...
+    </div>
+</dialog>
+
+    <dialog id="profile-modal" class="profile-modal">
+        <button class="close-modal-btn" onclick="document.getElementById('profile-modal').close()">×</button>
+        <h3>👤 بياناتي الشخصية</h3>
+        <input class="modal-input" type="text" id="user-shop" placeholder="اسم المحل" class="modal-input">
+        <input class="modal-input" type="text" id="user-phone" placeholder="رقم التواصل" class="modal-input">
+        <input class="modal-input" type="text" id="user-address" placeholder="العنوان بالتفصيل" class="modal-input">
+        <button onclick="saveProfile()" class="save-btn">حفظ البيانات ✅</button>
+    </dialog>
+
+<!-- ====================================================================================================================================== -->
+
+    <dialog id="phoneWindow" class="phone-modal">
+        <h3>📱 أرقام التواصل</h3>
+        <div style="margin: 10px 0;"><span id="num1">01062063425</span><button class="copybtn" onclick="copyNumber('num1')" style="margin-right: 10px; cursor: pointer; font-size: xx-small;">نسخ 📋</button></div>
+        <div style="margin: 10px 0;"><span id="num2">01202530125</span><button class="copybtn" onclick="copyNumber('num2')" style="margin-right: 10px; cursor: pointer; font-size: xx-small;">نسخ 📋</button></div>
+        <hr>
+        <button class="phone-modal-close-btn" onclick="document.getElementById('phoneWindow').close()">إغلاق</button>
+    </dialog>
+
+<!-- ====================================================================================================================================== -->
+
+<!-- onclick="zoomImage(this.src)" -->
+
+
+
+<div class="section-box" data-category="اصيل">
+    <h1 class="section-title">منتجات الاصيل</h1>
+    <hr color="black">
+    <article class="A">
+        <article class="a1">
+            <img src="images/فولية.png" loading="lazy" class="product-image" onclick="openProductModal('فولية', '20 ج.م', ['images/فولية.png','images/الاصيل لوجو.png','images/logo.png'], 'وصف مميز للفولية', '24')" alt="فولية" width="230" height="200">
+            <p>فولية</p>
+            <button class="order-button" onclick="addToCart('فولية', 20)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/سمسمية.png" loading="lazy" class="product-image" onclick="openProductModal('سمسمية', '30 ج.م', 'images/سمسمية.png', 'وصف مميز للسمسمية', '24')" alt="سمسمية" width="230" height="200">
+            <p>سمسمية</p>
+            <button class="order-button" onclick="addToCart('سمسمية', 30)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/حمصية.png" loading="lazy" class="product-image" onclick="openProductModal('حمصية', '40 ج.م', 'images/حمصية.png', 'وصف مميز للحمصية', '24')" alt="حمصية" width="230" height="200">
+            <p>حمصية</p>
+            <button class="order-button" onclick="addToCart('حمصية', 40)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/فول شيكولاته.png" loading="lazy" class="product-image" onclick="openProductModal('فول شيكولاته', '50 ج.م', 'images/فول شيكولاته.png', 'وصف مميز لفول الشيكولاتة', '24')" alt="فول شيكولاته" width="230" height="200">
+            <p>فول شيكولاته</p>
+            <button class="order-button" onclick="addToCart('فول شيكولاته', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/فول لبناني.png" loading="lazy" class="product-image" onclick="openProductModal('فول لبناني', '60 ج.م', 'images/فول لبناني.png', 'وصف مميز للفول اللبناني', '24')" alt="فول لبناني" width="230" height="200">
+            <p>فول لبناني</p>
+            <button class="order-button" onclick="addToCart('فول لبناني', 60)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/شيكوبون.png" loading="lazy" class="product-image" onclick="openProductModal('شيكوبون', '60 ج.م', 'images/شيكوبون.png', 'وصف مميز للشيكوبون', '24')" alt="شيكوبون" width="230" height="200">
+            <p>شيكوبون</p>
+            <button class="order-button" onclick="addToCart('شيكوبون', 60)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/دومية.png" loading="lazy" class="product-image" onclick="openProductModal('دومية', '40 ج.م', 'images/دومية.png', 'وصف مميز للدومية', '24')" alt="دومية" width="230" height="200">
+            <p>دومية</p>
+            <button class="order-button" onclick="addToCart('دومية', 40)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/نوجا.png" loading="lazy" class="product-image" onclick="openProductModal('نوجا', '50 ج.م', 'images/نوجا.png', 'وصف مميز للنوجا', '24')" alt="نوجا" width="230" height="200">
+            <p>نوجا</p>
+            <button class="order-button" onclick="addToCart('نوجا', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/جوزهند مانجا.png" loading="lazy" class="product-image" onclick="openProductModal('جوزهند مانجا', '50 ج.م', 'images/جوزهند مانجا.png', 'وصف مميز لجوز الهند بالمانجو', '24')" alt="جوزهند مانجا" width="230" height="200">
+            <p>جوزهند مانجا</p>
+            <button class="order-button" onclick="addToCart('جوزهند مانجا', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/ملبن ابيض.png" loading="lazy" class="product-image" onclick="openProductModal('ملبن ابيض', '50 ج.م', 'images/ملبن ابيض.png', 'وصف مميز للملبن الأبيض', '24')" alt="ملبن ابيض" width="230" height="200">
+            <p>ملبن ابيض</p>
+            <button class="order-button" onclick="addToCart('ملبن ابيض', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/ملبن جيلي.png" loading="lazy" class="product-image" onclick="openProductModal('ملبن جيلي', '50 ج.م', 'images/ملبن جيلي.png', 'وصف مميز للملبن الجيلي', '24')" alt="ملبن جيلي" width="230" height="200">
+            <p>ملبن جيلي</p>
+            <button class="order-button" onclick="addToCart('ملبن جيلي', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/فندام.png" loading="lazy" class="product-image" onclick="openProductModal('فندام', '50 ج.م', 'images/فندام.png', 'وصف مميز للفندام', '24')" alt="فندام" width="230" height="200">
+            <p>فندام</p>
+            <button class="order-button" onclick="addToCart('فندام', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/عسلية جردل.png" loading="lazy" class="product-image" onclick="openProductModal('عسلية جردل', '50 ج.م', 'images/عسلية جردل.png', 'وصف مميز للعسلية', '24')" alt="عسلية جردل" width="230" height="200">
+            <p>عسلية جردل</p>
+            <button class="order-button" onclick="addToCart('عسلية جردل', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/عسلية علب.png" loading="lazy" class="product-image" onclick="openProductModal('عسلية علب', '50 ج.م', 'images/عسلية علب.png', 'وصف مميز للعسلية', '24')" alt="عسلية علب" width="230" height="200">
+            <p>عسلية علب</p>
+            <button class="order-button" onclick="addToCart('عسلية علب', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/بسبوسة.png" loading="lazy" class="product-image" onclick="openProductModal('بسبوسة', '50 ج.م', 'images/بسبوسة.png', 'وصف مميز للبسبوسة', '24')" alt="بسبوسة" width="230" height="200">
+            <p>بسبوسة</p>
+            <button class="order-button" onclick="addToCart('بسبوسة', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/كنافة.png" loading="lazy" class="product-image" onclick="openProductModal('كنافة', '50 ج.م', 'images/كنافة.png', 'وصف مميز للكنافة', '24')" alt="كنافة" width="230" height="200">
+            <p>كنافة</p>
+            <button class="order-button" onclick="addToCart('كنافة', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/بلح الشام.png" loading="lazy" class="product-image" onclick="openProductModal('بلح الشام', '50 ج.م', 'images/بلح الشام.png', 'وصف مميز لبلح الشام', '24')" alt="بلح الشام" width="230" height="200">
+            <p>بلح الشام</p>
+            <button class="order-button" onclick="addToCart('بلح الشام', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/جلاش.png" loading="lazy" class="product-image" onclick="openProductModal('جلاش', '50 ج.م', 'images/جلاش.png', 'وصف مميز للجلاش', '24')" alt="جلاش" width="230" height="200">
+            <p>جلاش</p>
+            <button class="order-button" onclick="addToCart('جلاش', 50)">🛒اضف الي السلة</button>
+        </article>
+    </article>
+</div>
+
+<div class="section-box" data-category="جامي">
+    <h1 class="section-title">منتجات جامي الشنواني</h1>
+    <hr color="black">
+    <article class="A">
+        <article class="a1">
+            <img src="images/اسكوتش كيس.png" loading="lazy" class="product-image" onclick="openProductModal('اسكوتش منت 3ج.م', '50 ج.م', 'images/اسكوتش كيس.png', 'وصف المنتج', '24')" alt="اسكوتش منت 3ج.م" width="230" height="200">
+            <p>اسكوتش منت 3ج.م</p>
+            <button class="order-button" onclick="addToCart('اسكوتش منت 3ج.م', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/اسكوتش كيس.png" loading="lazy" class="product-image" onclick="openProductModal('اسكوتش منت 5ج.م', '50 ج.م', 'images/اسكوتش كيس.png', 'وصف المنتج', '24')" alt="اسكوتش منت 5ج.م" width="230" height="200">
+            <p>اسكوتش منت 5ج.م</p>
+            <button class="order-button" onclick="addToCart('اسكوتش منت 5ج.م', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/باولا.png" loading="lazy" class="product-image" onclick="openProductModal('بسكويت باولا 2 ج.م', '50 ج.م', 'images/باولا.png', 'وصف المنتج', '24')" alt="بسكويت باولا 2 ج.م" width="230" height="200">
+            <p>بسكويت باولا 2 ج.م</p>
+            <button class="order-button" onclick="addToCart('بسكويت باولا 2 ج.م', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/جامي كيس.png" loading="lazy" class="product-image" onclick="openProductModal('جيلي جامي 5 ج.م', '50 ج.م', 'images/جامي كيس.png', 'وصف المنتج', '24')" alt="جيلي جامي 5 ج.م" width="230" height="200">
+            <p>جيلي جامي 5 ج.م</p>
+            <button class="order-button" onclick="addToCart('جيلي جامي 5 ج.م', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/جامي كيس.png" loading="lazy" class="product-image" onclick="openProductModal('جيلي جامي 10 ج.م', '50 ج.م', 'images/جامي كيس.png', 'وصف المنتج', '24')" alt="جيلي جامي 10 ج.م" width="230" height="200">
+            <p>جيلي جامي 10 ج.م</p>
+            <button class="order-button" onclick="addToCart('جيلي جامي 10 ج.م', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/جامي كيس.png" loading="lazy" class="product-image" onclick="openProductModal('جيلي جامي 20 ج.م', '50 ج.م', 'images/جامي كيس.png', 'وصف المنتج', '24')" alt="جيلي جامي 20 ج.م" width="230" height="200">
+            <p>جيلي جامي 20 ج.م</p>
+            <button class="order-button" onclick="addToCart('جيلي جامي 20 ج.م', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/شوكو.png" loading="lazy" class="product-image" onclick="openProductModal('شوكو كراميل', '50 ج.م', 'images/شوكو.png', 'وصف المنتج', '24')" alt="شوكو كراميل" width="230" height="200">
+            <p>شوكو كراميل</p>
+            <button class="order-button" onclick="addToCart('شوكو كراميل', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src=" " loading="lazy" class="product-image" onclick="openProductModal('لبان اسكوتش', '50 ج.م', ' ', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>لبان اسكوتش</p>
+            <button class="order-button" onclick="addToCart('لبان اسكوتش', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/م ساور.png" loading="lazy" class="product-image" onclick="openProductModal('مصاصة ساور', '50 ج.م', 'images/م ساور.png', 'وصف المنتج', '24')" alt="مصاصة ساور" width="230" height="200">
+            <p>مصاصة ساور</p>
+            <button class="order-button" onclick="addToCart('مصاصة ساور', 50)">🛒اضف الي السلة</button>
+        </article>
+    </article>
+</div>
+
+<hr color="black">
+<article class="A">
+    <article class="a1">
+        <img src="images/ساور داملا10.png" loading="lazy" class="product-image" onclick="openProductModal('ساور داملا 10 ج.م', '50 ج.م', 'images/ساور داملا10.png', 'وصف المنتج', '24')" alt="ساور داملا 10 ج.م" width="230" height="200">
+        <p>ساور داملا 10 ج.م</p>
+        <button class="order-button" onclick="addToCart('ساور داملا 10 ج.م', 50)">🛒اضف الي السلة</button>
+    </article>
+    <article class="a1">
+        <img src="images/ساور متر 5.png" loading="lazy" class="product-image" onclick="openProductModal('ساور داملا متر 5 ج.م', '50 ج.م', 'images/ساور متر 5.png', 'وصف المنتج', '24')" alt="ساور داملا متر 5 ج.م" width="230" height="200">
+        <p>ساور داملا متر 5 ج.م</p>
+        <button class="order-button" onclick="addToCart('ساور داملا متر 5 ج.م', 50)">🛒اضف الي السلة</button>
+    </article>
+    <article class="a1">
+        <img src=" " loading="lazy" class="product-image" onclick="openProductModal('مارشملو سوسيس', '50 ج.م', ' ', 'وصف المنتج', '24')" alt="" width="230" height="200">
+        <p>مارشملو سوسيس</p>
+        <button class="order-button" onclick="addToCart(' مارشملو سوسيس ', 50)">🛒اضف الي السلة</button>
+    </article>
+    <article class="a1">
+        <img src="images/ايس كريم.png" loading="lazy" class="product-image" onclick="openProductModal('مارشملو ايس كريم', '50 ج.م', 'images/ايس كريم.png', 'وصف المنتج', '24')" alt="مارشملو ايس كريم" width="230" height="200">
+        <p>مارشملو ايس كريم</p>
+        <button class="order-button" onclick="addToCart('مارشملو ايس كريم', 50)">🛒اضف الي السلة</button>
+    </article>
+    <article class="a1">
+        <img src="images/شيكولاته سايحة.png" loading="lazy" class="product-image" onclick="openProductModal('شيكولاته سبريد اشكال', '50 ج.م', 'images/شيكولاته سايحة.png', 'وصف المنتج', '24')" alt="شيكولاته سبريد اشكال" width="230" height="200">
+        <p>شيكولاته سبريد اشكال</p>
+        <button class="order-button" loading="lazy" onclick="addToCart('شيكولاته سبريد اشكال', 50)">🛒اضف الي السلة</button>
+    </article>
+    <article class="a1">
+        <img src="images/مارشملو جيلي.png" loading="lazy" class="product-image" onclick="openProductModal('مارشملو جيلي ساور', '50 ج.م', 'images/مارشملو جيلي.png', 'وصف المنتج', '24')" alt="مارشملو جيلي ساور" width="230" height="200">
+        <p>مارشملو جيلي ساور</p>
+        <button class="order-button" onclick="addToCart('مارشملو جيلي ساور', 50)">🛒اضف الي السلة</button>
+    </article>
+    <article class="a1">
+        <img src=" " loading="lazy" class="product-image" onclick="openProductModal('مارشملو نودلز', '50 ج.م', ' ', 'وصف المنتج', '24')" alt="" width="230" height="200">
+        <p>مارشملو نودلز</p>
+        <button class="order-button" onclick="addToCart(' مارشملو نودلز ', 50)">🛒اضف الي السلة</button>
+    </article>
+</article>
+
+<div class="section-box" data-category="سما">
+    <h1 class="section-title">منتجات سما جوليتا 2000</h1>
+    <hr color="black">
+    <article class="A">
+        <article class="a1">
+            <img src="images/كولا.png" loading="lazy" class="product-image" onclick="openProductModal('بنبون كولا', '50 ج.م', 'images/كولا.png', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>بنبون كولا</p>
+            <button class="order-button" onclick="addToCart('بنبون كولا', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/قهوة.png" loading="lazy" class="product-image" onclick="openProductModal('بنبون قهوة', '50 ج.م', 'images/قهوة.png', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>بنبون قهوة</p>
+            <button class="order-button" onclick="addToCart('بنبون قهوة', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/زبده.png" loading="lazy" class="product-image" onclick="openProductModal('بنبون زبده', '50 ج.م', 'images/زبده.png', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>بنبون زبده</p>
+            <button class="order-button" onclick="addToCart('بنبون زبده', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/ساور.png" loading="lazy" class="product-image" onclick="openProductModal('بنبون ساور', '50 ج.م', 'images/ساور.png', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>بنبون ساور</p>
+            <button class="order-button" onclick="addToCart('بنبون ساور', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/فواكه.png" loading="lazy" class="product-image" onclick="openProductModal('بنبون فواكه', '50 ج.م', 'images/فواكه.png', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>بنبون فواكه</p>
+            <button class="order-button" onclick="addToCart('بنبون فواكه', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/نعناع.png" loading="lazy" class="product-image" onclick="openProductModal('بنبون منت نعناع', '50 ج.م', 'images/نعناع.png', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>بنبون منت نعناع</p>
+            <button class="order-button" onclick="addToCart('بنبون منت نعناع', 50)">🛒اضف الي السلة</button>
+        </article>
+    </article>
+</div>
+
+
+<div class="section-box" data-category="لبان">
+    <h1 class="section-title">لبان</h1>
+    <hr color="black">
+    <article class="A">
+        <article class="a1">
+            <img src="https://thf.bing.com/th/id/OIP.ptv3t-9sN3gFFTYVLg_gXgHaFG?w=259&h=180&c=7&r=0&o=7&cb=thfc1falcon&pid=1.7&rm=3" class="product-image" onclick="openProductModal('سمارة جامبو', '50 ج.م', 'https://thf.bing.com/th/id/OIP.ptv3t-9sN3gFFTYVLg_gXgHaFG?w=259&h=180&c=7&r=0&o=7&cb=thfc1falcon&pid=1.7&rm=3', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>سمارة جامبو</p>
+            <button class="order-button" onclick="addToCart('سمارة جامبو ', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="https://m.media-amazon.com/images/I/41dJSLdH58L._AC_UL800_QL65_.jpg" class="product-image" onclick="openProductModal('هارت جم', '50 ج.م', 'https://m.media-amazon.com/images/I/41dJSLdH58L._AC_UL800_QL65_.jpg', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>هارت جم</p>
+            <button class="order-button" onclick="addToCart('هارت جم  ', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/شوك.png" loading="lazy" class="product-image" onclick="openProductModal('ساور مستر شوك', '50 ج.م', 'images/شوك.png', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>ساور مستر شوك</p>
+            <button class="order-button" onclick="addToCart('ساور مستر شوك', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/مودي ن.png" loading="lazy" class="product-image" onclick="openProductModal('مودي نعناع', '50 ج.م', 'images/مودي ن.png', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>مودي نعناع</p>
+            <button class="order-button" onclick="addToCart('مودي نعناع', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/مودي ف.png" loading="lazy" class="product-image" onclick="openProductModal('مودي فراولة', '50 ج.م', 'images/مودي ف.png', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>مودي فراولة</p>
+            <button class="order-button" onclick="addToCart('مودي فراولة', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/برجر.png" loading="lazy" class="product-image" onclick="openProductModal('لبان برجر', '50 ج.م', 'images/برجر.png', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>لبان برجر</p>
+            <button class="order-button" loading="lazy" onclick="addToCart('لبان برجر', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/الكبير.png" loading="lazy" class="product-image" onclick="openProductModal('لبان الكبير', '50 ج.م', 'images/الكبير.png', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>لبان الكبير</p>
+            <button class="order-button" onclick="addToCart('لبان الكبير', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/رودانو.png" loading="lazy" class="product-image" onclick="openProductModal('لبان رودانو', '50 ج.م', 'images/رودانو.png', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>لبان رودانو</p>
+            <button class="order-button" onclick="addToCart('لبان رودانو', 50)">🛒اضف الي السلة</button>
+        </article>
+    </article>
+</div>
+
+<div class="section-box" data-category="خردوات">
+    <h1 class="section-title">خردوات</h1>
+    <hr color="black">
+    <article class="A">
+        <article class="a1">
+            <img src="https://riad.ly/app/uploads/2023/11/photo_1_2023-11-20_00-11-11-1024x1024.jpg" class="product-image" onclick="openProductModal('قلم روتو', '50 ج.م', 'https://riad.ly/app/uploads/2023/11/photo_1_2023-11-20_00-11-11-1024x1024.jpg', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>قلم روتو</p>
+            <button class="order-button" onclick="addToCart('قلم روتو', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="https://eg.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/34/381091/1.jpg?6766" class="product-image" onclick="openProductModal('قلم بريما سولو', '50 ج.م', 'https://eg.jumia.is/unsafe/fit-in/300x300/filters:fill(white)/product/34/381091/1.jpg?6766', 'وصف المنتج')" alt="" width="230" height="200">
+            <p>قلم بريما سولو</p>
+            <button class="order-button" onclick="addToCart('قلم بريما سولو', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/سيفين.png" loading="lazy" class="product-image" onclick="openProductModal('قلم بريما سيفين', '50 ج.م', 'images/سيفين.png', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>قلم بريما سيفين</p>
+            <button class="order-button" onclick="addToCart('قلم بريما سيفين', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="https://cdn.mafrservices.com/sys-master-root/h1b/h9b/50537775366174/617434_main.jpg?im=Resize=480" class="product-image" onclick="openProductModal('قلم بريما بريجو', '50 ج.م', 'https://cdn.mafrservices.com/sys-master-root/h1b/h9b/50537775366174/617434_main.jpg?im=Resize=480', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>قلم بريجو</p>
+            <button class="order-button" onclick="addToCart('قلم بريما بريجو', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src=" " loading="lazy" class="product-image" onclick="openProductModal('HP قلم رصاص', '50 ج.م', ' ', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>HP قلم رصاص</p>
+            <button class="order-button" onclick="addToCart('HP قلم رصاص ', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/ماركر.png" loading="lazy" class="product-image" onclick="openProductModal('قلم روتو ماركر', '50 ج.م', 'images/ماركر.png', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>قلم روتو ماركر</p>
+            <button class="order-button" onclick="addToCart('قلم روتو ماركر ', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/حجارة ص.png" loading="lazy" class="product-image" onclick="openProductModal('AAA حجارة ريموت', '50 ج.م', 'images/حجارة ص.png', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>AAA حجارة ريموت</p>
+            <button class="order-button" onclick="addToCart('AAA حجارة ريموت', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/حجارة ص.png" loading="lazy" class="product-image" onclick="openProductModal('AA حجارة قلم', '50 ج.م', 'images/حجارة ص.png', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>AA حجارة قلم</p>
+            <button class="order-button" onclick="addToCart('AA حجارة قلم', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/امير.png" loading="lazy" class="product-image" onclick="openProductModal('امير الاصلي', '50 ج.م', 'images/امير.png', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>امير الاصلي</p>
+            <button class="order-button" onclick="addToCart('امير الاصلي', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="https://www.epobond.com/cdn/shop/products/SUPERGLUE_JPG.png?v=1675515325&width=990" class="product-image" onclick="openProductModal('امير صاروخ', '50 ج.م', 'https://www.epobond.com/cdn/shop/products/SUPERGLUE_JPG.png?v=1675515325&width=990', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>امير صاروخ</p>
+            <button class="order-button" onclick="addToCart('امير صاروخ', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="https://m.media-amazon.com/images/I/71YV35NLguL._AC_SL1500_.jpg" class="product-image" onclick="openProductModal('شمع لحام ماليزي', '50 ج.م', 'https://m.media-amazon.com/images/I/71YV35NLguL._AC_SL1500_.jpg', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>شمع لحام ماليزي</p>
+            <button class="order-button" onclick="addToCart(' شمع لحام ماليزي', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/امير 2.png" loading="lazy" class="product-image" onclick="openProductModal('لحام امير 2*1', '50 ج.م', 'images/امير 2.png', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>لحام امير 2*1</p>
+            <button class="order-button" onclick="addToCart('لحام امير 2*1', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/قصافات ك.png" loading="lazy" class="product-image" onclick="openProductModal('قصافات امريكي ك', '50 ج.م', 'images/قصافات ك.png', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>قصافات امريكي ك</p>
+            <button class="order-button" onclick="addToCart('قصافات امريكي ك', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src=" " loading="lazy" class="product-image" onclick="openProductModal('قصافات امريكي ص', '50 ج.م', ' ', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>قصافات امريكي ص</p>
+            <button class="order-button" onclick="addToCart('قصافات امريكي ص', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/كاتل س.png" loading="lazy" class="product-image" onclick="openProductModal('كاتل ستانليس 1.8 لتر', '50 ج.م', 'images/كاتل س.png', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>كاتل ستانليس 1.8 لتر</p>
+            <button class="order-button" onclick="addToCart('كاتل ستانليس 1.8 لتر', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="https://www.coffeetalks.co.uk/cdn/shop/products/OK004-K_Main_c2932b00-335b-40f9-b857-fffcf83bc744.jpg?v=1727431190" class="product-image" onclick="openProductModal('ماكينة قهوة 600وات', '50 ج.م', 'https://www.coffeetalks.co.uk/cdn/shop/products/OK004-K_Main_c2932b00-335b-40f9-b857-fffcf83bc744.jpg?v=1727431190', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>ماكينة قهوة 600وات</p>
+            <button class="order-button" onclick="addToCart('ماكينة قهوة 600وات', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="images/معجون.png" loading="lazy" class="product-image" onclick="openProductModal('ص signal معجون', '50 ج.م', 'images/معجون.png', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>ص signal معجون</p>
+            <button class="order-button" onclick="addToCart('ص signal معجون', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="https://tse2.mm.bing.net/th/id/OIP.MFYyIKtIom41GKCi3hMzLQHaJ4?rs=1&pid=ImgDetMain&o=7&rm=3" class="product-image" onclick="openProductModal('المصل الذهبي', '50 ج.م', 'https://tse2.mm.bing.net/th/id/OIP.MFYyIKtIom41GKCi3hMzLQHaJ4?rs=1&pid=ImgDetMain&o=7&rm=3', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>المصل الذهبي</p>
+            <button class="order-button" onclick="addToCart('المصل الذهبي', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src=" " loading="lazy" class="product-image" onclick="openProductModal('فرش اسنان اورال', '50 ج.م', ' ', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>فرش اسنان اورال</p>
+            <button class="order-button" onclick="addToCart('فرش اسنان اورال ', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="https://azizonline.com/wp-content/uploads/2025/06/1749910294_3501.png" class="product-image" onclick="openProductModal('جيل ستار برطمان', '50 ج.م', 'https://azizonline.com/wp-content/uploads/2025/06/1749910294_3501.png', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>جيل ستار برطمان</p>
+            <button class="order-button" onclick="addToCart('جيل ستار برطمان', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="https://puremasr.com/wp-content/uploads/2022/04/Vaseline-4.jpg" class="product-image" onclick="openProductModal('فازلين بيور 50مل', '50 ج.م', 'https://puremasr.com/wp-content/uploads/2022/04/Vaseline-4.jpg', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>فازلين بيور 50مل</p>
+            <button class="order-button" onclick="addToCart('فازلين بيور 50مل', 50)">🛒اضف الي السلة</button>
+        </article>
+        <article class="a1">
+            <img src="https://drahmedelezaby.com/wp-content/uploads/2023/05/Eva-Foot-Powder-Deodorant-with-Menthol-50-gm-2-430x430.webp" class="product-image" onclick="openProductModal('بودره قدم 50جم', '50 ج.م', 'https://drahmedelezaby.com/wp-content/uploads/2023/05/Eva-Foot-Powder-Deodorant-with-Menthol-50-gm-2-430x430.webp', 'وصف المنتج', '24')" alt="" width="230" height="200">
+            <p>بودره قدم 50جم</p>
+            <button class="order-button" onclick="addToCart('بودره قدم 50جم', 50)">🛒اضف الي السلة</button>
+        </article>
+        
+    </article>
+</div>
+
+
+<!-- ================================================ سلة الطلبات (Amazon-style) ================================================================ -->
+
+    <dialog id="cart-modal">
+        <div class="cart-header">
+            <h2>🛒 سلة المشتريات</h2>
+            <button class="cart-close-icon" onclick="closeCart()">✕</button>
+        </div>
+        <div id="cart-items"></div>
+        <div id="cart-summary" class="cart-summary" style="display:none;">
+            <div class="cart-summary-row">
+                <span id="cart-subtotal-label">المجموع الفرعي</span>
+                <span id="cart-subtotal">0 ج.م</span>
+            </div>
+            <button id="confirm-order-btn" class="checkout-btn" onclick="showOrderReview()">تأكيد الطلب</button>
+        </div>
+    </dialog>   
+<!-- اشعار الاضافة الي السلة -->
+    <div id="toast" class="toast">تمت الإضافة إلى السلة بنجاح! ✅</div>
+    <button id="backToTop" onclick="scrollToTop()">⬆️</button>
+<!-- مراجعة الطلب -->
+<dialog id="review-modal">
+    <div class="review-modal-inner">
+        <div class="review-header">
+            <h3>📋 تأكيد الطلب</h3>
+            <button class="review-close-btn" onclick="closeModal('review-modal')">✕</button>
+        </div>
+        <div class="review-body">
+            <div class="review-section-label">🛒 المنتجات</div>
+            <div id="review-items" class="review-items"></div>
+            <div class="review-divider"></div>
+            <div class="review-total">
+                <span>الإجمالي</span>
+                <span id="review-total-amount">0 ج.م</span>
+            </div>
+            <div class="review-section-label">📍 العنوان</div>
+            <div class="review-address">
+                <input type="text" id="review-address-input" class="review-address-input" placeholder="أدخل عنوان التوصيل">
+            </div>
+        </div>
+        <div class="review-footer">
+            <button class="checkout-btn" onclick="sendOrder()">تأكيد وإرسال ✅</button>
+            <button class="review-edit-btn" onclick="closeModal('review-modal')">تعديل ✏️</button>
+        </div>
+    </div>
+</dialog>
+<!-- اشعار ارسال الطلب -->
+<dialog id="success-modal" class="custom-modal">
+    <h3>تم إرسال طلبك  ! ✅</h3>
+    <p>سيتم التواصل معك في أقرب وقت.</p>
+    <button class="phone-modal-close-btn"  onclick="document.getElementById('success-modal').close()">حسناً</button>
+</dialog>
+<!-- اشعار السلة فارغة -->
+<dialog id="alert-modal" class="success-modal">
+    <h3 style="color: #ff4d4d;">⚠️ السلة فارغة</h3>
+    <p>لم تقم بإضافة أي منتجات بعد!</p>
+    <button class="phone-modal-close-btn" onclick="document.getElementById('alert-modal').close()">حسناً</button>
+</dialog>
+
+<!-- ====================================================================================================================================== -->
+
+<!-- ====================================================================================================================================== -->
+
+    <!-- الشريط السفلي -->
+    <div id="zoom-modal" class="zoom-modal" style="display:none;" onclick="closeZoom()">
+        <img id="zoomed-img" src="">
+    </div>
+    <nav class="bottom-nav">
+    <a href="#" class="nav-item" onclick="window.scrollTo({top: 0, behavior: 'smooth'});return false">
+        <span class="nav-icon">🏠</span><small>الرئيسية</small>
+    </a>
+    <a href="#" class="nav-item" onclick="document.getElementById('profile-modal').showModal();return false">
+        <span class="nav-icon">👤</span><small>حسابي</small>
+    </a>
+    <a class="nav-item" href="#" onclick="document.getElementById('phoneWindow').showModal();return false">
+        <span class="nav-icon">📞</span><small>اتصل بنا</small>
+    </a>
+    <a href="#" class="nav-item" onclick="openCart();return false">
+        <span class="nav-icon">🛒<span id="cart-count" style="display:none;">0</span></span><small>السلة</small>
+    </a>
+</nav>
+
+<!-- ====================================================================================================================================== -->
+<!-- شاشة المنتج الكاملة (غير dialog لتجنب مشاكل المتصفح) -->
+<div id="product-overlay" class="product-overlay"> 
+    <button class="modal-close" onclick="closeProductModal()">✕</button>
+    <div class="modal-scroll">
+        <div class="modal-image-wrap">
+            <img id="modal-image" src="" alt="صورة المنتج">
+            <div class="slider-dots" id="slider-dots"></div>
+        </div>
+        <div class="modal-info">
+            <h2 id="modal-name" class="modal-name">اسم المنتج</h2>
+            <p id="modal-price" class="modal-price"></p>
+            <p id="modal-pack" class="modal-pack">العلبة 24 قطعة</p>
+        </div>
+    </div>
+    <div class="modal-actions">
+        <button class="modal-add-btn" onclick="addToCartFromModal()">🛒 أضف للسلة</button>
+    </div>
+</div>
+
+
+
+
+
+
+    <script type="application/ld+json">
+    {
+        "@context":"https://schema.org",
+        "@type":"Store",
+        "name":"متجر الشرقاوي",
+        "url":"https://sharkawey.netlify.app"
+    }
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="js.js"></script>    
+
+
+
+    </body>
+</html>

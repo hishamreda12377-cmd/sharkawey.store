@@ -1,0 +1,24 @@
+{
+  "name": "متجر الشرقاوي",
+  "short_name": "الشرقاوي",
+  "description": "أفضل منتجات الشرقاوي بأعلى جودة",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#332e2e",
+  "theme_color": "#ff9800",
+  "lang": "ar",
+  "dir": "rtl",
+  "scope": "./",
+  "icons": [
+    {
+      "src": "الاصيل لوجو.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "الاصيل لوجو.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
