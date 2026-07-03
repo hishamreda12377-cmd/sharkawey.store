@@ -3,6 +3,46 @@
 // ==========================================================================
 let cart = []; 
 
+// ==========================================================================
+// شاشة الصيانة
+// ==========================================================================
+// لتفعيل الصيانة: اكتب في Console: showMaintenance()
+// لإلغاء الصيانة: اكتب في Console: hideMaintenance()
+function showMaintenance() {
+    const screen = document.getElementById('maintenance-screen');
+    if (screen) {
+        const dateEl = document.getElementById('maintenance-date');
+        if (dateEl) dateEl.textContent = new Date().toLocaleDateString('ar-EG');
+        screen.style.display = 'flex';
+        screen.style.alignItems = 'center';
+        screen.style.justifyContent = 'center';
+        document.body.style.overflow = 'hidden';
+        localStorage.setItem('maintenanceMode', 'on');
+    }
+}
+function hideMaintenance() {
+    const screen = document.getElementById('maintenance-screen');
+    if (screen) {
+        screen.style.display = 'none';
+        document.body.style.overflow = '';
+        localStorage.removeItem('maintenanceMode');
+    }
+}
+// فحص عند تحميل الصفحة
+if (localStorage.getItem('maintenanceMode') === 'on') {
+    document.addEventListener('DOMContentLoaded', () => {
+        const screen = document.getElementById('maintenance-screen');
+        if (screen) {
+            const dateEl = document.getElementById('maintenance-date');
+            if (dateEl) dateEl.textContent = new Date().toLocaleDateString('ar-EG');
+            screen.style.display = 'flex';
+            screen.style.alignItems = 'center';
+            screen.style.justifyContent = 'center';
+            document.body.style.overflow = 'hidden';
+        }
+    });
+}
+
 // تهيئة EmailJS
 try { if (typeof emailjs !== 'undefined') emailjs.init("3xKGgYOdYgVChJOsh"); } catch(e) {}
 

@@ -132,6 +132,12 @@ body.light-mode .animated-bg {
     100% { opacity: 0; transform: translateY(-120px) translateX(-15px) scale(0.5); }
 }
 
+/* حركة الصيانة */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 .video-overlay {
     position: fixed;
     top: 0; left: 0;
