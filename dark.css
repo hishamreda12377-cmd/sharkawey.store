@@ -475,11 +475,9 @@ h1.section-title {
     cursor:pointer;
     width: 135px;
     height: 130px;
-    object-fit:fill;
     margin-bottom: -10px;
-    box-shadow: 4px 2px 5px black;
     border-radius: 15%;
-
+    background-color: #ffffff;
 }
 /* تأثير التحميل للصور (Skeleton Shimmer) */
 .img-loading {

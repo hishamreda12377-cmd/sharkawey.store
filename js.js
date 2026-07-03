@@ -1071,12 +1071,12 @@ function unlockScroll() {
     document.documentElement.style.overflow = '';
 }
 
-function openProductModal(name, price, images, description, packSize) {
+function openProductModal(name, price, images, description, packText) {
     currentProductImages = Array.isArray(images) ? images : [images];
     
     document.getElementById('modal-name').innerText = name;
     document.getElementById('modal-price').innerText = price;
-    document.getElementById('modal-pack').innerText = 'العلبة ' + (packSize || '24') + ' قطعة';
+    document.getElementById('modal-pack').innerText = packText || 'العلبة 24 قطعة';
     
     const img = document.getElementById('modal-image');
     img.style.opacity = '0';
