@@ -1410,14 +1410,25 @@ async function loadProductsFromDB() {
 function renderProductsFromDB(products) {
     const container = document.getElementById('products-container');
     if (!container || !products.length) return;
+
     const categories = {};
     products.forEach(p => {
         const cat = p.category || 'بدون تصنيف';
         if (!categories[cat]) categories[cat] = [];
         categories[cat].push(p);
     });
+
+    const catOrder = {};
+    allCategoriesData.forEach(c => { catOrder[c.name] = c.sort_order ?? 0; });
+
+    const sortedCats = Object.entries(categories).sort((a, b) => {
+        const orderA = catOrder[a[0]] ?? 0;
+        const orderB = catOrder[b[0]] ?? 0;
+        return orderA - orderB;
+    });
+
     let html = '';
-    for (const [catName, catProducts] of Object.entries(categories)) {
+    for (const [catName, catProducts] of sortedCats) {
         html += `<div class="section-box" data-category="${catName}">`;
         html += `<h1 class="section-title">${catName}</h1><hr color="black"><article class="A">`;
         catProducts.forEach(p => {
