@@ -4,10 +4,11 @@
 let cart = []; 
 
 // ==========================================================================
-// شاشة الصيانة
+// شاشة الصيانة (Supabase)
 // ==========================================================================
-// لتفعيل الصيانة: اكتب في Console: showMaintenance()
-// لإلغاء الصيانة: اكتب في Console: hideMaintenance()
+const MAINTENANCE_SUPABASE_URL = 'https://zqqpknqexsnskowhiwfj.supabase.co';
+const MAINTENANCE_SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxcXBrbnFleHNuc2tvd2hpd2ZqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMzE2MjQsImV4cCI6MjA5NjcwNzYyNH0.hcD0__qb6FNhpgAyyU0F7RFZyewJrkt2WR4E79UJP9E';
+
 function showMaintenance() {
     const screen = document.getElementById('maintenance-screen');
     if (screen) {
@@ -17,31 +18,35 @@ function showMaintenance() {
         screen.style.alignItems = 'center';
         screen.style.justifyContent = 'center';
         document.body.style.overflow = 'hidden';
-        localStorage.setItem('maintenanceMode', 'on');
     }
 }
+
 function hideMaintenance() {
     const screen = document.getElementById('maintenance-screen');
     if (screen) {
         screen.style.display = 'none';
         document.body.style.overflow = '';
-        localStorage.removeItem('maintenanceMode');
     }
 }
-// فحص عند تحميل الصفحة
-if (localStorage.getItem('maintenanceMode') === 'on') {
-    document.addEventListener('DOMContentLoaded', () => {
-        const screen = document.getElementById('maintenance-screen');
-        if (screen) {
-            const dateEl = document.getElementById('maintenance-date');
-            if (dateEl) dateEl.textContent = new Date().toLocaleDateString('ar-EG');
-            screen.style.display = 'flex';
-            screen.style.alignItems = 'center';
-            screen.style.justifyContent = 'center';
-            document.body.style.overflow = 'hidden';
+
+async function checkMaintenanceMode() {
+    try {
+        const res = await fetch(`${MAINTENANCE_SUPABASE_URL}/rest/v1/maintenance?id=eq.1&select=is_active`, {
+            headers: {
+                'apikey': MAINTENANCE_SUPABASE_KEY,
+                'Authorization': `Bearer ${MAINTENANCE_SUPABASE_KEY}`
+            }
+        });
+        const data = await res.json();
+        if (data && data[0] && data[0].is_active) {
+            showMaintenance();
         }
-    });
+    } catch (e) {
+        console.log('Maintenance check skipped');
+    }
 }
+
+checkMaintenanceMode();
 
 // تهيئة EmailJS
 try { if (typeof emailjs !== 'undefined') emailjs.init("3xKGgYOdYgVChJOsh"); } catch(e) {}
@@ -1378,5 +1383,64 @@ const SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZ
 
 const { createClient } = supabase;
 const supabaseClient = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+// ==========================================================================
+// تحميل المنتجات من Supabase
+// ==========================================================================
+let allProductsData = [];
+let allCategoriesData = [];
+
+async function loadProductsFromDB() {
+    const container = document.getElementById('products-container');
+    if (!container) return;
+    try {
+        const [productsRes, categoriesRes] = await Promise.all([
+            supabaseClient.from('products').select('*').order('sort_order', { ascending: true }).order('id', { ascending: true }),
+            supabaseClient.from('categories').select('*').order('sort_order', { ascending: true })
+        ]);
+        if (productsRes.error) throw productsRes.error;
+        allProductsData = productsRes.data || [];
+        allCategoriesData = categoriesRes.data || [];
+        renderProductsFromDB(allProductsData);
+    } catch (e) {
+        console.error('Load products error:', e);
+    }
+}
+
+function renderProductsFromDB(products) {
+    const container = document.getElementById('products-container');
+    if (!container || !products.length) return;
+    const categories = {};
+    products.forEach(p => {
+        const cat = p.category || 'بدون تصنيف';
+        if (!categories[cat]) categories[cat] = [];
+        categories[cat].push(p);
+    });
+    let html = '';
+    for (const [catName, catProducts] of Object.entries(categories)) {
+        html += `<div class="section-box" data-category="${catName}">`;
+        html += `<h1 class="section-title">${catName}</h1><hr color="black"><article class="A">`;
+        catProducts.forEach(p => {
+            const images = p.images ? p.images.split(',').map(s => s.trim()).filter(s => s) : [];
+            const firstImage = images[0] || '';
+            const imagesStr = JSON.stringify(images);
+            const pack = p.pack || 'العلبة 24 قطعة';
+            const desc = (p.description || 'وصف غير متوفر').replace(/'/g, "\\'");
+            html += `<article class="a1">`;
+            html += `<img src="${firstImage}" class="product-image" onclick='openProductModal(${JSON.stringify(p.name)}, "${p.price} ج.م", ${imagesStr}, "${desc}", "${pack}")' width="230" height="200">`;
+            html += `<p>${p.name}</p>`;
+            html += `<button class="order-button" onclick="addToCart('${p.name.replace(/'/g, "\\'")}', ${p.price})">🛒اضف الي السلة</button>`;
+            html += `</article>`;
+        });
+        html += `</article></div>`;
+    }
+    container.innerHTML = html;
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('show'); });
+    });
+    container.querySelectorAll('.a1').forEach(card => observer.observe(card));
+}
+
+window.addEventListener('DOMContentLoaded', () => { loadProductsFromDB(); });
 
 
