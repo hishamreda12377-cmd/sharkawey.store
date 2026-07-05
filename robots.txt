@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://hishamreda12377-cmd.github.io/alsharkawey.com/sitemap.xml
