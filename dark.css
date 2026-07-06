@@ -1,0 +1,2873 @@
+/* ===========================================================================================
+   FIXED TOP HEADER (Amazon-style)
+   =========================================================================================== */
+.top-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 90000;
+    background: rgba(19, 25, 33, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 14px;
+    height: 62px;
+    direction: rtl;
+    border-bottom: 1px solid rgba(255, 152, 0, 0.1);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: 50px;
+}
+.theme-toggle-header {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s;
+    flex-shrink: 0;
+}
+.theme-toggle-header:hover {
+    background: rgba(255, 152, 0, 0.15);
+    border-color: rgba(255, 152, 0, 0.3);
+}
+.header-logo {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    color: #fff;
+    text-decoration: none;
+    flex-shrink: 0;
+}
+.header-logo .logo-icon {
+    font-size: 26px;
+    line-height: 1;
+}
+.header-logo .logo-text {
+    font-size: 15px;
+    font-weight: 800;
+    color: #ff9800;
+    white-space: nowrap;
+    line-height: 1.1;
+}
+.header-search-collapsed {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #ff9800, #e68900);
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    flex-shrink: 0;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.4);
+}
+.header-search-collapsed:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(255, 152, 0, 0.6);
+}
+.header-search-expanded {
+    display: none;
+    flex: 1;
+    align-items: center;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    max-width: 0;
+    opacity: 0;
+    margin: 0;
+}
+.header-search-expanded.active {
+    display: flex;
+    flex: 1;
+    max-width: 500px;
+    opacity: 1;
+    margin: 0 8px;
+    border-color: #ff9800;
+    animation: searchExpand 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.header-search-expanded.closing {
+    display: flex;
+    animation: searchCollapse 0.3s cubic-bezier(0.6, -0.28, 0.735, 0.045) forwards;
+}
+@keyframes searchExpand {
+    0% { max-width: 0; opacity: 0; margin: 0; }
+    100% { max-width: 500px; opacity: 1; margin: 0 8px; }
+}
+@keyframes searchCollapse {
+    0% { max-width: 500px; opacity: 1; margin: 0 8px; border-color: #ff9800; }
+    100% { max-width: 0; opacity: 0; margin: 0; border-color: transparent; }
+}
+.header-search-expanded input {
+    flex: 1;
+    border: none;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-family: 'Cairo', sans-serif;
+    outline: none;
+    background: #fff;
+    color: #222;
+    min-width: 0;
+    direction: rtl;
+}
+.header-search-expanded input::placeholder { color: #999; }
+.header-search-expanded button {
+    background: none;
+    border: none;
+    padding: 10px 14px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #666;
+    flex-shrink: 0;
+    transition: 0.2s;
+}
+.header-search-expanded button:hover { color: #f44336; }
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    flex-shrink: 0;
+}
+.header-actions .ha-btn {
+    background: none;
+    border: 1px solid transparent;
+    color: #ddd;
+    padding: 4px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    transition: 0.2s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 1.2;
+    white-space: nowrap;
+    position: relative;
+}
+.header-actions .ha-btn:hover {
+    border-color: rgba(255,255,255,0.2);
+}
+.header-actions .ha-btn .ha-icon {
+    font-size: 16px;
+}
+.header-actions .ha-btn .ha-label {
+    font-size: 9px;
+    color: #aaa;
+}
+.header-actions .ha-badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    min-width: 16px;
+    height: 16px;
+    background: #ff9800;
+    color: #000;
+    font-size: 9px;
+    font-weight: 800;
+    font-family: 'Cairo', sans-serif;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 3px;
+    line-height: 1;
+    pointer-events: none;
+}
+.header-actions .ha-badge:empty,
+.header-actions .ha-badge[data-count="0"] {
+    display: none;
+}
+
+/* ===========================================================================================
+   خلفية متحركة
+   =========================================================================================== */
+.animated-bg {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: #111;
+    transition: background 0.3s ease;
+}
+/* جزيئات متطايرة في خلفية الصفحة */
+.body-particle {
+    position: fixed;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: -1;
+    opacity: 0;
+}
+.bp1 { top: 10%; left: 5%; width: 6px; height: 6px; background: #ff9800; animation: bodyFloat 6s ease-in-out infinite 0s; }
+.bp2 { top: 70%; right: 8%; width: 8px; height: 8px; background: #ff5722; animation: bodyFloat 7s ease-in-out infinite 0.5s; }
+.bp3 { top: 20%; right: 15%; width: 5px; height: 5px; background: #ff9800; animation: bodyFloat 5s ease-in-out infinite 1s; }
+.bp4 { bottom: 15%; left: 12%; width: 7px; height: 7px; background: #ffc107; animation: bodyFloat 8s ease-in-out infinite 1.5s; }
+.bp5 { top: 45%; left: 3%; width: 6px; height: 6px; background: #ff9800; animation: bodyFloat 6.5s ease-in-out infinite 0.3s; }
+.bp6 { top: 35%; right: 5%; width: 5px; height: 5px; background: rgba(255,152,0,0.6); animation: bodyFloat 7.5s ease-in-out infinite 0.8s; }
+.bp7 { top: 85%; left: 18%; width: 7px; height: 7px; background: #ff5722; animation: bodyFloat 5.5s ease-in-out infinite 1.2s; }
+.bp8 { top: 5%; right: 22%; width: 6px; height: 6px; background: #ff9800; animation: bodyFloat 6s ease-in-out infinite 2s; }
+.bp9 { top: 55%; left: 30%; width: 5px; height: 5px; background: #ffc107; animation: bodyFloat 7s ease-in-out infinite 0.6s; }
+.bp10 { top: 25%; right: 28%; width: 6px; height: 6px; background: rgba(255,87,34,0.5); animation: bodyFloat 8s ease-in-out infinite 1.8s; }
+.bp11 { bottom: 10%; right: 6%; width: 7px; height: 7px; background: #ff9800; animation: bodyFloat 6.5s ease-in-out infinite 0.4s; }
+.bp12 { top: 65%; left: 6%; width: 5px; height: 5px; background: #ff5722; animation: bodyFloat 5s ease-in-out infinite 2.5s; }
+.bp13 { top: 3%; left: 35%; width: 6px; height: 6px; background: rgba(255,152,0,0.7); animation: bodyFloat 7.5s ease-in-out infinite 1.3s; }
+.bp14 { top: 50%; right: 18%; width: 7px; height: 7px; background: #ff9800; animation: bodyFloat 6s ease-in-out infinite 0.9s; }
+.bp15 { bottom: 20%; left: 25%; width: 6px; height: 6px; background: #ffc107; animation: bodyFloat 8s ease-in-out infinite 2.2s; }
+.bp16 { top: 75%; right: 12%; width: 5px; height: 5px; background: rgba(255,87,34,0.4); animation: bodyFloat 5.5s ease-in-out infinite 3s; }
+.bp17 { top: 15%; left: 55%; width: 7px; height: 7px; background: #ff9800; animation: bodyFloat 7s ease-in-out infinite 0.2s; }
+.bp18 { top: 80%; right: 30%; width: 6px; height: 6px; background: #ff5722; animation: bodyFloat 6.5s ease-in-out infinite 1.7s; }
+.bp19 { top: 40%; left: 45%; width: 5px; height: 5px; background: rgba(255,152,0,0.5); animation: bodyFloat 8s ease-in-out infinite 0.7s; }
+.bp20 { top: 60%; right: 40%; width: 6px; height: 6px; background: #ffc107; animation: bodyFloat 5s ease-in-out infinite 2.8s; }
+.bp21 { bottom: 30%; left: 40%; width: 7px; height: 7px; background: #ff9800; animation: bodyFloat 7.5s ease-in-out infinite 1.1s; }
+.bp22 { top: 18%; right: 45%; width: 5px; height: 5px; background: rgba(255,87,34,0.6); animation: bodyFloat 6s ease-in-out infinite 2.1s; }
+.bp23 { top: 87%; left: 68%; width: 6px; height: 6px; background: rgba(255,152,0,0.6); animation: bodyFloat 8.2s ease-in-out infinite 3.8s; }
+.bp24 { top: 48%; left: 28%; width: 6px; height: 6px; background: #ff5722; animation: bodyFloat 6.0s ease-in-out infinite 0.3s; }
+.bp25 { top: 51%; left: 27%; width: 5px; height: 5px; background: #ffc107; animation: bodyFloat 5.4s ease-in-out infinite 1.9s; }
+.bp26 { top: 16%; left: 51%; width: 7px; height: 7px; background: rgba(255,152,0,0.6); animation: bodyFloat 7.8s ease-in-out infinite 1.1s; }
+.bp27 { top: 24%; left: 68%; width: 6px; height: 6px; background: rgba(255,87,34,0.5); animation: bodyFloat 7.1s ease-in-out infinite 2.9s; }
+.bp28 { top: 24%; left: 52%; width: 5px; height: 5px; background: rgba(255,193,7,0.7); animation: bodyFloat 5.6s ease-in-out infinite 3.8s; }
+.bp29 { top: 8%; left: 23%; width: 8px; height: 8px; background: rgba(255,87,34,0.5); animation: bodyFloat 6.5s ease-in-out infinite 1.1s; }
+.bp30 { top: 50%; left: 25%; width: 6px; height: 6px; background: #ff5722; animation: bodyFloat 8.3s ease-in-out infinite 1.2s; }
+.bp31 { top: 25%; left: 55%; width: 7px; height: 7px; background: #ffc107; animation: bodyFloat 5.7s ease-in-out infinite 1.8s; }
+.bp32 { top: 35%; left: 21%; width: 6px; height: 6px; background: #ffc107; animation: bodyFloat 6.0s ease-in-out infinite 2.6s; }
+.bp33 { top: 65%; left: 92%; width: 8px; height: 8px; background: rgba(255,152,0,0.6); animation: bodyFloat 8.2s ease-in-out infinite 3.9s; }
+.bp34 { top: 40%; left: 57%; width: 7px; height: 7px; background: rgba(255,152,0,0.6); animation: bodyFloat 5.6s ease-in-out infinite 2.0s; }
+.bp35 { top: 52%; left: 73%; width: 6px; height: 6px; background: rgba(255,152,0,0.6); animation: bodyFloat 7.5s ease-in-out infinite 1.7s; }
+.bp36 { top: 29%; left: 74%; width: 7px; height: 7px; background: #ff9800; animation: bodyFloat 7.2s ease-in-out infinite 0.8s; }
+.bp37 { top: 21%; left: 26%; width: 7px; height: 7px; background: rgba(255,87,34,0.5); animation: bodyFloat 8.1s ease-in-out infinite 2.9s; }
+.bp38 { top: 40%; left: 25%; width: 8px; height: 8px; background: rgba(255,152,0,0.6); animation: bodyFloat 5.5s ease-in-out infinite 1.9s; }
+.bp39 { top: 31%; left: 7%; width: 8px; height: 8px; background: #ff5722; animation: bodyFloat 5.4s ease-in-out infinite 2.5s; }
+.bp40 { top: 43%; left: 5%; width: 8px; height: 8px; background: #ffc107; animation: bodyFloat 6.9s ease-in-out infinite 3.0s; }
+.bp41 { top: 64%; left: 65%; width: 5px; height: 5px; background: rgba(255,193,7,0.7); animation: bodyFloat 8.1s ease-in-out infinite 1.4s; }
+.bp42 { top: 20%; left: 57%; width: 7px; height: 7px; background: #ff9800; animation: bodyFloat 7.0s ease-in-out infinite 1.5s; }
+.bp43 { top: 31%; left: 75%; width: 8px; height: 8px; background: rgba(255,193,7,0.7); animation: bodyFloat 6.8s ease-in-out infinite 0.1s; }
+.bp44 { top: 94%; left: 66%; width: 8px; height: 8px; background: rgba(255,87,34,0.5); animation: bodyFloat 7.9s ease-in-out infinite 2.7s; }
+.bp45 { top: 73%; left: 55%; width: 7px; height: 7px; background: rgba(255,193,7,0.7); animation: bodyFloat 5.6s ease-in-out infinite 1.9s; }
+.bp46 { top: 9%; left: 80%; width: 5px; height: 5px; background: #ff5722; animation: bodyFloat 5.7s ease-in-out infinite 3.5s; }
+.bp47 { top: 28%; left: 60%; width: 8px; height: 8px; background: #ff5722; animation: bodyFloat 8.2s ease-in-out infinite 0.7s; }
+.bp48 { top: 91%; left: 85%; width: 8px; height: 8px; background: rgba(255,152,0,0.6); animation: bodyFloat 8.6s ease-in-out infinite 1.5s; }
+.bp49 { top: 14%; left: 30%; width: 5px; height: 5px; background: #ff9800; animation: bodyFloat 7.2s ease-in-out infinite 2.4s; }
+.bp50 { top: 79%; left: 11%; width: 6px; height: 6px; background: #ff5722; animation: bodyFloat 6.0s ease-in-out infinite 0.1s; }
+.bp51 { top: 89%; left: 84%; width: 8px; height: 8px; background: #ff5722; animation: bodyFloat 7.8s ease-in-out infinite 3.4s; }
+.bp52 { top: 93%; left: 74%; width: 8px; height: 8px; background: #ff5722; animation: bodyFloat 8.7s ease-in-out infinite 0.4s; }
+.bp53 { top: 27%; left: 54%; width: 8px; height: 8px; background: #ff5722; animation: bodyFloat 6.1s ease-in-out infinite 0.8s; }
+.bp54 { top: 85%; left: 90%; width: 5px; height: 5px; background: #ffc107; animation: bodyFloat 8.4s ease-in-out infinite 2.0s; }
+.bp55 { top: 15%; left: 93%; width: 6px; height: 6px; background: rgba(255,87,34,0.5); animation: bodyFloat 7.5s ease-in-out infinite 3.6s; }
+.bp56 { top: 16%; left: 46%; width: 5px; height: 5px; background: #ff5722; animation: bodyFloat 6.7s ease-in-out infinite 3.6s; }
+.bp57 { top: 84%; left: 67%; width: 5px; height: 5px; background: #ff9800; animation: bodyFloat 8.3s ease-in-out infinite 1.7s; }
+.bp58 { top: 65%; left: 59%; width: 5px; height: 5px; background: rgba(255,193,7,0.7); animation: bodyFloat 5.9s ease-in-out infinite 3.7s; }
+.bp59 { top: 75%; left: 5%; width: 5px; height: 5px; background: #ff9800; animation: bodyFloat 8.5s ease-in-out infinite 0.3s; }
+.bp60 { top: 35%; left: 78%; width: 5px; height: 5px; background: rgba(255,193,7,0.7); animation: bodyFloat 6.1s ease-in-out infinite 0.4s; }
+.bp61 { top: 79%; left: 50%; width: 7px; height: 7px; background: rgba(255,152,0,0.6); animation: bodyFloat 6.6s ease-in-out infinite 3.0s; }
+.bp62 { top: 81%; left: 63%; width: 7px; height: 7px; background: #ff9800; animation: bodyFloat 5.1s ease-in-out infinite 0.8s; }
+.bp63 { top: 87%; left: 76%; width: 7px; height: 7px; background: rgba(255,87,34,0.5); animation: bodyFloat 8.8s ease-in-out infinite 1.6s; }
+.bp64 { top: 53%; left: 68%; width: 6px; height: 6px; background: #ff5722; animation: bodyFloat 7.6s ease-in-out infinite 2.4s; }
+.bp65 { top: 52%; left: 8%; width: 8px; height: 8px; background: rgba(255,152,0,0.6); animation: bodyFloat 5.2s ease-in-out infinite 1.8s; }
+.bp66 { top: 15%; left: 44%; width: 5px; height: 5px; background: rgba(255,193,7,0.7); animation: bodyFloat 6.5s ease-in-out infinite 0.7s; }
+.bp67 { top: 9%; left: 59%; width: 5px; height: 5px; background: #ffc107; animation: bodyFloat 8.0s ease-in-out infinite 1.1s; }
+.bp68 { top: 84%; left: 72%; width: 8px; height: 8px; background: #ffc107; animation: bodyFloat 8.4s ease-in-out infinite 3.9s; }
+.bp69 { top: 55%; left: 30%; width: 7px; height: 7px; background: #ff5722; animation: bodyFloat 7.7s ease-in-out infinite 2.2s; }
+.bp70 { top: 86%; left: 45%; width: 7px; height: 7px; background: rgba(255,87,34,0.5); animation: bodyFloat 7.8s ease-in-out infinite 2.8s; }
+.bp71 { top: 32%; left: 28%; width: 5px; height: 5px; background: rgba(255,152,0,0.6); animation: bodyFloat 8.6s ease-in-out infinite 3.2s; }
+.bp72 { top: 42%; left: 94%; width: 5px; height: 5px; background: rgba(255,193,7,0.7); animation: bodyFloat 8.4s ease-in-out infinite 0.6s; }
+.bp73 { top: 64%; left: 40%; width: 8px; height: 8px; background: rgba(255,193,7,0.7); animation: bodyFloat 7.3s ease-in-out infinite 1.3s; }
+.bp74 { top: 8%; left: 52%; width: 7px; height: 7px; background: rgba(255,193,7,0.7); animation: bodyFloat 8.3s ease-in-out infinite 1.3s; }
+.bp75 { top: 13%; left: 59%; width: 5px; height: 5px; background: #ff5722; animation: bodyFloat 5.4s ease-in-out infinite 0.3s; }
+.bp76 { top: 79%; left: 52%; width: 8px; height: 8px; background: rgba(255,193,7,0.7); animation: bodyFloat 6.7s ease-in-out infinite 4.0s; }
+.bp77 { top: 71%; left: 87%; width: 7px; height: 7px; background: rgba(255,152,0,0.6); animation: bodyFloat 7.6s ease-in-out infinite 3.7s; }
+.bp78 { top: 78%; left: 45%; width: 6px; height: 6px; background: #ff5722; animation: bodyFloat 6.4s ease-in-out infinite 2.3s; }
+.bp79 { top: 78%; left: 90%; width: 7px; height: 7px; background: rgba(255,152,0,0.6); animation: bodyFloat 7.0s ease-in-out infinite 2.2s; }
+.bp80 { top: 13%; left: 20%; width: 8px; height: 8px; background: rgba(255,87,34,0.5); animation: bodyFloat 8.8s ease-in-out infinite 3.1s; }
+.bp81 { top: 92%; left: 90%; width: 8px; height: 8px; background: rgba(255,87,34,0.5); animation: bodyFloat 7.8s ease-in-out infinite 2.9s; }
+.bp82 { top: 65%; left: 51%; width: 6px; height: 6px; background: rgba(255,193,7,0.7); animation: bodyFloat 8.6s ease-in-out infinite 0.5s; }
+.bp83 { top: 26%; left: 40%; width: 7px; height: 7px; background: #ff9800; animation: bodyFloat 5.7s ease-in-out infinite 2.6s; }
+.bp84 { top: 46%; left: 36%; width: 6px; height: 6px; background: #ffc107; animation: bodyFloat 8.3s ease-in-out infinite 2.1s; }
+.bp85 { top: 33%; left: 77%; width: 8px; height: 8px; background: #ff5722; animation: bodyFloat 8.9s ease-in-out infinite 1.6s; }
+.bp86 { top: 9%; left: 65%; width: 5px; height: 5px; background: rgba(255,193,7,0.7); animation: bodyFloat 6.3s ease-in-out infinite 0.9s; }
+.bp87 { top: 47%; left: 50%; width: 7px; height: 7px; background: #ff9800; animation: bodyFloat 6.3s ease-in-out infinite 2.5s; }
+.bp88 { top: 81%; left: 51%; width: 6px; height: 6px; background: #ff9800; animation: bodyFloat 8.9s ease-in-out infinite 1.3s; }
+.bp89 { top: 49%; left: 38%; width: 7px; height: 7px; background: rgba(255,87,34,0.5); animation: bodyFloat 6.0s ease-in-out infinite 1.0s; }
+.bp90 { top: 15%; left: 84%; width: 8px; height: 8px; background: rgba(255,87,34,0.5); animation: bodyFloat 5.7s ease-in-out infinite 1.3s; }
+.bp91 { top: 63%; left: 8%; width: 7px; height: 7px; background: rgba(255,193,7,0.7); animation: bodyFloat 7.4s ease-in-out infinite 0.9s; }
+.bp92 { top: 14%; left: 88%; width: 8px; height: 8px; background: #ffc107; animation: bodyFloat 7.0s ease-in-out infinite 3.9s; }
+.bp93 { top: 26%; left: 75%; width: 6px; height: 6px; background: rgba(255,193,7,0.7); animation: bodyFloat 6.9s ease-in-out infinite 1.5s; }
+.bp94 { top: 25%; left: 85%; width: 6px; height: 6px; background: rgba(255,87,34,0.5); animation: bodyFloat 8.6s ease-in-out infinite 3.4s; }
+.bp95 { top: 69%; left: 67%; width: 7px; height: 7px; background: rgba(255,152,0,0.6); animation: bodyFloat 5.4s ease-in-out infinite 1.2s; }
+.bp96 { top: 46%; left: 41%; width: 6px; height: 6px; background: rgba(255,87,34,0.5); animation: bodyFloat 5.3s ease-in-out infinite 1.1s; }
+.bp97 { top: 60%; left: 15%; width: 8px; height: 8px; background: #ff9800; animation: bodyFloat 7.6s ease-in-out infinite 0.5s; }
+.bp98 { top: 42%; left: 19%; width: 8px; height: 8px; background: #ffc107; animation: bodyFloat 6.9s ease-in-out infinite 0.2s; }
+.bp99 { top: 32%; left: 45%; width: 8px; height: 8px; background: rgba(255,152,0,0.6); animation: bodyFloat 5.9s ease-in-out infinite 2.1s; }
+.bp100 { top: 29%; left: 41%; width: 5px; height: 5px; background: #ff5722; animation: bodyFloat 6.3s ease-in-out infinite 2.7s; }
+
+
+@keyframes bodyFloat {
+    0% { opacity: 0; transform: translateY(0) translateX(0) scale(0.5); }
+    20% { opacity: 0.6; }
+    50% { opacity: 0.3; transform: translateY(-60px) translateX(20px) scale(1); }
+    80% { opacity: 0.1; }
+    100% { opacity: 0; transform: translateY(-120px) translateX(-15px) scale(0.5); }
+}
+
+/* حركة الصيانة */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.video-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    z-index: -1;
+    background: transparent;
+}
+
+/* ===========================================================================================
+   1. عام - التنسيقات العامة للصفحة
+   =========================================================================================== */
+/* تنسيق خلفية الصفحة ولونها الأساسي */
+body {
+    scroll-behavior: smooth; background: #111; background-attachment: fixed; margin-top: 0; padding: 62px 0 80px 0;
+    font-family: 'Cairo', 'Segoe UI', Tahoma, sans-serif;
+    transition: background 0.3s ease;
+}
+/* منع التمرير عند فتح نافذة dialog */
+body:has(dialog[open]) {
+    overflow: hidden;
+    
+}
+/* منع السكرول عند فتح أي مودال */
+body.no-scroll {
+    overflow: hidden !important;
+    height: 100dvh;
+    height: 100vh; /* fallback */
+}
+
+
+/* reset شامل لكل الـ dialogs */
+dialog {
+    padding: 0;
+    border: none;
+    margin: 0;
+    max-height: none;
+    max-width: none;
+    color: inherit;
+    background: transparent;
+    box-shadow: none;
+}
+dialog[open] {
+    animation: modalShow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+dialog[open]::backdrop {
+    animation: backdropShow 0.3s ease-out;
+}
+
+/* ===========================================================================================
+    2. شاشة التحميل - تظهر أثناء تحميل الصفحة
+   =========================================================================================== */
+/* طبقة اللودر التي تغطي الشاشة كاملة */
+#loader {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: #0a0a0a;
+    background-image:
+        radial-gradient(ellipse at 30% 50%, rgba(255, 152, 0, 0.04) 0%, transparent 60%),
+        radial-gradient(ellipse at 70% 50%, rgba(255, 87, 34, 0.03) 0%, transparent 60%),
+        radial-gradient(ellipse at 50% 20%, rgba(255, 152, 0, 0.06) 0%, transparent 50%);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 999999;
+    transition: opacity 0.7s ease, visibility 0.7s ease, transform 0.5s ease;
+    overflow: hidden;
+}
+/* توهج خلفي متحرك خلف الشعار */
+.loader-glow {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 152, 0, 0.12) 0%, rgba(255, 87, 34, 0.05) 40%, transparent 70%);
+    animation: loaderGlowPulse 2.5s ease-in-out infinite;
+    pointer-events: none;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+/* الحاوية الداخلية للودر (الشعار والنص وشريط التحميل) */
+.loader-box {
+    text-align: center;
+    max-width: 340px;
+    width: 90%;
+    position: relative;
+    z-index: 2;
+    animation: loaderBoxIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+}
+/* غلاف الشعار */
+.loader-logo-wrap {
+    margin-bottom: 28px;
+    position: relative;
+    display: inline-block;
+}
+/* الحلقة الخارجية الدوارة */
+.loader-ring-outer {
+    position: absolute;
+    top: -14px;
+    left: -14px;
+    right: -14px;
+    bottom: -14px;
+    border-radius: 50%;
+    border: 1.5px solid transparent;
+    background: conic-gradient(transparent 0deg, transparent 220deg, #ff9800 280deg, #ff5722 340deg, transparent 360deg) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: loaderSpin 2s linear infinite;
+}
+/* الحلقة الداخلية الدوارة بعكس الاتجاه */
+.loader-ring-inner {
+    position: absolute;
+    top: -6px;
+    left: -6px;
+    right: -6px;
+    bottom: -6px;
+    border-radius: 50%;
+    border: 1.5px solid transparent;
+    background: conic-gradient(transparent 0deg, transparent 130deg, rgba(255, 152, 0, 0.4) 160deg, rgba(255, 87, 34, 0.2) 200deg, transparent 230deg) border-box;
+    -webkit-mask: linear-gradient(#fff 0 0) padding-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: loaderSpin 3s linear infinite reverse;
+}
+/* صورة الشعار داخل اللودر */
+.loader-logo-wrap img {
+    width: 90px;
+    height: 90px;
+    border-radius: 18px;
+    box-shadow:
+        0 0 40px rgba(255, 152, 0, 0.1),
+        0 0 80px rgba(255, 152, 0, 0.04);
+    position: relative;
+    z-index: 1;
+    animation: loaderLogoIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+    transform: scale(0.8);
+}
+/* اسم المتجر - يظهر كاملًا مرة واحدة */
+.loader-box h2 {
+    margin: 0 0 4px;
+    color: #ff9800;
+    font-size: 28px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-shadow: 0 0 30px rgba(255, 152, 0, 0.15);
+    direction: rtl;
+    animation: loaderFadeIn 0.6s ease 0.2s forwards;
+    opacity: 0;
+}
+/* النص التوضيحي تحت الاسم */
+.loader-box > p {
+    color: #777;
+    font-size: 12px;
+    margin: 8px 0 32px;
+    letter-spacing: 1px;
+    animation: loaderFadeIn 0.8s ease 0.7s forwards;
+    opacity: 0;
+}
+/* مسار شريط التحميل */
+.loader-bar-track {
+    width: 100%;
+    height: 3px;
+    background: #1a1a1a;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    animation: loaderFadeIn 0.8s ease 1s forwards;
+    opacity: 0;
+}
+/* الشريط نفسه */
+.loader-bar {
+    width: 100%;
+    height: 100%;
+    position: relative;
+}
+/* الشريط البرتقالي المتحرك */
+.loader-progress {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, #ff9800, #ff5722, #ff9800);
+    background-size: 200% 100%;
+    border-radius: 10px;
+    animation: loaderProgress 3.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    position: relative;
+}
+/* النقطة المضيئة في مقدمة الشريط */
+.loader-dot {
+    position: absolute;
+    top: 50%;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ff9800;
+    box-shadow: 0 0 12px rgba(255, 152, 0, 0.8), 0 0 24px rgba(255, 152, 0, 0.3);
+    animation: loaderDotMove 3.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+}
+/* جزيئات متطايرة في الخلفية */
+.loader-particle {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: particleFloat 4s ease-in-out infinite;
+    opacity: 0;
+}
+.p1 { top: 15%; left: 10%; width: 5px; height: 5px; background: #ff9800; animation-delay: 0s; }
+.p2 { top: 65%; right: 12%; width: 6px; height: 6px; background: #ff5722; animation-delay: 0.8s; }
+.p3 { top: 25%; right: 18%; width: 6px; height: 6px; background: #ff9800; animation-delay: 1.6s; }
+.p4 { bottom: 20%; left: 15%; width: 5px; height: 5px; background: #ff5722; animation-delay: 2.4s; }
+.p5 { top: 50%; left: 5%; width: 6px; height: 6px; background: #ff9800; animation-delay: 0.4s; }
+.p6 { top: 40%; right: 6%; width: 5px; height: 5px; background: rgba(255, 152, 0, 0.5); animation-delay: 1.2s; }
+.p7 { top: 80%; left: 20%; width: 6px; height: 6px; background: #ff9800; animation-delay: 0.6s; }
+.p8 { top: 10%; right: 25%; width: 6px; height: 6px; background: #ff5722; animation-delay: 1.8s; }
+.p9 { top: 55%; left: 35%; width: 6px; height: 6px; background: #ff9800; animation-delay: 2.2s; }
+.p10 { top: 30%; right: 30%; width: 5px; height: 5px; background: rgba(255,87,34,0.6); animation-delay: 0.2s; }
+.p11 { bottom: 15%; right: 8%; width: 6px; height: 6px; background: #ff9800; animation-delay: 2.8s; }
+.p12 { top: 70%; left: 8%; width: 5px; height: 5px; background: #ff5722; animation-delay: 1.4s; }
+.p13 { top: 5%; left: 40%; width: 6px; height: 6px; background: rgba(255,152,0,0.7); animation-delay: 3.2s; }
+.p14 { top: 45%; right: 20%; width: 6px; height: 6px; background: #ff9800; animation-delay: 0.9s; }
+.p15 { bottom: 10%; left: 30%; width: 6px; height: 6px; background: #ff5722; animation-delay: 2.6s; }
+.p16 { top: 85%; right: 15%; width: 5px; height: 5px; background: rgba(255,87,34,0.5); animation-delay: 3.5s; }
+.p17 { top: 12%; left: 60%; width: 6px; height: 6px; background: #ff9800; animation-delay: 0.3s; }
+.p18 { top: 75%; right: 35%; width: 5px; height: 5px; background: #ff5722; animation-delay: 1.1s; }
+.p19 { top: 35%; left: 50%; width: 6px; height: 6px; background: rgba(255,152,0,0.6); animation-delay: 2.0s; }
+.p20 { top: 60%; right: 45%; width: 6px; height: 6px; background: #ff9800; animation-delay: 3.0s; }
+.p21 { bottom: 25%; left: 45%; width: 6px; height: 6px; background: #ff5722; animation-delay: 0.7s; }
+.p22 { top: 20%; right: 50%; width: 5px; height: 5px; background: rgba(255,87,34,0.5); animation-delay: 1.5s; }
+.p23 { top: 90%; left: 55%; width: 6px; height: 6px; background: #ff9800; animation-delay: 2.5s; }
+.p24 { top: 8%; left: 75%; width: 5px; height: 5px; background: #ff5722; animation-delay: 3.3s; }
+.p25 { top: 50%; right: 55%; width: 6px; height: 6px; background: rgba(255,152,0,0.7); animation-delay: 0.5s; }
+.p26 { bottom: 30%; left: 65%; width: 5px; height: 5px; background: #ff9800; animation-delay: 1.9s; }
+.p27 { top: 42%; left: 20%; width: 6px; height: 6px; background: #ff5722; animation-delay: 2.7s; }
+.p28 { top: 68%; right: 60%; width: 6px; height: 6px; background: rgba(255,87,34,0.4); animation-delay: 0.1s; }
+.p29 { bottom: 5%; left: 70%; width: 6px; height: 6px; background: #ff9800; animation-delay: 3.1s; }
+.p30 { top: 95%; right: 5%; width: 5px; height: 5px; background: #ff5722; animation-delay: 2.3s; }
+.p31 { top: 18%; left: 30%; width: 6px; height: 6px; background: #ff9800; animation-delay: 3.7s; }
+.p32 { top: 72%; right: 22%; width: 5px; height: 5px; background: rgba(255,87,34,0.5); animation-delay: 0.4s; }
+.p33 { top: 28%; left: 70%; width: 6px; height: 6px; background: #ff5722; animation-delay: 1.7s; }
+.p34 { top: 88%; right: 40%; width: 6px; height: 6px; background: #ff9800; animation-delay: 2.9s; }
+.p35 { bottom: 35%; left: 10%; width: 6px; height: 6px; background: rgba(255,152,0,0.6); animation-delay: 0.8s; }
+.p36 { top: 15%; right: 8%; width: 5px; height: 5px; background: #ff5722; animation-delay: 3.9s; }
+.p37 { top: 55%; left: 80%; width: 6px; height: 6px; background: #ff9800; animation-delay: 1.3s; }
+.p38 { top: 40%; right: 65%; width: 5px; height: 5px; background: rgba(255,87,34,0.4); animation-delay: 2.1s; }
+.p39 { bottom: 18%; left: 75%; width: 6px; height: 6px; background: #ff5722; animation-delay: 3.4s; }
+.p40 { top: 22%; left: 85%; width: 5px; height: 5px; background: #ff9800; animation-delay: 0.9s; }
+.p41 { top: 78%; right: 50%; width: 6px; height: 6px; background: rgba(255,152,0,0.5); animation-delay: 2.6s; }
+.p42 { top: 48%; left: 40%; width: 6px; height: 6px; background: #ff5722; animation-delay: 3.8s; }
+.p43 { bottom: 8%; left: 50%; width: 6px; height: 6px; background: #ff9800; animation-delay: 0.2s; }
+.p44 { top: 92%; left: 15%; width: 5px; height: 5px; background: rgba(255,87,34,0.6); animation-delay: 1.6s; }
+.p45 { top: 32%; right: 75%; width: 6px; height: 6px; background: #ff5722; animation-delay: 2.8s; }
+.p46 { top: 62%; left: 55%; width: 5px; height: 5px; background: #ff9800; animation-delay: 0.7s; }
+.p47 { top: 7%; right: 35%; width: 6px; height: 6px; background: rgba(255,152,0,0.7); animation-delay: 3.6s; }
+.p48 { bottom: 40%; left: 25%; width: 5px; height: 5px; background: #ff5722; animation-delay: 1.0s; }
+.p49 { top: 58%; right: 70%; width: 6px; height: 6px; background: #ff9800; animation-delay: 2.4s; }
+.p50 { top: 82%; left: 60%; width: 5px; height: 5px; background: rgba(255,87,34,0.5); animation-delay: 0.3s; }
+/* شعاع ضوئي عريض يمر من أعلى لأسفل */
+.loader-beam {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 200%;
+    background: linear-gradient(180deg, transparent 0%, rgba(255, 152, 0, 0.015) 45%, rgba(255, 152, 0, 0.03) 50%, rgba(255, 152, 0, 0.015) 55%, transparent 100%);
+    animation: beamSweep 4s ease-in-out infinite;
+    pointer-events: none;
+}
+
+/* أنيميشن دخول حاوية اللودر */
+@keyframes loaderBoxIn {
+    from { opacity: 0; transform: translateY(30px) scale(0.95); }
+    to { opacity: 1; transform: translateY(0) scale(1); }
+}
+/* أنيميشن دخول الشعار */
+@keyframes loaderLogoIn {
+    from { opacity: 0; transform: scale(0.7); }
+    to { opacity: 1; transform: scale(1); }
+}
+/* أنيميشن ظهور الحروف واحدة تلو الأخرى */
+@keyframes loaderLetterIn {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+/* أنيميشن ظهور تدريجي */
+@keyframes loaderFadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+/* تقدم شريط التحميل */
+@keyframes loaderProgress {
+    0% { width: 0%; }
+    15% { width: 18%; }
+    30% { width: 25%; }
+    50% { width: 48%; }
+    70% { width: 65%; }
+    85% { width: 82%; }
+    95% { width: 92%; }
+    100% { width: 100%; }
+}
+/* حركة النقطة المضيئة */
+@keyframes loaderDotMove {
+    0% { left: 0%; opacity: 0; }
+    5% { opacity: 1; }
+    100% { left: 100%; opacity: 1; }
+}
+/* دوران الحلقات */
+@keyframes loaderSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+/* نبض التوهج */
+@keyframes loaderGlowPulse {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+    50% { transform: translate(-50%, -50%) scale(1.15); opacity: 1; }
+}
+/* حركة الجزيئات المتطايرة */
+@keyframes particleFloat {
+    0% { opacity: 0; transform: translateY(0) translateX(0) scale(0); }
+    15% { opacity: 0.5; }
+    50% { opacity: 0.2; transform: translateY(-40px) translateX(15px) scale(1); }
+    85% { opacity: 0.1; }
+    100% { opacity: 0; transform: translateY(-80px) translateX(-10px) scale(0); }
+}
+/* حركة الشعاع الضوئي */
+@keyframes beamSweep {
+    0% { transform: translateY(-100%); }
+    50% { transform: translateY(100%); }
+    100% { transform: translateY(200%); }
+}
+
+/* ===========================================================================================
+   3. الهيدر وشريط البحث
+   =========================================================================================== */
+/* شريط الهيدر العلوي الثابت */
+header {
+    background-size: fill; 
+    height: 75px; 
+    text-align: center; 
+    color: white; 
+    background: linear-gradient(145deg, #252525, #1a1a1a) #1a1a1a;
+    display: flex; 
+    margin-bottom: 2rem; 
+    flex-direction: row; 
+    justify-content: center; 
+    margin-top: 0; 
+    padding-left: 2rem;
+    padding-right: 2rem; 
+    padding :1.5rem; 
+    justify-items: center; 
+    align-items: center; 
+    margin-left: 0rem;
+    margin-right: 0rem; 
+    flex-shrink: 0; 
+    position: fixed;  
+    top: 0; 
+    left: 0;
+    width: 100%; 
+    z-index: 1000;
+    border-bottom: 1px solid #ffffff;
+
+}
+/* صورة الشعار في الهيدر */
+header img {
+    border-radius: 10%;   
+    align-items: center;
+    margin-right: 3.5rem; 
+    justify-self: center; 
+    align-self: center;
+}
+
+/* خانة البحث */
+.search-bar {
+    width: 65%; 
+    padding: 15px 20px; 
+    margin: 20px auto; 
+    display: block; 
+    background-color:#f8f8f8; 
+    border: 2px solid rgba(255, 255, 255, 0.1); 
+    color: #ffffff;
+    border-radius: 25px; 
+    font-size: 16px; 
+    font-family: 'Cairo', sans-serif; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); 
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    text-align: center;
+}
+/* التأثير عند الضغط على خانة البحث */
+.search-bar:focus {
+    outline: none; 
+    background: rgba(255, 255, 255, 0.1);  
+    border-color: #ff9800; 
+    box-shadow: 0 0 15px rgba(255, 152, 0, 0.3); 
+    transform: scale(1.02);
+}
+/* تنسيق النص التوضيحي (Placeholder) عشان يبان في الوضع الداكن */
+.search-bar::placeholder {
+    color: rgba(255, 0, 0, 0.4);
+}
+
+/* ===========================================================================================
+   4. عناوين أقسام المنتجات
+   =========================================================================================== */
+/* عنوان القسم (مثال: "حلويات") */
+h1.section-title {
+    display: flex;
+    font-size: clamp(17px, 10px ,10px );
+    text-shadow: 4px 4px 4px black;
+    justify-content: right;
+    align-items: center;
+    border-radius: 10px;
+    margin-bottom: 0rem;
+    margin-top: 80px;
+    margin-right: 1%;
+    padding: 7px 15px 7px 15px;
+    color: white;
+    font-family: 'Cairo', sans-serif;
+    justify-self: right;
+}
+/* الحاوية التي تضم القسم */
+.section-box {
+    margin-bottom: 30px;
+    transition: all 0.3s ease;
+}
+
+/* ===========================================================================================
+   5. بطاقات المنتجات
+   =========================================================================================== */
+/* الحاوية الرئيسية لعرض المنتجات (شبكة مرنة) */
+.A {
+    display: flex;
+    gap: 0.5rem;
+    margin: auto;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+/* تصميم كارت المنتج */
+.a1 {
+    background: rgba(37, 37, 37, 0.7);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 5px;
+    text-align: center;
+    border: 1px solid rgba(255, 152, 0, 0.3);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.3);
+    position: relative;
+    width: 140px;
+    height: fit-content;
+    display:flex;
+    flex-direction: column;
+    justify-content: space-between; 
+    align-items: center;
+    border-radius: 20px;
+    transform: scale(0.97);
+
+}
+/* المنتجات تبدأ غير مرئية ومنزاحة قليلاً للأسفل */
+.a1 {
+    opacity: 0;
+    transform: scale(0.97) translateY(30px);
+    transition: all 0.6s ease-out;
+}
+/* الكلاس اللي هنضيفه لما العنصر يدخل في نطاق الرؤية */
+.a1.show {
+    opacity: 1;
+    transform: scale(0.97) translateY(0);
+}
+/* تأثير الـ hover عند المرور على الكارت */
+.a1:hover {
+    transform: scale(0.97) translateY(-0.5px);
+    border-color: #ff9800;
+    box-shadow: 0 15px 25px rgba(255, 152, 0, 0.2);
+
+}
+/* اسم المنتج */
+.a1 p {
+    font-size: 12px;
+    font-weight: 600;
+    color:#ccc;
+    text-shadow: 1.5px 1.5px 2px black;
+    border-radius: 10px;
+    padding: 0.5rem;
+    align-items:right;
+    justify-content: right;
+    justify-self: right;
+    font-family: 'Cairo', sans-serif;
+}
+/* صورة المنتج */
+.a1 img {
+    cursor:pointer;
+    width: 135px;
+    height: 130px;
+    margin-bottom: -10px;
+    border-radius: 15%;
+    background-color: #ffffff;
+}
+/* تأثير التحميل للصور (Skeleton Shimmer) */
+.img-loading {
+    color: transparent !important;
+    background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%) !important;
+    background-size: 200% 100% !important;
+    animation: imgShimmer 1.2s ease-in-out infinite !important;
+    border-radius: 15%;
+    min-height: 125px;
+}
+/* حركة التموج للصور أثناء التحميل */
+@keyframes imgShimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+/* نافذة تكبير الصورة عند الضغط عليها */
+.zoom-modal {
+    position: fixed;
+    top: 62px;
+    left: 0;
+    width: 100%;
+    bottom: 70px;
+    background: rgba(0,0,0,0.9);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 50000;
+    box-sizing: border-box;
+}
+
+
+/* الصورة المكبرة داخل النافذة */
+.zoom-modal img {
+    max-width: 80%;
+    max-height: 60%;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+/* زر "أضف للسلة" */
+.order-button {
+    font-size: 13px;
+    font-weight:400;
+    background: #ff9800;
+    color: #000;
+    border: none;
+    padding: 5px 1px;
+    width: 80%;
+    height: 38px;
+    border-radius: 1%;
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 20px;
+    font-family: 'Cairo', sans-serif;
+}
+/* تأثير hover على زر الإضافة */
+.order-button:hover {
+    color: rgb(0, 0, 0);
+    transform: scale(1.05);
+
+}
+/* تأثير الضغط على زر الإضافة */
+.order-button:active {
+    transform: scale(0.95);
+    background: #e68900;
+
+}
+
+/* قائمة اختيار الطعم */
+.flavor-select {
+    width: 80%;
+    padding: 5px 8px;
+    border: 1px solid rgba(255, 152, 0, 0.4);
+    border-radius: 10px;
+    background: rgba(30, 30, 30, 0.9);
+    color: #ff9800;
+    font-size: 12px;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    margin-bottom: 4px;
+    outline: none;
+    direction: rtl;
+}
+.flavor-select:focus {
+    border-color: #ff9800;
+}
+.flavor-select option {
+    background: #1a1a2e;
+    color: #eee;
+    text-align: center;
+}
+
+/* ===========================================================================================
+   7. زر العودة للأعلى
+   =========================================================================================== */
+/* زر العودة لأعلى الصفحة */
+#backToTop {
+    position: fixed;
+    bottom: 85px;  
+    right: 30px;  
+    width: 45px;
+    height: 45px;
+    background: linear-gradient(135deg, #ff9800, #e65100);
+    border: none;
+    border-radius: 50%;
+    box-shadow: 0 4px 15px rgba(255, 152, 0, 0.4);
+    z-index: 70000;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+    transition: all 0.3s ease;
+}
+/* تأثير hover على زر العودة */
+#backToTop:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 20px rgba(255, 152, 0, 0.5);
+}
+
+/* ===========================================================================================
+   8. نافذة السلة - شاشة كاملة
+   =========================================================================================== */
+/* نافذة السلة (تغطي الشاشة بالكامل) */
+/* نافذة السلة (div بدل dialog) */
+.cart-dialog,
+.review-dialog {
+    display: none;
+    position: fixed;
+    top: 62px;
+    left: 0;
+    right: 0;
+    bottom: 70px;
+    z-index: 50000;
+    background: rgba(19, 25, 33, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: #fff;
+    direction: rtl;
+    box-sizing: border-box;
+    overflow-y: auto;
+    flex-direction: column;
+}
+.cart-dialog.show,
+.review-dialog.show {
+    display: flex;
+    animation: modalShow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+/* نافذة السلة */
+#cart-modal {
+    padding: 0;
+}
+/* رأس نافذة السلة (العنوان + زر الإغلاق) */
+.cart-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid rgba(255, 152, 0, 0.1);
+    background: rgba(19, 25, 33, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+/* عنوان "سلة التسوق" */
+.cart-header h2 {
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    font-family: 'Cairo', sans-serif;
+    margin: 0;
+}
+/* زر إغلاق السلة (علامة X) */
+.cart-close-icon {
+    background: rgba(255,255,255,0.06);
+    border: none;
+    color: #aaa;
+    font-size: 20px;
+    cursor: pointer;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+    line-height: 1;
+}
+.cart-close-icon:hover {
+    background: rgba(255,68,68,0.15);
+    color: #ff4444;
+}
+/* حاوية عناصر السلة القابلة للتمرير */
+#cart-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px 16px;
+    margin: 0;
+}
+/* عنصر واحد داخل السلة (منتج) */
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+    border-bottom: 1px solid rgba(255, 152, 0, 0.08);
+    background: transparent;
+    transition: none;
+}
+/* إزالة الحد من آخر عنصر */
+.cart-item:last-child {
+    border-bottom: none;
+}
+/* صورة المنتج داخل السلة */
+.cart-item-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px;
+    flex-shrink: 0;
+    background: #2a2a2a;
+    cursor: pointer;
+}
+/* معلومات المنتج (الاسم + السعر + العداد) */
+.cart-item-info {
+    flex: 1;
+    cursor: pointer;
+
+    flex: 1;
+    min-width: 0;
+}
+/* اسم المنتج */
+.cart-item-name {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #fff;
+    line-height: 1.4;
+    margin-bottom: 4px;
+    text-shadow: none;
+}
+/* سعر المنتج */
+.cart-item-price {
+    display: block;
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 8px;
+}
+/* عداد الكمية (+, -, الرقم) */
+.qty-stepper {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid #444;
+    border-radius: 6px;
+    overflow: hidden;
+    height: 34px;
+}
+/* زري + و - */
+.qty-stepper button {
+    width: 32px;
+    height: 34px;
+    border: none;
+    background: #2a2a2a;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.15s;
+    padding: 0;
+    line-height: 1;
+}
+.qty-stepper button:hover {
+    background: #3a3a3a;
+}
+.qty-stepper button:active {
+    background: #ff9800;
+    color: #000;
+}
+/* عرض قيمة العدد (نص) */
+.qty-stepper .qty-value {
+    width: 40px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background: transparent;
+    border: none;
+    border-left: 1px solid #444;
+    border-right: 1px solid #444;
+    height: 34px;
+    font-family: 'Cairo', sans-serif;
+    line-height: 34px;
+}
+/* حقل إدخال العدد يدوياً */
+.qty-stepper .qty-input {
+    width: 40px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    background: #1a1a1a;
+    border: none;
+    border-left: 1px solid #444;
+    border-right: 1px solid #444;
+    height: 34px;
+    font-family: 'Cairo', sans-serif;
+    outline: none;
+}
+/* إخفاء أزرار الزيادة والنقصان الافتراضية في المتصفح */
+.qty-stepper .qty-input::-webkit-inner-spin-button,
+.qty-stepper .qty-input::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+/* عند التركيز على حقل العدد */
+.qty-stepper .qty-input:focus {
+    background: #2a2a2a;
+    box-shadow: inset 0 0 0 1px #ff9800;
+}
+/* المجموع الفرعي لكل منتج */
+.cart-item-subtotal {
+    font-size: 15px;
+    font-weight: 700;
+    color: #ff9800;
+    white-space: nowrap;
+    min-width: 60px;
+    text-align: left;
+}
+/* زر حذف المنتج من السلة */
+.cart-item-remove {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 12px;
+    cursor: pointer;
+    padding: 4px 8px;
+    transition: 0.15s;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+}
+.cart-item-remove:hover {
+    color: #ff4d4d;
+}
+/* ملخص السلة (الإجمالي + زر الشراء) */
+.cart-summary {
+    border-top: 1px solid rgba(255, 152, 0, 0.1);
+    padding: 16px 20px;
+    background: rgba(19, 25, 33, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    position: sticky;
+    bottom: 0;
+}
+/* صف في الملخص (مثلاً: "المجموع: 50 ر.س") */
+.cart-summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    font-size: 16px;
+    color: #ccc;
+}
+.cart-summary-row:last-of-type {
+    margin-bottom: 16px;
+}
+/* قيمة المجموع الكلي */
+#cart-subtotal {
+    font-size: 20px;
+    font-weight: 700;
+    color: #ff9800;
+}
+/* زر "إتمام الطلب" */
+.checkout-btn {
+    width: 100%;
+    padding: 14px;
+    background: #ff9800;
+    color: #000;
+    border: none;
+    border-radius: 12px;
+    font-size: 17px;
+    font-weight: 700;
+    font-family: 'Cairo', sans-serif;
+    cursor: pointer;
+    transition: 0.2s;
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+.checkout-btn:hover {
+    background: #e68900;
+    transform: none;
+    filter: none;
+    box-shadow: none;
+}
+.checkout-btn:active {
+    transform: scale(0.98);
+}
+/* الزر معطل (السلة فارغة) */
+.checkout-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+/* رسالة السلة فارغة */
+.cart-empty {
+    text-align: center;
+    padding: 60px 20px;
+    color: #666;
+    font-size: 15px;
+}
+/* أيقونة السلة الفارغة */
+.cart-empty-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+    display: block;
+}
+/* زر اذهب للتسوق في السلة الفارغة */
+.cart-shop-btn {
+    display: block;
+    margin: 20px auto 0;
+    width: fit-content;
+    padding: 14px 32px;
+    background: linear-gradient(135deg, #ff9800, #f57c00);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 700;
+    font-family: 'Cairo', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255,152,0,0.25);
+}
+.cart-shop-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255,152,0,0.35);
+}
+.cart-shop-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* ===========================================================================================
+   9. مراجعة الطلب - شاشة كاملة قبل تأكيد الشراء
+   =========================================================================================== */
+/* نافذة المراجعة - شاشة كاملة */
+#review-modal {
+    padding: 0;
+}
+/* الحاوية الداخلية */
+.review-modal-inner {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+/* رأس المراجعة */
+.review-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 20px;
+    border-bottom: 1px solid rgba(255, 152, 0, 0.1);
+    background: rgba(19, 25, 33, 0.96);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+.review-header h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #fff;
+    font-family: 'Cairo', sans-serif;
+}
+/* زر إغلاق المراجعة */
+.review-close-btn {
+    background: rgba(255,255,255,0.06);
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    color: #aaa;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+    line-height: 1;
+}
+.review-close-btn:hover {
+    background: rgba(255,68,68,0.15);
+    color: #ff4444;
+}
+/* جسم المراجعة (قابل للتمرير) */
+.review-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px 20px;
+    -webkit-overflow-scrolling: touch;
+}
+.review-body::-webkit-scrollbar {
+    width: 4px;
+}
+.review-body::-webkit-scrollbar-track {
+    background: transparent;
+}
+.review-body::-webkit-scrollbar-thumb {
+    background: #444;
+    border-radius: 4px;
+}
+/* عنوان قسم داخل المراجعة */
+.review-section-label {
+    font-size: 13px;
+    font-weight: 600;
+    color: #888;
+    margin: 4px 0 10px;
+    letter-spacing: 0.5px;
+}
+/* قائمة المنتجات في المراجعة */
+.review-items {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 8px;
+}
+/* عنصر واحد في المراجعة */
+.review-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 12px;
+    background: rgba(255,255,255,0.02);
+    border-radius: 8px;
+    font-size: 14px;
+    color: #ccc;
+}
+/* اسم المنتج في المراجعة */
+.review-item-name {
+    flex: 1;
+    color: #fff;
+    font-weight: 500;
+}
+/* الكمية في المراجعة */
+.review-item-qty {
+    color: #888;
+    margin: 0 8px;
+    font-size: 13px;
+    min-width: 30px;
+    text-align: center;
+}
+/* سعر القطعة الواحدة */
+.review-item-price {
+    color: #aaa;
+    font-size: 12px;
+    margin: 0 4px;
+    min-width: 50px;
+    text-align: center;
+}
+/* المجموع الفرعي في المراجعة */
+.review-item-subtotal {
+    color: #ff9800;
+    font-weight: 600;
+    min-width: 60px;
+    text-align: left;
+}
+/* فاصل بين العناصر */
+.review-divider {
+    height: 1px;
+    background: #2a2a2a;
+    margin: 12px 0;
+}
+/* المجموع الكلي للمراجعة */
+.review-total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    padding: 12px 0;
+    margin-bottom: 12px;
+}
+/* قيمة المجموع الكلي */
+#review-total-amount {
+    color: #ff9800;
+    font-size: 22px;
+}
+/* حقل العنوان */
+.review-address {
+    margin-bottom: 8px;
+}
+.review-address-input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid #333;
+    border-radius: 12px;
+    background: #222;
+    color: #fff;
+    font-size: 15px;
+    font-family: 'Cairo', sans-serif;
+    box-sizing: border-box;
+    direction: rtl;
+    transition: 0.2s;
+}
+.review-address-input:focus {
+    border-color: #ff9800;
+    outline: none;
+    background: #2a2a2a;
+}
+.review-address-input::placeholder {
+    color: #666;
+}
+/* الفوتر (الأزرار) */
+.review-footer {
+    display: flex;
+    gap: 12px;
+    padding: 20px;
+    padding-bottom: calc(20px + env(safe-area-inset-bottom, 0px));
+    background: #1a1a1a;
+    border-top: 1px solid #2a2a2a;
+    position: sticky;
+    bottom: 0;
+}
+/* زر تأكيد الطلب */
+.review-footer .checkout-btn {
+    flex: 2;
+    height: 52px;
+    padding: 14px 20px;
+    background: linear-gradient(135deg, #ff9800, #f57c00);
+    color: #fff;
+    border: none;
+    border-radius: 14px;
+    font-size: 17px;
+    font-weight: 700;
+    font-family: 'Cairo', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 15px rgba(255,152,0,0.25);
+}
+.review-footer .checkout-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255,152,0,0.35);
+}
+.review-footer .checkout-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+/* زر تعديل الطلب */
+.review-edit-btn {
+    flex: 1;
+    height: 52px;
+    padding: 14px 16px;
+    background: transparent;
+    color: #999;
+    border: 1.5px solid #444;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 600;
+    font-family: 'Cairo', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+.review-edit-btn:hover {
+    background: rgba(255,255,255,0.04);
+    color: #fff;
+    border-color: #ff9800;
+}
+/* نافذة "تم إرسال طلبك بنجاح" */
+.success-modal {
+    color:#e68900;
+    border: 1px solid rgba(255, 152, 0, 0.2);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    width: 50%;
+    background: rgba(19, 25, 33, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    text-align: center;
+    animation: slideUp 0.4s ease-out;
+    z-index: 50001;
+}
+
+/* ===========================================================================================
+   10. نافذة نجاح / تنبيه
+   =========================================================================================== */
+.custom-modal {
+    color:#e68900;
+    border: 1px solid rgba(255, 152, 0, 0.2);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    width: 50%;
+    background: rgba(19, 25, 33, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    text-align: center;
+    animation: slideUp 0.4s ease-out;
+    z-index: 50001;
+}
+
+/* خلفية النوافذ المنبثقة (تأثير التعتيم والضبابية) */
+dialog::backdrop {
+    background: transparent;
+    pointer-events: none;
+}
+/* المودالات الصغيرة (تنبيه، نجاح) لسه محتاجة backdrop */
+.custom-modal::backdrop,
+.success-modal::backdrop {
+    background: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(5px);
+    pointer-events: auto;
+}
+.phone-modal::backdrop {
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    pointer-events: auto;
+}
+/* أنيميشن ظهور النوافذ */
+@keyframes slideIn {
+    from { opacity: 0; transform: scale(0.9); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+/* ===========================================================================================
+   11. نافذة الملف الشخصي - تعديل بيانات المستخدم
+   =========================================================================================== */
+/* تصميم نافذة الملف الشخصي */
+.profile-modal {
+    display: none;
+    position: fixed;
+    top: 62px;
+    left: 0;
+    right: 0;
+    bottom: 70px;
+    color: #fff;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    box-shadow: none;
+    width: 100%;
+    background: rgba(19, 25, 33, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    flex-direction: column;
+    overflow: hidden;
+    z-index: 50000;
+    box-sizing: border-box;
+}
+.profile-modal.show {
+    display: flex;
+    animation: modalShow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+/* رأس الملف الشخصي */
+.profile-header {
+    text-align: center;
+    padding: 40px 30px 20px;
+    border-bottom: 1px solid rgba(255, 152, 0, 0.1);
+    background: linear-gradient(180deg, rgba(255, 152, 0, 0.08) 0%, transparent 100%);
+}
+.profile-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #ff9800, #e65100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    margin: 0 auto 12px;
+    box-shadow: 0 8px 25px rgba(255, 152, 0, 0.3);
+    border: 3px solid rgba(255, 152, 0, 0.3);
+}
+.profile-header h3 {
+    margin: 0 0 4px;
+    font-size: 22px;
+    font-weight: 800;
+    color: #ff9800;
+    font-family: 'Cairo', sans-serif;
+}
+.profile-subtitle {
+    margin: 0;
+    font-size: 13px;
+    color: #888;
+    font-family: 'Cairo', sans-serif;
+}
+/* نموذج البيانات */
+.profile-form {
+    padding: 24px 30px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+/* مجموعة حقل الإدخال */
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.input-group .label {
+    text-align: right;
+    font-size: 13px;
+    font-weight: 700;
+    color: #ccc;
+    font-family: 'Cairo', sans-serif;
+    padding-right: 4px;
+}
+/* حاوية الإدخال مع الأيقونة */
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+/* حقل الإدخال */
+.profile-form .modal-input {
+    width: 100%;
+    padding: 14px;
+    border: 2px solid rgba(255, 255, 255, 0.08);
+    border-radius: 14px;
+    font-size: 15px;
+    font-family: 'Cairo', sans-serif;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    text-align: right;
+    background: rgba(255, 255, 255, 0.04);
+    color: #fff;
+}
+.profile-form .modal-input::placeholder {
+    color: #666;
+}
+.profile-form .modal-input:focus {
+    border-color: #ff9800;
+    outline: none;
+    background: rgba(255, 152, 0, 0.05);
+    box-shadow: 0 0 20px rgba(255, 152, 0, 0.1);
+}
+/* زر الحفظ */
+.profile-form .save-btn {
+    justify-self: center;
+    width: 100%;
+    height: 50px;
+    padding: 0;
+    margin-top: 8px;
+    color: #000;
+    border: none;
+    border-radius: 14px;
+    font-size: 17px;
+    font-weight: 700;
+    font-family: 'Cairo', sans-serif;
+    cursor: pointer;
+    background: linear-gradient(135deg, #ff9800, #e65100);
+    box-shadow: 0 6px 20px rgba(255, 152, 0, 0.35);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+.profile-form .save-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 152, 0, 0.45);
+}
+.profile-form .save-btn:active {
+    transform: translateY(0);
+}
+/* زر الإغلاق */
+.profile-modal .close-modal-btn {
+    position: absolute;
+    top: 16px;
+    left: 20px;
+    background: rgba(255,255,255,0.06);
+    border: none;
+    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    font-size: 20px;
+    cursor: pointer;
+    color: #aaa;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+    padding: 0;
+    font-weight: 400;
+    z-index: 10;
+}
+.profile-modal .close-modal-btn:hover {
+    background: rgba(255,68,68,0.15);
+    color: #ff4444;
+    transform: rotate(90deg);
+}
+
+/* تابات الملف الشخصي */
+.profile-tabs {
+    display: flex;
+    border-bottom: 2px solid rgba(255, 152, 0, 0.1);
+    background: rgba(0, 0, 0, 0.3);
+    margin-top: 20px;
+    position: relative;
+}
+.profile-tabs::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    left: 0;
+    right: 0;
+    height: 20px;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: -1;
+}
+.profile-tab {
+    flex: 1;
+    padding: 14px;
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Cairo', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+}
+.profile-tab.active {
+    color: #ff9800;
+}
+.profile-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #ff9800;
+    border-radius: 3px 3px 0 0;
+}
+.profile-tab-content {
+    display: none;
+    flex: 1;
+    overflow-y: auto;
+}
+.profile-tab-content.active {
+    display: flex;
+    flex-direction: column;
+}
+
+/* رأس طلبات الشراء */
+.profile-orders-header {
+    padding: 20px 24px 12px;
+    border-bottom: 1px solid rgba(255, 152, 0, 0.1);
+}
+.profile-orders-header h3 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+    color: #ff9800;
+    font-family: 'Cairo', sans-serif;
+}
+
+/* قائمة الطلبات داخل الملف الشخصي */
+.profile-orders-list {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.profile-orders-list::-webkit-scrollbar {
+    width: 4px;
+}
+.profile-orders-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+.profile-orders-list::-webkit-scrollbar-thumb {
+    background: rgba(255,152,0,0.3);
+    border-radius: 4px;
+}
+
+/* حالات الطلبات */
+.profile-orders-loading,
+.profile-orders-empty,
+.profile-orders-error {
+    text-align: center;
+    padding: 40px 20px;
+    color: #888;
+    font-size: 14px;
+    font-family: 'Cairo', sans-serif;
+}
+.profile-orders-loading {
+    color: #ff9800;
+}
+.profile-orders-error {
+    color: #ff4444;
+}
+
+/* ===========================================================================================
+   12. نافذة الطلبات - عرض الطلبات السابقة
+   =========================================================================================== */
+/* نافذة الطلبات */
+.orders-modal{
+    display: none;
+    position: fixed;
+    top: 62px;
+    left: 0;
+    right: 0;
+    bottom: 70px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    padding: 20px;
+    background: linear-gradient(180deg, rgba(19, 25, 33, 0.98) 0%, rgba(10, 14, 20, 0.99) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow: none;
+    direction: rtl;
+    z-index: 50000;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+.orders-modal.show {
+    display: flex;
+    flex-direction: column;
+    animation: modalShow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+/* خلفية نافذة الطلبات */
+.orders-modal::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.6);
+    backdrop-filter: blur(4px);
+    z-index: -1;
+}
+/* رأس نافذة الطلبات */
+.orders-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto 24px auto;
+    padding-bottom: 16px;
+    border-bottom: 2px solid rgba(255, 152, 0, 0.15);
+}
+/* عنوان "طلباتي" */
+.orders-title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 800;
+    color: #fff;
+    font-family: 'Cairo', sans-serif;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.orders-title::before {
+    content: '📋';
+    font-size: 22px;
+}
+/* زر إغلاق نافذة الطلبات */
+.orders-close-top {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.08);
+    font-size: 20px;
+    color: #aaa;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    line-height: 1;
+}
+.orders-close-top:hover {
+    background: rgba(255,68,68,0.15);
+    color: #ff4444;
+    border-color: rgba(255,68,68,0.3);
+}
+/* قائمة الطلبات */
+.orders-list {
+    max-height: calc(100vh - 62px - 70px - 120px);
+    overflow-y: auto;
+    padding: 4px;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    box-sizing: border-box;
+    color: #fff;
+}
+.orders-list::-webkit-scrollbar {
+    width: 4px;
+}
+.orders-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+.orders-list::-webkit-scrollbar-thumb {
+    background: rgba(255,152,0,0.3);
+    border-radius: 4px;
+}
+/* كارت الطلب الواحد */
+.order-card {
+    border: 1px solid rgba(255, 152, 0, 0.12);
+    border-radius: 20px;
+    padding: 20px;
+    background: linear-gradient(135deg, rgba(37, 37, 37, 0.8) 0%, rgba(25, 25, 30, 0.9) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.05);
+    transition: all 0.3s ease;
+    border-right: 4px solid #ff9800;
+}
+.order-card:hover {
+    border-color: rgba(255, 152, 0, 0.25);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+    transform: translateY(-2px);
+}
+/* رأس الكارد (رقم الطلب + الحالة) */
+.order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+/* رقم الطلب */
+.order-id {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+    font-family: 'Cairo', sans-serif;
+}
+.order-id::before {
+    content: 'رقم الطلب ';
+    color: #888;
+    font-weight: 400;
+    font-size: 12px;
+}
+/* حالة الطلب (معلق، مكتمل، إلخ) */
+.order-status {
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-family: 'Cairo', sans-serif;
+}
+.status-pending {
+    color: #ff9800;
+    background: rgba(255,152,0,0.12);
+    border: 1px solid rgba(255,152,0,0.2);
+}
+.status-preparing {
+    color: #2196f3;
+    background: rgba(33,150,243,0.12);
+    border: 1px solid rgba(33,150,243,0.2);
+}
+.status-shipped {
+    color: #9c27b0;
+    background: rgba(156,39,176,0.12);
+    border: 1px solid rgba(156,39,176,0.2);
+}
+.status-delivered {
+    color: #4caf50;
+    background: rgba(76,175,80,0.12);
+    border: 1px solid rgba(76,175,80,0.2);
+}
+/* محتوى الطلب (المنتجات المطلوبة) */
+.order-items {
+    font-size: 14px;
+    line-height: 2;
+    color: #ccc;
+    margin: 12px 0;
+    white-space: pre-line;
+    padding: 12px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.04);
+}
+/* تاريخ الطلب */
+.order-date {
+    font-size: 12px;
+    color: #777;
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+.order-date::before {
+    content: '🕐';
+    font-size: 11px;
+}
+/* حاوية التقييم داخل كارت الطلب */
+.order-card .rating-box {
+    margin-top: 16px;
+    text-align: center;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+}
+/* نص "تقييم الطلب" */
+.order-card .spans {
+    font-size: 13px;
+    color: #999;
+    display: block;
+    margin-bottom: 10px;
+    font-family: 'Cairo', sans-serif;
+}
+/* حاوية النجوم */
+.order-card .stars {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+/* كل نجمة */
+.order-card .stars span {
+    font-size: 26px;
+    cursor: pointer;
+    color: #444;
+    transition: all 0.2s ease;
+    display: inline-block;
+}
+/* النجمة النشطة (الملونة) */
+.order-card .stars span.active {
+    color: #ffc107;
+    text-shadow: 0 0 8px rgba(255,193,7,0.4);
+}
+/* زر إعادة الطلب */
+.reorder-btn {
+    display: block;
+    width: 100%;
+    margin-top: 12px;
+    padding: 11px;
+    background: linear-gradient(135deg, #ff9800, #f57c00);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'Cairo', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+.reorder-btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(255,152,0,0.35);
+}
+.reorder-btn:active {
+    transform: translateY(0) scale(0.98);
+}
+
+/* حالات الطلبات: تحميل / فارغ / خطأ */
+.orders-loading,
+.orders-empty,
+.orders-error {
+    text-align: center;
+    padding: 40px 20px;
+    color: #888;
+    font-size: 16px;
+    font-family: 'Cairo', sans-serif;
+}
+.orders-loading {
+    color: #ff9800;
+}
+.orders-empty {
+    color: #666;
+}
+.orders-error {
+    color: #ff4444;
+}
+
+/* ===========================================================================================
+   13. شريط تقدم حالة الطلب
+   =========================================================================================== */
+/* حاوية شريط التقدم */
+.order-progress{
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    margin:16px 0;
+    padding:16px 8px;
+    width:100%;
+    background: rgba(0,0,0,0.15);
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.04);
+}
+/* خطوة واحدة في التقدم */
+.step{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    position:relative;
+    z-index:2;
+    flex: 1;
+}
+/* الدائرة النشطة (خضراء) */
+.step.active .circle{
+    background: linear-gradient(135deg, #4caf50, #2e7d32);
+    box-shadow:0 0 16px rgba(40,167,69,.5);
+    border: 2px solid rgba(76,175,80,0.5);
+}
+/* نص التسمية تحت الدائرة */
+.step span{
+    margin-top:8px;
+    font-size:10px;
+    color:#999;
+    font-family: 'Cairo', sans-serif;
+    text-align:center;
+    line-height: 1.3;
+}
+.step.active span{
+    color: #4caf50;
+    font-weight: 600;
+}
+/* الخط الفاصل بين الخطوات */
+.line{
+    flex:1;
+    height:3px;
+    background:#333;
+    margin-top:16px;
+    border-radius:20px;
+}
+/* الخط النشط (أخضر) */
+.line.active{
+    background: linear-gradient(90deg, #4caf50, #66bb6a);
+}
+/* الدائرة التي تحمل رقم الخطوة */
+.circle{
+    width:36px;
+    height:36px;
+    border-radius:50%;
+    background:#333;
+    color:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:14px;
+    font-weight:bold;
+    transition:.3s;
+    border: 2px solid transparent;
+    animation:pulse 2s infinite;
+}
+/* أنيميشن النبض */
+@keyframes pulse{
+    0%{
+        box-shadow:0 0 0 0 rgba(40,167,69,.7);
+    }
+    70%{
+        box-shadow:0 0 0 10px rgba(40,167,69,0);
+    }
+    100%{
+        box-shadow:0 0 0 0 rgba(40,167,69,0);
+    }
+}
+
+/* ===========================================================================================
+   14. تقييم الطلبات - النجوم
+   =========================================================================================== */
+
+/* ===========================================================================================
+   15. نافذة الاتصال بنا - عرض أرقام الهواتف
+   =========================================================================================== */
+/* نافذة الاتصال */
+.phone-modal {
+    background: rgba(19, 25, 33, 0.98);
+    border: 1px solid rgba(255, 152, 0, 0.2);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    font-size: 18px;
+    width: 90%;
+    max-width: 340px;
+    text-align: center;
+    color: #fff;
+    z-index: 50001;
+    margin: auto;
+}
+.phone-modal::backdrop {
+    background: rgba(0, 0, 0, 0.7);
+    pointer-events: auto;
+}
+/* عنوان النافذة */
+.phone-modal h3 {
+    color: #ff9800;
+    margin-bottom: 20px;
+    font-size: 20px;
+    font-family: 'Cairo', sans-serif;
+}
+/* صف رقم الهاتف */
+.phone-num-row {
+    background: #333;
+    padding: 12px;
+    border-radius: 15px;
+    margin: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.phone-num-row a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #ff9800;
+}
+/* زر نسخ الرقم */
+.copybtn {
+    background: #ff9800;
+    color: #000;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+}
+/* زر إغلاق نافذة الاتصال */
+.phone-modal-close-btn {
+    justify-self: center;
+    width: 40%;
+    height: 35px;
+    margin-top: 15px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ff9800;
+    color: #000;    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Cairo', sans-serif;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+.phone-modal-close-btn:hover {
+    background: rgba(255, 0, 0, 0.1);
+    border-color: #ff9800;
+    color: #ff9800;
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(255, 152, 0, 0.2);
+}
+.phone-modal-close-btn:active {
+    transform: scale(0.98);
+}
+/* أنيميشن إغلاق النوافذ */
+.closing {
+    animation: modalHide 0.35s cubic-bezier(0.4, 0, 0.2, 1) forwards !important;
+}
+
+/* أنيميشن موحد لفتح جميع النوافذ */
+@keyframes modalShow {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* أنيميشن موحد لإغلاق جميع النوافذ */
+@keyframes modalHide {
+    from {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: scale(0.95) translateY(12px);
+    }
+}
+
+/* أنيميشن ظهور الخلفية */
+@keyframes backdropShow {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* ===========================================================================================
+   17. رسائل التنبيه (Toast) والفوتر القديم
+   =========================================================================================== */
+/* تصميم رسالة التنبيه (Toast) */
+.toast {
+    font-size: 15px;
+    font-weight: 600;
+    pointer-events: none;
+    min-width: 50px;
+    background-color: #51d736;
+    color: #fff;
+    text-align: center;
+    border-radius: 8px;
+    padding: 14px 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 999999;
+    transition: opacity 0.4s ease;
+    opacity: 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    font-family: 'Cairo', sans-serif;
+    max-width: 90vw;
+}
+.toast.error {
+    background-color: #d32f2f;
+}
+.toast.warning {
+    background-color: #f57c00;
+}
+/* عند إظهار التوست */
+.toast.show {
+    opacity: 1;
+    pointer-events: auto;
+}
+/* الفوتر القديم (غير مستخدم بشكل أساسي) */
+footer {
+    color: rgb(0, 0, 0);
+    text-align: center;
+    padding: 1rem;
+    margin-bottom: 0;
+    margin-top: 2rem;
+    font-size:11px;
+    justify-content: center;
+    align-items: space-between;
+    display: flex;
+    flex-direction: row;
+    BACKGROUND-COLOR: rgb(235, 219, 219);
+    height: 20px;
+
+}
+/* نص حقوق النشر */
+.copy {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-right: 0rem;
+    margin-left: 0rem;
+    align-content: center;
+    align-self: center;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 1rem;
+    margin-right: 1rem;
+    padding: 1rem;
+}
+/* أنيميشن ظهور تدريجي */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===========================================================================================
+   18. الشريط السفلي الثابت - Bottom Nav احترافي
+   =========================================================================================== */
+/* الشريط السفلي */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: rgba(19, 25, 33, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-top: 1px solid rgba(255, 152, 0, 0.1);
+    z-index: 90000;
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+    padding: 0 8px;
+    box-sizing: border-box;
+}
+/* زر واحد في الشريط السفلي */
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #666;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 600;
+    font-family: 'Cairo', sans-serif;
+    transition: all 0.3s ease;
+    flex: 1;
+    height: 100%;
+    gap: 4px;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+    border-radius: 12px;
+    margin: 4px 2px;
+}
+/* الخط البرتقالي العلوي الذي يظهر عند الضغط */
+.nav-item::after {
+    content: '';
+    position: absolute;
+    top: 4px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 24px;
+    height: 3px;
+    background: linear-gradient(135deg, #ff9800, #e65100);
+    border-radius: 3px;
+    transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    opacity: 0;
+}
+.nav-item:hover {
+    color: #aaa;
+    background: rgba(255, 152, 0, 0.05);
+}
+/* إظهار الخط البرتقالي عند تمرير الماوس */
+.nav-item:hover::after,
+.nav-item:focus-visible::after {
+    transform: translateX(-50%) scaleX(1);
+    opacity: 1;
+}
+/* الأيقونة تكبر عند الضغط */
+.nav-item:active .nav-icon {
+    transform: scale(1.15);
+}
+/* أيقونة العنصر */
+.nav-icon {
+    position: relative;
+    display: inline-block;
+    font-size: 22px;
+    margin-bottom: 2px;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    line-height: 1;
+}
+
+/* إخفاء الـ bottom-nav عند ظهور الكيبورد */
+.keyboard-open {
+    display: none !important;
+}
+
+/* عداد السلة (القبعة الحمراء) */
+#cart-count {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background: #ff9800;
+    color: #000;
+    font-size: 9px;
+    font-weight: 800;
+    font-family: 'Cairo', sans-serif;
+    min-width: 16px;
+    height: 16px;
+    line-height: 16px;
+    text-align: center;
+    border-radius: 8px;
+    padding: 0 3px;
+    pointer-events: none;
+    z-index: 5;
+    direction: ltr;
+    font-family: 'Cairo', sans-serif;
+}
+/* أنيميشن ارتداد عند إضافة منتج للسلة */
+.cart-bounce {
+    animation: cartBounce 0.5s ease;
+}
+@keyframes cartBounce {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.3); }
+    50% { transform: scale(0.95); }
+    75% { transform: scale(1.1); }
+}
+/* وميض أخضر عند إضافة المنتج */
+.product-flash {
+    animation: productFlash 0.5s ease;
+}
+@keyframes productFlash {
+    0% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0.7); }
+    50% { box-shadow: 0 0 20px 10px rgba(76, 175, 80, 0.3); }
+    100% { box-shadow: 0 0 0 0 rgba(76, 175, 80, 0); }
+}
+/* توهج للأيقونة عند الضغط */
+.nav-item:active .nav-icon {
+    filter: drop-shadow(0 0 8px rgba(255, 152, 0, 0.5));
+}
+/* إضافة مساحة أسفل الموقع عشان المحتوى ميتغطاش بالشريط السفلي */
+body {
+    padding-bottom: 75px;
+}
+
+/* ===========================================================================================
+   19. زر تبديل الوضع (داكن / فاتح)
+   =========================================================================================== */
+/* زر التبديل */
+.theme-toggle-btn {
+    position: fixed;
+    z-index: 998;
+    top: 145px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    cursor: pointer;
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: 0.4s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+/* تأثير hover على زر التبديل */
+.theme-toggle-btn:hover {
+    transform: scale(1.1) rotate(20deg);
+    background: rgba(255, 152, 0, 0.2);
+    border-color: #ff9800;
+}
+
+/* ===========================================================================================
+   20. شاشة المنتج الكاملة (Full-Screen Modal)
+   =========================================================================================== */
+/* طبقة المنتج كاملة الشاشة */
+.product-overlay {
+    display: none;
+    position: fixed;
+    top: 62px;
+    left: 0;
+    right: 0;
+    bottom: 70px;
+    z-index: 50000;
+    background: rgba(19, 25, 33, 0.98);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    color: #fff;
+    flex-direction: column;
+    direction: rtl;
+    overflow-y: auto;
+    box-sizing: border-box;
+}
+/* إظهار شاشة المنتج */
+.product-overlay.show {
+    display: flex;
+    animation: modalShow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+/* زر الإغلاق (X) في شاشة المنتج */
+.modal-close {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 20;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 0, 0, 0.06);
+    color: #ffffff;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+    line-height: 1;
+}
+.modal-close:hover {
+    background: rgba(255,68,68,0.15);
+    color: #ff4444;
+}
+.modal-close:active {
+    transform: scale(0.9);
+}
+/* زر المشاركة في شاشة المنتج */
+.modal-share-btn {
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    z-index: 20;
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255,152,0,0.15);
+    color: #ff9800;
+    font-size: 18px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+    line-height: 1;
+}
+.modal-share-btn:hover {
+    background: rgba(255,152,0,0.3);
+    transform: scale(1.1);
+}
+.modal-share-btn:active {
+    transform: scale(0.9);
+}
+/* الجزء القابل للتمرير في شاشة المنتج */
+.modal-scroll {
+    flex: 1;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+/* حاوية صورة المنتج */
+.modal-image-wrap {
+    background: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 320px;
+}
+/* صورة المنتج */
+.modal-image-wrap img {
+    width: 370px;
+    height: 370px;
+    padding: 20px;
+    box-sizing: border-box;
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+/* النقاط الدالة على ترتيب الصور */
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    padding: 0 0 16px;
+}
+/* نقطة واحدة */
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #ccc;
+    cursor: pointer;
+    transition: 0.2s;
+}
+/* النقطة النشطة */
+.dot.active {
+    background: #ff9800;
+    width: 22px;
+    border-radius: 4px;
+}
+/* أزرار التنقل بين الصور */
+.slider-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+    backdrop-filter: blur(6px);
+}
+.slider-arrow:hover {
+    background: rgba(255,152,0,0.7);
+}
+.slider-arrow-right { right: 10px; }
+.slider-arrow-left { left: 10px; }
+/* معلومات المنتج (الاسم + السعر) */
+.modal-info {
+    padding: 16px 20px 20px;
+}
+/* اسم المنتج */
+.modal-name {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 0 0 4px;
+    color: #fff;
+    line-height: 1.3;
+}
+/* سعر المنتج */
+.modal-price {
+    font-size: 26px;
+    font-weight: 800;
+    color: #ff9800;
+    margin: 0 0 4px;
+}
+/* عدد القطع في العلبة */
+.modal-pack {
+    font-size: 13px;
+    color: #888;
+    margin: 0 0 12px;
+    font-weight: 500;
+}
+.modal-desc {
+    font-size: 13px;
+    color: #aaa;
+    margin: 0 0 8px;
+    font-weight: 400;
+    line-height: 1.5;
+    padding: 8px 10px;
+    background: rgba(255,152,0,0.05);
+    border-radius: 8px;
+    border-right: 3px solid rgba(255,152,0,0.3);
+}
+/* اختيار الطعم في شاشة المنتج */
+.modal-flavors {
+    padding: 0 16px 12px;
+}
+.modal-flavors label {
+    display: block;
+    font-size: 13px;
+    color: #aaa;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+.modal-flavor-select {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1px solid rgba(255, 152, 0, 0.4);
+    border-radius: 10px;
+    background: rgba(30, 30, 30, 0.9);
+    color: #ff9800;
+    font-size: 14px;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 700;
+    text-align: center;
+    cursor: pointer;
+    outline: none;
+    direction: rtl;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23ff9800' stroke-width='3'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 14px center;
+    padding-left: 36px;
+}
+.modal-flavor-select option {
+    background: #1a1a2e;
+    color: #eee;
+    text-align: center;
+}
+/* الأزرار السفلية في شاشة المنتج */
+.modal-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    padding-bottom: calc(12px + env(safe-area-inset-bottom, 0px));
+    background: #1a1a1a;
+    border-top: 1px solid #2a2a2a;
+}
+/* زر "أضف للسلة" في شاشة المنتج */
+.modal-add-btn {
+    flex: 1;
+    height: 45px;
+    border: none;
+    border-radius: 12px;
+    background: #ff9800;
+    color: #000;
+    font-size: 17px;
+    font-weight: 700;
+    font-family: 'Cairo', sans-serif;
+    cursor: pointer;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    touch-action: manipulation;
+}
+.modal-add-btn:active {
+    transform: scale(0.97);
+    background: #e68900;
+}
+
+/* ===========================================================================================
+   الوضع الفاتح - أنماط في ملف styles.css
+   =========================================================================================== */
+
+
+
+
+
+
+.label{
+    text-align: right;
+    font-size:13px;
+    font-weight:bold;
+    font-family: 'Cairo', sans-serif;
+}
+
+/* scrollbar للملف الشخصي */
+.profile-modal::-webkit-scrollbar {
+    width: 6px;
+}
+.profile-modal::-webkit-scrollbar-track {
+    background: transparent;
+}
+.profile-modal::-webkit-scrollbar-thumb {
+    background: rgba(255, 152, 0, 0.3);
+    border-radius: 3px;
+}
+.profile-modal::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 152, 0, 0.5);
+}
+
+.num:hover{
+    text-decoration: underline;
+}
