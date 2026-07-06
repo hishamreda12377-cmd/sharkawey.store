@@ -334,7 +334,7 @@ function showOrderReview() {
     }
     let profile = JSON.parse(localStorage.getItem('customerProfile'));
     if (!profile) {
-        document.getElementById('profile-modal')?.showModal();
+        openModal('profile-modal');
         return;
     }
 
@@ -358,26 +358,54 @@ function showOrderReview() {
 
     document.getElementById('review-total-amount').textContent = total + ' ج.م';
     document.getElementById('review-address-input').value = profile.address || '';
-    document.getElementById('review-modal').showModal();
+    openModal('review-modal');
 }
 
 // فتح نافذة السلة (بدون pushState عشان ما يعملش back)
 function openCart() {
     let cartModal = document.getElementById('cart-modal');
     if (cartModal) {
-        cartModal.showModal();
-        lockScroll();
+        openModal('cart-modal');
     }
     document.body.classList.add('cart-modal-open');
 }
 
-// دالة إغلاق أي نافذة (dialog)
+// دالة إغلاق أي نافذة (dialog أو div)
 function closeModal(modalId) {
     const modal = document.getElementById(modalId);
-    if (modal) {
-        modal.close(); 
-        // لا تضف أي سطر هنا يخص overflow أو classList
+    if (!modal) return;
+    if (modal.tagName === 'DIALOG') {
+        modal.style.animation = 'modalHide 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards';
+        setTimeout(() => {
+            modal.close();
+            modal.style.animation = '';
+        }, 300);
+    } else {
+        modal.classList.add('closing');
+        modal.classList.remove('show');
+        setTimeout(() => {
+            modal.classList.remove('closing');
+        }, 350);
     }
+    setTimeout(() => {
+        const anyOpen = document.querySelector('.profile-modal.show, .orders-modal.show, .cart-dialog.show, .review-dialog.show, dialog[open]');
+        if (!anyOpen) {
+            document.body.classList.remove('no-scroll');
+        }
+    }, 50);
+}
+// دالة فتح أي نافذة (dialog أو div)
+function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (!modal) return;
+    if (modal.tagName === 'DIALOG') {
+        modal.showModal();
+    } else {
+        modal.classList.add('show');
+    }
+    document.body.classList.add('no-scroll');
+    const backBtn = document.getElementById('backToTop');
+    if (backBtn) backBtn.style.display = 'none';
 }
 // ==========================================================================
 // 3. دوال إتمام الطلب وبيانات العميل
@@ -403,7 +431,7 @@ async function sendOrder(btn) {
         if (alertModal) {
             alertModal.showModal();
         } else {
-            alert("⚠️ سلتك فارغة حالياً!");
+            showToast("⚠️ سلتك فارغة حالياً!");
         }
 
         return;
@@ -418,7 +446,7 @@ async function sendOrder(btn) {
         if (validationModal) {
             validationModal.showModal();
         } else {
-            alert("⚠️ أكمل جميع البيانات");
+            showToast("⚠️ أكمل جميع البيانات");
         }
 
         return;
@@ -500,8 +528,8 @@ async function sendOrder(btn) {
         saveCart();
         updateCartUI();
 
-        document.getElementById('review-modal')?.close();
-        document.getElementById('cart-modal')?.close();
+        closeModal('review-modal');
+        closeModal('cart-modal');
 
         let successModal = document.getElementById('success-modal');
         if (successModal) successModal.showModal();
@@ -521,7 +549,7 @@ async function sendOrder(btn) {
             msg = "مشكلة في الاتصال بالإنترنت أو قاعدة البيانات";
         }
 
-        alert("❌ " + msg);
+        showToast("❌ " + msg);
 
     } finally {
 
@@ -543,7 +571,7 @@ async function saveProfile() {
 
     // التحقق من رقم الهاتف
     if (!/^01[0-9]{9}$/.test(phone)) {
-        alert("⚠️ رقم الهاتف غير صحيح!");
+        showToast("⚠️ رقم الهاتف غير صحيح!");
         return;
     }
 
@@ -587,17 +615,17 @@ async function saveProfile() {
 
         if (error) {
     console.error(error);
-    alert(error.message);
+        showToast(error.message);
     return;
 }
 
         showToast("تم حفظ البيانات بنجاح ✅");
-        document.getElementById("profile-modal").close();
+        closeModal('profile-modal');
 
     } catch (err) {
 
         console.error(err);
-        alert("حدث خطأ غير متوقع");
+        showToast("حدث خطأ غير متوقع");
 
     }
 }
@@ -613,15 +641,18 @@ function showToast(message) {
     if(toast) {
         clearTimeout(toastTimer);
         toast.innerText = message || "تمت العملية بنجاح";
+        toast.classList.remove("error", "warning");
+        if (message && (message.includes("❌") || message.includes("خطأ"))) {
+            toast.classList.add("error");
+        } else if (message && message.includes("⚠️")) {
+            toast.classList.add("warning");
+        }
         toast.classList.add("show");
-        toastTimer = setTimeout(() => toast.classList.remove("show"), 2000);
+        toastTimer = setTimeout(() => toast.classList.remove("show"), 2500);
     }
 }
 
 function zoomImage(imgSrc) {
-    let sideMenu = document.getElementById("side-menu");
-    if (sideMenu && sideMenu.style.width === "250px") return;
-    
     let modal = document.getElementById('zoom-modal');
     let zoomedImg = document.getElementById('zoomed-img');
     if (modal && zoomedImg) {
@@ -642,10 +673,8 @@ function closeZoom() {
 function expandSearch() {
     let collapsed = document.getElementById('search-collapsed');
     let expanded = document.getElementById('search-expanded');
-    let actions = document.querySelector('.header-actions');
     let input = document.getElementById('searchInput');
     collapsed.style.display = 'none';
-    actions.style.display = 'none';
     expanded.classList.add('active');
     setTimeout(() => input.focus(), 300);
 
@@ -662,7 +691,6 @@ function handleOutsideSearchClick(e) {
 function collapseSearch() {
     let collapsed = document.getElementById('search-collapsed');
     let expanded = document.getElementById('search-expanded');
-    let actions = document.querySelector('.header-actions');
     let input = document.getElementById('searchInput');
     input.value = '';
     searchProducts();
@@ -671,25 +699,9 @@ function collapseSearch() {
     setTimeout(() => {
         expanded.classList.remove('closing');
         collapsed.style.display = '';
-        actions.style.display = '';
     }, 300);
 
     document.removeEventListener('click', handleOutsideSearchClick);
-}
-
-function toggleMenu() {
-    let menu = document.getElementById("side-menu");
-    let overlay = document.getElementById("menu-overlay");
-    if (!menu || !overlay) return;
-    
-    let isOpen = menu.style.width === "250px";
-    menu.style.width = isOpen ? "0" : "250px";
-    overlay.style.display = isOpen ? "none" : "block";
-    if (isOpen) {
-        unlockScroll();
-    } else {
-        lockScroll();
-    }
 }
 
 function searchProducts() {
@@ -715,31 +727,119 @@ function copyNumber(elementId) {
     }
 }
 
-function openFilterModal() {
-    let modal = document.getElementById('filter-modal');
-    if (modal) modal.showModal();
-}
-
-function filterByCategory(category) {
-    let sections = document.querySelectorAll('.section-box');
-    sections.forEach(section => {
-        if (category === 'all' || section.getAttribute('data-category') === category) {
-            section.style.display = "block";
-        } else {
-            section.style.display = "none";
-        }
-    });
-    let modal = document.getElementById('filter-modal');
-    if (modal) modal.close(); 
-}
-
 window.onscroll = () => {
     let btn = document.getElementById("backToTop");
-    if(btn) btn.style.display = (window.scrollY > 300) ? "block" : "none";
+    let anyOpen = document.querySelector('.profile-modal.show, .orders-modal.show, .cart-dialog.show, .review-dialog.show, .product-overlay.show, dialog[open]');
+    if(btn) btn.style.display = (window.scrollY > 300 && !anyOpen) ? "block" : "none";
 };
 
 function scrollToTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function goHome() {
+    closeModal('orders-modal');
+    closeModal('profile-modal');
+    closeModal('review-modal');
+    closeCart();
+    document.getElementById('phoneWindow')?.close();
+    document.getElementById('success-modal')?.close();
+    document.getElementById('alert-modal')?.close();
+    document.getElementById('validation-modal')?.close();
+    closeProductModal();
+    closeZoom();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function switchProfileTab(tab) {
+    document.querySelectorAll('.profile-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.profile-tab-content').forEach(c => c.classList.remove('active'));
+
+    const targetTab = document.querySelector(`.profile-tab[data-tab="${tab}"]`);
+    if (targetTab) targetTab.classList.add('active');
+
+    if (tab === 'info') {
+        document.getElementById('profile-tab-info').classList.add('active');
+    } else {
+        document.getElementById('profile-tab-orders').classList.add('active');
+        loadProfileOrders();
+    }
+}
+
+function openProfileOrders() {
+    openModal('profile-modal');
+    const modal = document.getElementById('profile-modal');
+    const handler = () => {
+        switchProfileTab('orders');
+        modal.removeEventListener('animationend', handler);
+    };
+    modal.addEventListener('animationend', handler);
+}
+
+let profileOrdersLoading = false;
+async function loadProfileOrders() {
+    if (profileOrdersLoading) return;
+    profileOrdersLoading = true;
+
+    const profile = JSON.parse(localStorage.getItem("customerProfile"));
+    const list = document.getElementById("profile-orders-list");
+
+    if (!profile) {
+        list.innerHTML = '<div class="profile-orders-empty">يجب إدخال بياناتك أولاً</div>';
+        return;
+    }
+
+    list.innerHTML = '<div class="profile-orders-loading">⏳ جاري تحميل الطلبات...</div>';
+
+    try {
+        const { data, error } = await supabaseClient
+            .from("orders")
+            .select("*")
+            .eq("phone_number", profile.phone)
+            .order("id", { ascending: false });
+
+        if (error) throw error;
+
+        if (!data.length) {
+            list.innerHTML = '<div class="profile-orders-empty">📦 لا توجد طلبات سابقة</div>';
+            return;
+        }
+
+        list.innerHTML = data.map(order => {
+            const statusClass = {
+                "قيد المراجعة": "status-pending",
+                "جاري التجهيز": "status-preparing",
+                "خرج للتوصيل": "status-shipped",
+                "تم التسليم": "status-delivered"
+            }[order.status] || "status-pending";
+
+            return `
+            <div class="order-card">
+                <div class="order-header">
+                    <div class="order-id">طلب #${order.id}</div>
+                    <div class="order-status ${statusClass}">${escapeHtml(order.status)}</div>
+                </div>
+                ${getTracker(order.status)}
+                <div class="order-items">${escapeHtml(order.cart_details)}</div>
+                ${order.status === "تم التسليم" ? `
+                    <div class="rating-box">
+                        <span class="spans">ما مدي تقييمك للطلب؟</span>
+                        <div class="stars">
+                            ${[1,2,3,4,5].map(i => `
+                                <span onclick="rateOrder(${order.id},${i},this)"
+                                    class="${order.rating >= i ? 'active' : ''}">★</span>
+                            `).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+            </div>`;
+        }).join("");
+    } catch (err) {
+        console.error("loadProfileOrders error:", err);
+        list.innerHTML = '<div class="profile-orders-error">⚠️ حدث خطأ أثناء تحميل الطلبات</div>';
+    } finally {
+        profileOrdersLoading = false;
+    }
 }
 
 // ==========================================================================
@@ -778,11 +878,7 @@ window.addEventListener('load', () => {
 
 // إغلاق السلة بشكل تام بدون أي side effects
 function closeCart() {
-    let modal = document.getElementById('cart-modal');
-    if (modal) {
-        modal.close();
-        // الـ MutationObserver يتولى التحقق من أي dialog أو شاشة منتج مفتوحة
-    }
+    closeModal('cart-modal');
     document.body.classList.remove('cart-modal-open');
 }
 
@@ -802,7 +898,8 @@ document.querySelectorAll('dialog:not(#cart-modal)').forEach(modal => {
             e.clientY < dialogDimensions.top ||
             e.clientY > dialogDimensions.bottom
         ) {
-            modal.close();
+            if (modal.tagName === 'DIALOG') modal.close();
+            else modal.classList.remove('show');
         }
     });
 });
@@ -858,148 +955,106 @@ async function cacheAllImages() {
 // const { createClient } = supabase;
 
 function getTracker(status){
-
-    let step = 1;
-
-    if(status === "قيد المراجعة") step = 1;
-    if(status === "جاري التجهيز") step = 2;
-    if(status === "خرج للتوصيل") step = 3;
-    if(status === "تم التسليم") step = 4;
+    const statusMap = {
+        "قيد المراجعة": 1,
+        "جاري التجهيز": 2,
+        "خرج للتوصيل": 3,
+        "تم التسليم": 4
+    };
+    const step = statusMap[status] || 1;
 
     return `
-
     <div class="order-progress">
-
         <div class="step ${step>=1?'active':''}">
             <div class="circle">✓</div>
             <span>قيد المراجعة</span>
         </div>
-
         <div class="line ${step>=2?'active':''}"></div>
-
         <div class="step ${step>=2?'active':''}">
             <div class="circle">✓</div>
             <span>جاري التجهيز</span>
         </div>
-
         <div class="line ${step>=3?'active':''}"></div>
-
         <div class="step ${step>=3?'active':''}">
             <div class="circle">✓</div>
             <span>خرج للتوصيل</span>
         </div>
-
         <div class="line ${step>=4?'active':''}"></div>
-
         <div class="step ${step>=4?'active':''}">
             <div class="circle">✓</div>
             <span>تم التسليم</span>
         </div>
-
     </div>
-
     `;
 }
 
-async function showMyOrders() {
-
-    const profile =
-        JSON.parse(localStorage.getItem("customerProfile"));
-
-    // التحقق من البروفايل
-
-    if (!profile) {
-        let profileModal = document.getElementById('profile-modal');
-
-        if (profileModal) {
-            profileModal.showModal();
-        }
-
-        return;
-    }
-
-    const modal =
-        document.getElementById("orders-modal");
-
-    const list =
-        document.getElementById("orders-list");
-
-    list.innerHTML = "جاري تحميل الطلبات...";
-
-    modal.showModal();
-
-    const { data, error } = await supabaseClient
-        .from("orders")
-        .select("*")
-        .eq("phone_number", profile.phone)
-        .order("id", { ascending: false });
-
-    if (error) {
-
-        list.innerHTML =
-            "حدث خطأ أثناء تحميل الطلبات";
-
-        console.error(error);
-
-        return;
-    }
-
-    if (!data.length) {
-
-        list.innerHTML =
-            "لا توجد طلبات سابقة";
-
-        return;
-    }
-
-list.innerHTML = data.map(order => `
-
-<div class="order-card">
-
-    <div class="order-header">
-        <div class="order-id">طلب #${order.id}</div>
-        <div class="order-status">${order.status}</div>
-    </div>
-
-    ${getTracker(order.status)}
-
-    <div class="order-items">
-        ${order.cart_details}
-    </div>
-
-${
-order.status === "تم التسليم"
-? `
-    <button class="reorder-btn" onclick="reorderOrder('${order.cart_details.replace(/'/g, "\\'").replace(/\n/g, "\\n")}')">♻️ إعادة الطلب</button>
-<div class="rating-box">
-        <span class="spans">ما مدي تقييمك للطلب ؟</span>
-
-    <div class="stars">
-        <span onclick="rateOrder(${order.id},1,this)"
-        class="${order.rating >= 1 ? 'active' : ''}">★</span>
-
-        <span onclick="rateOrder(${order.id},2,this)"
-        class="${order.rating >= 2 ? 'active' : ''}">★</span>
-
-        <span onclick="rateOrder(${order.id},3,this)"
-        class="${order.rating >= 3 ? 'active' : ''}">★</span>
-
-        <span onclick="rateOrder(${order.id},4,this)"
-        class="${order.rating >= 4 ? 'active' : ''}">★</span>
-
-        <span onclick="rateOrder(${order.id},5,this)"
-        class="${order.rating >= 5 ? 'active' : ''}">★</span>
-
-    </div>
-
-</div>
-`
-: ""
+function escapeHtml(str) {
+    if (!str) return '';
+    const div = document.createElement('div');
+    div.textContent = str;
+    return div.innerHTML;
 }
 
-</div>
+async function showMyOrders() {
+    const profile = JSON.parse(localStorage.getItem("customerProfile"));
 
-`).join("");
+    if (!profile) {
+        openModal('profile-modal');
+        return;
+    }
+
+    const list = document.getElementById("orders-list");
+    list.innerHTML = '<div class="orders-loading">⏳ جاري تحميل الطلبات...</div>';
+    openModal('orders-modal');
+
+    try {
+        const { data, error } = await supabaseClient
+            .from("orders")
+            .select("*")
+            .eq("phone_number", profile.phone)
+            .order("id", { ascending: false });
+
+        if (error) throw error;
+
+        if (!data.length) {
+            list.innerHTML = '<div class="orders-empty">📦 لا توجد طلبات سابقة</div>';
+            return;
+        }
+
+        list.innerHTML = data.map(order => {
+            const statusClass = {
+                "قيد المراجعة": "status-pending",
+                "جاري التجهيز": "status-preparing",
+                "خرج للتوصيل": "status-shipped",
+                "تم التسليم": "status-delivered"
+            }[order.status] || "status-pending";
+
+            return `
+            <div class="order-card">
+                <div class="order-header">
+                    <div class="order-id">طلب #${order.id}</div>
+                    <div class="order-status ${statusClass}">${escapeHtml(order.status)}</div>
+                </div>
+                ${getTracker(order.status)}
+                <div class="order-items">${escapeHtml(order.cart_details)}</div>
+                ${order.status === "تم التسليم" ? `
+                    <button class="reorder-btn" onclick="reorderOrder('${escapeHtml(order.cart_details).replace(/'/g, "\\'").replace(/\n/g, "\\n")}')">♻️ إعادة الطلب</button>
+                    <div class="rating-box">
+                        <span class="spans">ما مدي تقييمك للطلب؟</span>
+                        <div class="stars">
+                            ${[1,2,3,4,5].map(i => `
+                                <span onclick="rateOrder(${order.id},${i},this)"
+                                    class="${order.rating >= i ? 'active' : ''}">★</span>
+                            `).join('')}
+                        </div>
+                    </div>
+                ` : ''}
+            </div>`;
+        }).join("");
+    } catch (err) {
+        console.error("showMyOrders error:", err);
+        list.innerHTML = '<div class="orders-error">⚠️ حدث خطأ أثناء تحميل الطلبات</div>';
+    }
 }
 
 function reorderOrder(cartDetails) {
@@ -1046,38 +1101,28 @@ function reorderOrder(cartDetails) {
 
     saveCart();
     updateCartUI();
-    document.getElementById('orders-modal')?.close();
+    closeModal('orders-modal');
     showToast("♻️ تم إعادة الطلب بنجاح!");
     openCart();
 }
 
 
 async function rateOrder(orderId, rating, element){
-    const stars =
-        element.parentElement.querySelectorAll("span");
-
-    stars.forEach((star,index)=>{
-
-        if(index < rating){
-            star.classList.add("active");
-        }else{
-            star.classList.remove("active");
-        }
-
-    });
-
     const { error } = await supabaseClient
         .from("orders")
-        .update({
-            rating: rating
-        })
+        .update({ rating: rating })
         .eq("id", orderId);
 
     if(error){
         console.error(error);
-        alert("حدث خطأ يرجي اعادة المحاولة  ");
+        showToast("حدث خطأ يرجي اعادة المحاولة");
         return;
     }
+
+    const stars = element.parentElement.querySelectorAll("span");
+    stars.forEach((star, index) => {
+        star.classList.toggle("active", index < rating);
+    });
 
     showToast("تم حفظ التقييم ⭐");
 }
@@ -1169,8 +1214,9 @@ function unlockScroll() {
     document.documentElement.style.overflow = '';
 }
 
-function openProductModal(name, price, images, description, packText, flavors, customCss) {
+function openProductModal(name, price, images, description, packText, flavors, customCss, imageCssArr) {
     currentProductImages = Array.isArray(images) ? images : [images];
+    const perImageCss = Array.isArray(imageCssArr) ? imageCssArr : [];
     
     document.getElementById('modal-name').innerText = name;
     document.getElementById('modal-price').innerText = price;
@@ -1197,8 +1243,9 @@ function openProductModal(name, price, images, description, packText, flavors, c
     
     const img = document.getElementById('modal-image');
     img.removeAttribute('style');
-    if (customCss) {
-        img.style.cssText = customCss;
+    const firstImgCss = perImageCss[0] || customCss || '';
+    if (firstImgCss) {
+        img.style.cssText = firstImgCss;
     }
     img.style.opacity = '0';
     img.style.transform = 'scale(0.95)';
@@ -1206,7 +1253,7 @@ function openProductModal(name, price, images, description, packText, flavors, c
         img.src = currentProductImages[0];
         img.style.opacity = '1';
         img.style.transform = 'scale(1)';
-        if (customCss) img.style.cssText = customCss + ';opacity:1;transform:scale(1)';
+        if (firstImgCss) img.style.cssText = firstImgCss + ';opacity:1;transform:scale(1)';
     }, 50);
     currentImageIndex = 0;
     
@@ -1218,18 +1265,22 @@ function openProductModal(name, price, images, description, packText, flavors, c
         dot.onclick = () => changeImage(index);
         dotsContainer.appendChild(dot);
     });
+    const arrows = document.querySelectorAll('.slider-arrow');
+    arrows.forEach(a => a.style.display = currentProductImages.length > 1 ? 'flex' : 'none');
     
-    currentProduct = { name, price: parseFloat(price) || 0, image: currentProductImages[0], customCss: customCss || '' };
+    currentProduct = { name, price: parseFloat(price) || 0, image: currentProductImages[0], customCss: customCss || '', perImageCss };
     preloadImages(currentProductImages);
     
     wasFromCart = document.body.classList.contains('cart-modal-open');
     if (wasFromCart) {
-        document.getElementById('cart-modal')?.close();
+        closeModal('cart-modal');
         document.body.classList.remove('cart-modal-open');
     }
     
     const overlay = document.getElementById('product-overlay');
     overlay.classList.add('show');
+    const backBtn = document.getElementById('backToTop');
+    if (backBtn) backBtn.style.display = 'none';
     lockScroll();
     window.history.pushState({ modalOpen: true }, '');
 }
@@ -1242,13 +1293,23 @@ function changeImage(index) {
     setTimeout(() => {
         currentImageIndex = index;
         img.src = currentProductImages[index];
+        const imgCss = (currentProduct.perImageCss && currentProduct.perImageCss[index]) || currentProduct.customCss || '';
+        img.removeAttribute('style');
+        if (imgCss) img.style.cssText = imgCss;
         img.style.opacity = '1';
         img.style.transform = 'scale(1)';
-        if (currentProduct.customCss) img.style.cssText = currentProduct.customCss + ';opacity:1;transform:scale(1)';
     }, 180);
     document.querySelectorAll('.dot').forEach((dot, i) => {
         dot.classList.toggle('active', i === index);
     });
+}
+
+function changeImageByStep(step) {
+    if (currentProductImages.length < 2) return;
+    let newIndex = currentImageIndex + step;
+    if (newIndex < 0) newIndex = currentProductImages.length - 1;
+    if (newIndex >= currentProductImages.length) newIndex = 0;
+    changeImage(newIndex);
 }
 
 // سحب الصورة بمرونة (Flexible Swipe)
@@ -1327,40 +1388,9 @@ function closeProductModal() {
     unlockScroll();
     if (wasFromCart) {
         wasFromCart = false;
-        document.getElementById('cart-modal')?.showModal();
+        openModal('cart-modal');
         document.body.classList.add('cart-modal-open');
     }
-}
-
-// فتح الصورة بالعرض الأصلي
-function openFullImage() {
-    const img = document.getElementById('modal-image');
-    if (!img.src) return;
-    const overlay = document.getElementById('full-image-overlay');
-    const fullImg = document.getElementById('full-image-src');
-    fullImg.src = img.src;
-    overlay.classList.add('show');
-    document.body.style.overflow = 'hidden';
-}
-
-// إغلاق الصورة الكاملة
-function closeFullImage(e) {
-    if (e && e.target !== e.currentTarget && !e.target.classList.contains('full-image-close')) return;
-    const overlay = document.getElementById('full-image-overlay');
-    overlay.classList.remove('show');
-    document.body.style.overflow = '';
-}
-
-// تحميل الصورة
-function downloadImage() {
-    const img = document.getElementById('full-image-src');
-    if (!img.src) return;
-    const a = document.createElement('a');
-    a.href = img.src;
-    a.download = (document.getElementById('modal-name').innerText || 'product') + '.jpg';
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
 }
 
 // مشاركة المنتج
@@ -1388,7 +1418,7 @@ function shareProduct() {
     } else {
         // نسخ الرابط للحافظة + فتح واتساب
         navigator.clipboard.writeText(url).then(() => {
-            alert('✅ تم نسخ الرابط! الصقه في رسالة واتساب');
+            showToast('✅ تم نسخ الرابط! الصقه في رسالة واتساب');
         }).catch(() => {});
         window.open('https://wa.me/', '_blank');
     }
@@ -1396,19 +1426,13 @@ function shareProduct() {
 
 // الاستماع لحدث زر الرجوع في الهاتف
 window.addEventListener('popstate', () => {
-    const fullImageOverlay = document.getElementById('full-image-overlay');
-    if (fullImageOverlay.classList.contains('show')) {
-        fullImageOverlay.classList.remove('show');
-        document.body.style.overflow = '';
-        return;
-    }
     const overlay = document.getElementById('product-overlay');
     if (overlay.classList.contains('show')) {
         overlay.classList.remove('show');
         unlockScroll();
         if (wasFromCart) {
             wasFromCart = false;
-            document.getElementById('cart-modal')?.showModal();
+            openModal('cart-modal');
             document.body.classList.add('cart-modal-open');
         }
     }
@@ -1428,8 +1452,6 @@ function addToCartFromModal() {
  */
 function toggleTheme() {
     const body = document.body;
-    // تفعيل الأنيميشن قبل تغيير الثيم
-    body.classList.add('theme-transition');
     body.classList.toggle('light-mode');
     
     // حفظ التفضيل في المتصفح
@@ -1444,8 +1466,6 @@ function toggleTheme() {
             : 'M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z'
         );
     }
-    // إزالة كلاس الأنيميشن بعد انتهاء المدة
-    setTimeout(() => body.classList.remove('theme-transition'), 350);
 }
 
 // تطبيق الثيم عند فتح الصفحة
@@ -1587,8 +1607,10 @@ function renderProductsFromDB(products) {
             const flavorsStr = JSON.stringify(p.flavors ? p.flavors.split(',').map(s => s.trim()).filter(s => s) : []);
             const cssStyle = p.custom_css ? ` style="${p.custom_css.replace(/"/g, '&quot;')}"` : '';
             const modalCssAttr = p.modal_custom_css ? `"${p.modal_custom_css.replace(/"/g, '&quot;')}"` : 'undefined';
+            const imageCssArr = p.image_custom_css ? p.image_custom_css.split(',').map(s => s.trim()) : [];
+            const imageCssStr = JSON.stringify(imageCssArr);
             html += `<article class="a1">`;
-            html += `<img src="${firstImage}" class="product-image"${cssStyle} onclick='openProductModal(${JSON.stringify(p.name)}, "${p.price} ج.م", ${imagesStr}, "${desc}", "${pack}", ${flavorsStr}, ${modalCssAttr})' width="230" height="200">`;
+            html += `<img src="${firstImage}" class="product-image"${cssStyle} onclick='openProductModal(${JSON.stringify(p.name)}, "${p.price} ج.م", ${imagesStr}, "${desc}", "${pack}", ${flavorsStr}, ${modalCssAttr}, ${imageCssStr})' width="230" height="200">`;
             html += `<p>${p.name}</p>`;
             html += `<button class="order-button" onclick="addToCart('${p.name.replace(/'/g, "\\'")}', ${p.price})">🛒اضف الي السلة</button>`;
             html += `</article>`;

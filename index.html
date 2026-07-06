@@ -228,105 +228,100 @@
 </div> -->
     <!-- ===== FIXED TOP HEADER (Amazon-style) ===== -->
     <header class="top-header">
-        <a href="#" class="header-logo">
-            <span class="logo-icon">🛒</span>
-            <span class="logo-text">الشرقاوي</span>
-        </a>
+        <div class="header-right">
+            <a href="#" class="header-logo">
+                <span class="logo-icon">🛒</span>
+                <span class="logo-text">الشرقاوي</span>
+            </a>
 
-        <div class="header-search-collapsed" id="search-collapsed" onclick="expandSearch()">
-            <span>🔍</span>
-        </div>
-        <div class="header-search-expanded" id="search-expanded">
-            <input type="text" id="searchInput" placeholder="🔍  ابحث عن منتج هنا..." onkeyup="searchProducts()">
-            <button onclick="collapseSearch()">✕</button>
-        </div>
-
-        <div class="header-actions">
-            <button class="ha-btn" onclick="toggleTheme()" title="الوضع">
-                <svg class="ha-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path id="icon-path" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                </svg>
-            </button>
-            <button class="ha-btn" onclick="document.getElementById('profile-modal').showModal()" title="حسابي">
-                <span class="ha-icon">👤</span>
-            </button>
-            <button class="ha-btn" onclick="openCart()" title="السلة">
-                <span class="ha-icon">🛒</span>
-                <span class="ha-badge" id="cart-count" style="display:none;">0</span>
-            </button>
+            <div class="header-search-collapsed" id="search-collapsed" onclick="expandSearch()">
+                <span>🔍</span>
+            </div>
+            <div class="header-search-expanded" id="search-expanded">
+                <input type="text" id="searchInput" placeholder="🔍  ابحث عن منتج هنا..." onkeyup="searchProducts()">
+                <button onclick="collapseSearch()">✕</button>
+            </div>
         </div>
 
-        <button class="ha-btn ha-menu-btn" onclick="toggleMenu()" title="القائمة">
-            <span class="ha-icon">☰</span>
+        <button class="ha-btn theme-toggle-header" onclick="toggleTheme()" title="الوضع">
+            <svg class="ha-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path id="icon-path" d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
         </button>
     </header>
-    <div id="menu-overlay" class="menu-overlay" onclick="toggleMenu()"></div>
-
-<!-- =========================================================================
-    4. القائمة الجانبية والنوافذ العائمة (Menu, Cart, BackToTop)
-    ==========================================================================  -->
-
-<!-- ====================================================================================================================================== -->
-<!-- 📦 -->
-<!-- القائمة الجانبية -->
-    <div id="side-menu" class="side-menu">
-        <button class="side-menu-close" onclick="toggleMenu()">✕</button>
-        <a class="a" href="#" onclick="document.getElementById('profile-modal').showModal();return false">بياناتي</a> 
-        <a class="a" href="#" onclick="showMyOrders();return false">طلباتي</a>
-        <a class="a" href="#" onclick="document.getElementById('phoneWindow').showModal();return false">اتصل بنا</a>
-        <!-- <a class="a" href="https://wa.me/201281525050" target="_blank">واتساب</a> -->
-        <a class="a" href="#" onclick="openFilterModal();return false">فرز المنتجات</a>
-    </div>
-    
-<!-- ====================================================================================================================================== -->
-
-<!-- فرز المنتجات -->
-<dialog id="filter-modal" class="custom-modal">
-    <button class="close-modal-btn" onclick="document.getElementById('filter-modal').close()">×</button>
-    <h3>📂 فرز المنتجات</h3>
-    <button class="filter-btn" onclick="filterByCategory('all')">كل المنتجات</button>
-    <button class="filter-btn" onclick="filterByCategory('اصيل')">منتجات الاصيل</button>
-    <button class="filter-btn" onclick="filterByCategory('جامي')">منتجات جامي</button>
-    <button class="filter-btn" onclick="filterByCategory('سما')">منتجات سما</button>
-    <button class="filter-btn" onclick="filterByCategory('لبان')">لبان</button>
-    <button class="filter-btn" onclick="filterByCategory('خردوات')">خردوات</button>
-    <button class="filter-btn" onclick="filterByCategory('مارشملو')">مارشملو</button>
-</dialog>
 
 <!-- ====================================================================================================================================== -->
 
 <!-- نافذة الطلبات -->
-<dialog id="orders-modal" class="orders-modal">
+<div id="orders-modal" class="orders-modal">
     <div class="orders-header">
         <h3 class="orders-title">طلباتي</h3>
-        <button class="orders-close-top" onclick="document.getElementById('orders-modal').close()">×</button>
+        <button class="orders-close-top" onclick="closeModal('orders-modal')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+        </button>
     </div>
     <div id="orders-list" class="orders-list">
         جاري التحميل...
     </div>
-</dialog>
+</div>
 
 <!-- ====================================================================================================================================== -->
 
-    <dialog id="profile-modal" class="profile-modal">
-        <button class="close-modal-btn" onclick="document.getElementById('profile-modal').close()">×</button>
-        <h3>👤 بياناتي الشخصية</h3>
-        <label class="label">الاسم</label>
-        <input class="modal-input" type="text" id="user-shop" placeholder="اسمك او اسم المحل"  required >
-        <label class="label">رقم الهاتف</label>
-        <input class="modal-input" type="phone" id="user-phone" placeholder="رقم الهاتف للتواصل"  required >
-        <label class="label">العنوان </label>
-        <input class="modal-input" type="text" id="user-address" placeholder="عنوان التوصيل بالتفصيل"  required >
-        <button  onclick="saveProfile()" class="save-btn" >حفظ البيانات ✅</button>
-    </dialog>
+    <div id="profile-modal" class="profile-modal">
+        <button class="close-modal-btn" onclick="closeModal('profile-modal')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+        </button>
+        <div class="profile-tabs">
+            <button class="profile-tab active" data-tab="info" onclick="switchProfileTab('info')">بياناتي</button>
+            <button class="profile-tab" data-tab="orders" onclick="switchProfileTab('orders')">طلبات الشراء</button>
+        </div>
+        <div id="profile-tab-info" class="profile-tab-content active">
+            <div class="profile-header">
+                <div class="profile-avatar">👤</div>
+                <h3>بياناتي الشخصية</h3>
+                <p class="profile-subtitle">حدّث معلوماتك الشخصية</p>
+            </div>
+            <div class="profile-form">
+                <div class="input-group">
+                    <label class="label">الاسم</label>
+                    <div class="input-wrapper">
+                        <input class="modal-input" type="text" id="user-shop" placeholder="اسمك أو اسم المحل" required>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label class="label">رقم الهاتف</label>
+                    <div class="input-wrapper">
+                        <input class="modal-input" type="tel" id="user-phone" placeholder="رقم الهاتف للتواصل" required>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label class="label">العنوان</label>
+                    <div class="input-wrapper">
+                        <input class="modal-input" type="text" id="user-address" placeholder="عنوان التوصيل بالتفصيل" required>
+                    </div>
+                </div>
+                <button onclick="saveProfile()" class="save-btn">
+                    <span>💾</span> حفظ البيانات
+                </button>
+            </div>
+        </div>
+        <div id="profile-tab-orders" class="profile-tab-content">
+            <div class="profile-orders-header">
+                <h3>📋 طلبات الشراء</h3>
+            </div>
+            <div id="profile-orders-list" class="profile-orders-list">
+                اضغط على "طلبات الشراء" لعرض طلباتك
+            </div>
+        </div>
+    </div>
 
 
 <!-- ====================================================================================================================================== -->
 
     <dialog id="phoneWindow" class="phone-modal">
         <h3>📱 أرقام التواصل</h3>
-        <div style="margin: 10px 0;"><span class="num" id="num1"><a  style="text-decoration: none; font-weight:bold; color: #ff9800;" href="tel:01062063425">01062063425</a></span><button class="copybtn" onclick="copyNumber('num1')" style="margin-right: 10px; cursor: pointer; font-size: xx-small;">نسخ 📋</button></div>
-        <div style="margin: 10px 0;"><span class="num" id="num2"><a  style="text-decoration: none; font-weight:bold; color: #ff9800;" href="tel:01202530125">01202530125</a></span><button class="copybtn" onclick="copyNumber('num2')" style="margin-right: 10px; cursor: pointer; font-size: xx-small;">نسخ 📋</button></div>
+        <div class="phone-num-row"><span class="num" id="num1"><a href="tel:01062063425">01062063425</a></span><button class="copybtn" onclick="copyNumber('num1')">نسخ 📋</button></div>
+        <div class="phone-num-row"><span class="num" id="num2"><a href="tel:01202530125">01202530125</a></span><button class="copybtn" onclick="copyNumber('num2')">نسخ 📋</button></div>
         <hr>
         <button class="phone-modal-close-btn" onclick="document.getElementById('phoneWindow').close()">إغلاق</button>
     </dialog>
@@ -338,10 +333,12 @@
 <div id="products-container"></div>
 <!-- ================================================ سلة الطلبات (Amazon-style) ================================================================ -->
 
-    <dialog id="cart-modal">
+    <div id="cart-modal" class="cart-dialog">
         <div class="cart-header">
             <h2>🛒 سلة المشتريات</h2>
-            <button class="cart-close-icon" onclick="closeCart()">✕</button>
+            <button class="cart-close-icon" onclick="closeCart()">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+            </button>
         </div>
         <div id="cart-items"></div>
         <div id="cart-summary" class="cart-summary" style="display:none;">
@@ -351,16 +348,18 @@
             </div>
             <button id="confirm-order-btn" class="checkout-btn" onclick="showOrderReview()">تأكيد الطلب</button>
         </div>
-    </dialog>   
+    </div>   
 <!-- اشعار الاضافة الي السلة -->
     <div id="toast" class="toast">تمت الإضافة إلى السلة بنجاح! ✅</div>
     <button id="backToTop" onclick="scrollToTop()">⬆️</button>
 <!-- مراجعة الطلب -->
-<dialog id="review-modal">
+<div id="review-modal" class="review-dialog">
     <div class="review-modal-inner">
         <div class="review-header">
             <h3>📋 تأكيد الطلب</h3>
-            <button class="review-close-btn" onclick="closeModal('review-modal')">✕</button>
+            <button class="review-close-btn" onclick="closeModal('review-modal')">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+            </button>
         </div>
         <div class="review-body">
             <div class="review-section-label">🛒 المنتجات</div>
@@ -380,7 +379,7 @@
             <button class="review-edit-btn" onclick="closeModal('review-modal')">تعديل ✏️</button>
         </div>
     </div>
-</dialog>
+</div>
 <!-- اشعار ارسال الطلب -->
 <dialog id="success-modal" class="custom-modal">
     <h3>تم إرسال طلبك  ! ✅</h3>
@@ -409,10 +408,10 @@
         <img id="zoomed-img" src="">
     </div>
     <nav class="bottom-nav">
-    <a href="#" class="nav-item" onclick="window.scrollTo({top: 0, behavior: 'smooth'});return false">
+    <a href="#" class="nav-item" onclick="goHome();return false">
         <span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></span><small>الرئيسية</small>
     </a>
-    <a href="#" class="nav-item" onclick="document.getElementById('profile-modal').showModal();return false">
+    <a href="#" class="nav-item" onclick="openModal('profile-modal');return false">
         <span class="nav-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span><small>حسابي</small>
     </a>
     <a class="nav-item" href="#" onclick="document.getElementById('phoneWindow').showModal();return false">
@@ -426,12 +425,15 @@
 <!-- ====================================================================================================================================== -->
 <!-- شاشة المنتج الكاملة (غير dialog لتجنب مشاكل المتصفح) -->
 <div id="product-overlay" class="product-overlay"> 
-    <button class="modal-close" onclick="closeProductModal()">✕</button>
+    <button class="modal-close" onclick="closeProductModal()">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
+    </button>
     <button class="modal-share-btn" onclick="shareProduct()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
     <div class="modal-scroll">
-        <div class="modal-image-wrap" onclick="openFullImage()">
+        <div class="modal-image-wrap">
             <img id="modal-image" src="">
-            <div class="image-zoom-hint">اضغط للعرض الكامل</div>
+            <button class="slider-arrow slider-arrow-right" onclick="changeImageByStep(-1)">❮</button>
+            <button class="slider-arrow slider-arrow-left" onclick="changeImageByStep(1)">❯</button>
             <div class="slider-dots" id="slider-dots"></div>
         </div>
         <div class="modal-info">
@@ -450,14 +452,6 @@
     </div>
 </div>
 
-<!-- مودال عرض الصورة بالعرض الأصلي -->
-<div id="full-image-overlay" class="full-image-overlay" onclick="closeFullImage(event)">
-    <button class="full-image-close" onclick="closeFullImage(event)">✕</button>
-    <button class="full-image-download" onclick="downloadImage()">⬇ تحميل</button>
-    <div class="full-image-container">
-        <img id="full-image-src" src="" onclick="event.stopPropagation()">
-    </div>
-</div>
 
 
 
