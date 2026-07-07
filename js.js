@@ -195,7 +195,7 @@ function updateCartUI() {
             <div class="cart-empty">
                 <span class="cart-empty-icon">🛒</span>
                 سلة المشتريات فارغة
-                <button class="cart-shop-btn" onclick="closeCart()">اذهب للتسوق</button>
+                <button class="cart-shop-btn" onclick="goHome()">اذهب للتسوق</button>
             </div>`;
     let totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
     if (cartCount) {
@@ -312,12 +312,6 @@ function getProductImage(name) {
     return 'https://via.placeholder.com/80/333/666?text=?';
 }
 
-function updateQty(index, newQty) {
-    if (newQty < 1) newQty = 1;
-    cart[index].quantity = parseInt(newQty);
-    saveCart();
-    recalcCart();
-}
 
 // حذف منتج من السلة
 function removeItem(index) {
@@ -411,15 +405,6 @@ function openModal(modalId) {
 // 3. دوال إتمام الطلب وبيانات العميل
 // ==========================================================================
 
-function showForm() {
-    let form = document.getElementById('order-details-form');
-    let confirmBtn = document.getElementById('confirm-order-btn');
-    let showBtn = document.getElementById('show-form-btn');
-    
-    if (form) form.style.display = 'block';
-    if (confirmBtn) confirmBtn.style.display = 'block';
-    if (showBtn) showBtn.style.display = 'none';
-}
 async function sendOrder(btn) {
     let reviewModal = document.getElementById('review-modal');
     if (!btn) btn = reviewModal?.querySelector('.checkout-btn');
@@ -676,6 +661,7 @@ function expandSearch() {
     let input = document.getElementById('searchInput');
     collapsed.style.display = 'none';
     expanded.classList.add('active');
+    document.querySelector('.top-header').classList.add('search-active');
     setTimeout(() => input.focus(), 300);
 
     setTimeout(() => document.addEventListener('click', handleOutsideSearchClick), 0);
@@ -696,6 +682,7 @@ function collapseSearch() {
     searchProducts();
     expanded.classList.remove('active');
     expanded.classList.add('closing');
+    document.querySelector('.top-header').classList.remove('search-active');
     setTimeout(() => {
         expanded.classList.remove('closing');
         collapsed.style.display = '';

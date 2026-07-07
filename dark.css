@@ -23,7 +23,7 @@
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-right: 50px;
+    margin-right: 15px;
 }
 .theme-toggle-header {
     background: rgba(255, 255, 255, 0.08);
@@ -138,6 +138,19 @@
     transition: 0.2s;
 }
 .header-search-expanded button:hover { color: #f44336; }
+/* عند فتح البحث - إخفاء الشعار وتمركز الخانة */
+.top-header.search-active .header-logo {
+    display: none;
+}
+.top-header.search-active .header-right {
+    flex: 1;
+    justify-content: center;
+}
+.top-header.search-active .header-search-expanded.active {
+    width: 90%;
+    max-width: 300px;
+    flex: none;
+}
 .header-actions {
     display: flex;
     align-items: center;
@@ -1005,25 +1018,52 @@ h1.section-title {
     font-family: 'Cairo', sans-serif;
     margin: 0;
 }
+/* زر الرجوع في السلة - على اليسار */
+.cart-header .back-btn {
+    order: 1;
+}
 /* زر إغلاق السلة (علامة X) */
-.cart-close-icon {
+/* زر العودة الموحد لجميع الشاشات */
+.back-btn {
     background: rgba(255,255,255,0.06);
     border: none;
     color: #aaa;
-    font-size: 20px;
     cursor: pointer;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: 0.2s;
+    transition: all 0.2s;
     line-height: 1;
+    padding: 0;
+    font-size: 14px;
+    font-family: 'Cairo', sans-serif;
+    font-weight: 600;
+    flex-shrink: 0;
 }
-.cart-close-icon:hover {
+.back-btn:hover {
     background: rgba(255,68,68,0.15);
     color: #ff4444;
+}
+.back-btn:active {
+    transform: scale(0.92);
+}
+/* زر العودة بنص */
+.back-btn.text-btn {
+    width: auto;
+    padding: 10px 28px;
+    background: rgba(255,152,0,0.15);
+    color: #ff9800;
+    font-weight: 700;
+    border-radius: 10px;
+    margin-top: 10px;
+    font-size: 14px;
+}
+.back-btn.text-btn:hover {
+    background: rgba(255,152,0,0.25);
+    color: #ffb74d;
 }
 /* حاوية عناصر السلة القابلة للتمرير */
 #cart-items {
@@ -1514,38 +1554,41 @@ h1.section-title {
     color: #fff;
     border-color: #ff9800;
 }
-/* نافذة "تم إرسال طلبك بنجاح" */
-.success-modal {
-    color:#e68900;
-    border: 1px solid rgba(255, 152, 0, 0.2);
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-    width: 50%;
-    background: rgba(19, 25, 33, 0.98);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    text-align: center;
-    animation: slideUp 0.4s ease-out;
-    z-index: 50001;
-}
-
-/* ===========================================================================================
-   10. نافذة نجاح / تنبيه
-   =========================================================================================== */
+/* نافذة "تم إرسال طلبك بنجاح" والتنبيهات */
+.success-modal,
 .custom-modal {
-    color:#e68900;
+    color: #e68900;
     border: 1px solid rgba(255, 152, 0, 0.2);
     border-radius: 20px;
-    padding: 30px;
+    padding: 24px 20px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-    width: 50%;
+    width: 80%;
+    max-width: 300px;
+    margin: auto;
     background: rgba(19, 25, 33, 0.98);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     text-align: center;
-    animation: slideUp 0.4s ease-out;
     z-index: 50001;
+    box-sizing: border-box;
+}
+.success-modal h3,
+.custom-modal h3 {
+    font-size: 17px;
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+.success-modal p,
+.custom-modal p {
+    font-size: 13px;
+    color: #aaa;
+    margin-bottom: 16px;
+    line-height: 1.6;
+}
+.success-modal .back-btn,
+.custom-modal .back-btn {
+    margin: 0 auto;
+    display: inline-flex;
 }
 
 /* خلفية النوافذ المنبثقة (تأثير التعتيم والضبابية) */
@@ -1713,31 +1756,19 @@ dialog::backdrop {
     transform: translateY(0);
 }
 /* زر الإغلاق */
-.profile-modal .close-modal-btn {
+/* زر العودة في الشاشات الكبيرة */
+.product-overlay .back-btn,
+.profile-modal .back-btn,
+.review-modal-inner .back-btn,
+.orders-modal .back-btn {
     position: absolute;
-    top: 16px;
+    top: 22px;
     left: 20px;
-    background: rgba(255,255,255,0.06);
-    border: none;
-    border-radius: 50%;
-    width: 38px;
-    height: 38px;
-    font-size: 20px;
-    cursor: pointer;
-    color: #aaa;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    line-height: 1;
-    padding: 0;
-    font-weight: 400;
+    right: auto;
     z-index: 10;
 }
-.profile-modal .close-modal-btn:hover {
-    background: rgba(255,68,68,0.15);
-    color: #ff4444;
-    transform: rotate(90deg);
+.product-overlay .back-btn {
+    color: #fff;
 }
 
 /* تابات الملف الشخصي */
@@ -1912,27 +1943,6 @@ dialog::backdrop {
 .orders-title::before {
     content: '📋';
     font-size: 22px;
-}
-/* زر إغلاق نافذة الطلبات */
-.orders-close-top {
-    background: rgba(255,255,255,0.06);
-    border: 1px solid rgba(255,255,255,0.08);
-    font-size: 20px;
-    color: #aaa;
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
-    line-height: 1;
-}
-.orders-close-top:hover {
-    background: rgba(255,68,68,0.15);
-    color: #ff4444;
-    border-color: rgba(255,68,68,0.3);
 }
 /* قائمة الطلبات */
 .orders-list {
@@ -2226,15 +2236,16 @@ dialog::backdrop {
     background: rgba(19, 25, 33, 0.98);
     border: 1px solid rgba(255, 152, 0, 0.2);
     border-radius: 20px;
-    padding: 30px;
+    padding: 24px 16px;
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
-    font-size: 18px;
-    width: 90%;
-    max-width: 340px;
+    font-size: 16px;
+    width: 80%;
+    max-width: 300px;
     text-align: center;
     color: #fff;
     z-index: 50001;
     margin: auto;
+    box-sizing: border-box;
 }
 .phone-modal::backdrop {
     background: rgba(0, 0, 0, 0.7);
@@ -2243,16 +2254,16 @@ dialog::backdrop {
 /* عنوان النافذة */
 .phone-modal h3 {
     color: #ff9800;
-    margin-bottom: 20px;
-    font-size: 20px;
+    margin-bottom: 16px;
+    font-size: 18px;
     font-family: 'Cairo', sans-serif;
 }
 /* صف رقم الهاتف */
 .phone-num-row {
-    background: #333;
+    background: rgba(255,255,255,0.06);
     padding: 12px;
-    border-radius: 15px;
-    margin: 10px 0;
+    border-radius: 12px;
+    margin: 8px 0;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -2261,47 +2272,23 @@ dialog::backdrop {
     text-decoration: none;
     font-weight: bold;
     color: #ff9800;
+    font-size: 15px;
 }
 /* زر نسخ الرقم */
 .copybtn {
     background: #ff9800;
     color: #000;
     border: none;
-    padding: 5px 12px;
+    padding: 6px 14px;
     border-radius: 8px;
     cursor: pointer;
     font-weight: bold;
     font-size: 12px;
-}
-/* زر إغلاق نافذة الاتصال */
-.phone-modal-close-btn {
-    justify-self: center;
-    width: 40%;
-    height: 35px;
-    margin-top: 15px;
-    padding: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: #ff9800;
-    color: #000;    border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 15px;
-    cursor: pointer;
-    font-size: 14px;
     font-family: 'Cairo', sans-serif;
-    font-weight: bold;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-    transition: all 0.3s ease;
+    transition: 0.2s;
 }
-.phone-modal-close-btn:hover {
-    background: rgba(255, 0, 0, 0.1);
-    border-color: #ff9800;
-    color: #ff9800;
-    transform: scale(1.02);
-    box-shadow: 0 6px 20px rgba(255, 152, 0, 0.2);
-}
-.phone-modal-close-btn:active {
-    transform: scale(0.98);
+.copybtn:active {
+    transform: scale(0.95);
 }
 /* أنيميشن إغلاق النوافذ */
 .closing {
@@ -2605,33 +2592,6 @@ body {
     display: flex;
     animation: modalShow 0.4s cubic-bezier(0.16, 1, 0.3, 1);
 }
-/* زر الإغلاق (X) في شاشة المنتج */
-.modal-close {
-    position: absolute;
-    top: 14px;
-    left: 14px;
-    z-index: 20;
-    width: 36px;
-    height: 36px;
-    border: none;
-    border-radius: 50%;
-    background: rgba(255, 0, 0, 0.06);
-    color: #ffffff;
-    font-size: 20px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: 0.2s;
-    line-height: 1;
-}
-.modal-close:hover {
-    background: rgba(255,68,68,0.15);
-    color: #ff4444;
-}
-.modal-close:active {
-    transform: scale(0.9);
-}
 /* زر المشاركة في شاشة المنتج */
 .modal-share-btn {
     position: absolute;
@@ -2667,6 +2627,7 @@ body {
 }
 /* حاوية صورة المنتج */
 .modal-image-wrap {
+    position: relative;
     background: #1a1a1a;
     display: flex;
     flex-direction: column;

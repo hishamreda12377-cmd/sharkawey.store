@@ -1,6 +1,5 @@
 ﻿<!doctype html>
 <html lang="ar">
-<html>
 <head>
     <meta name="google-site-verification" content="L7bxwh6Kzwk6kzln_kdk9gQC4Az_D1M7d4tCQtp_wMw" />
     <link rel="icon" href="logo.png">
@@ -8,18 +7,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title> الشرقاوي لتوزيع المواد الغذائية والحلويات</title>
     <meta name="keywords"
-    content="مواد غذائية, جملة, توزيع مواد غذائية, متجر الشرقاوي, طلبات اونلاين">
+    content="مواد غذائية, جملة, توزيع مواد غذائية, متجر الشرقاوي, طلبات اونلاين, حلويات, تسوق اونلاين">
     <meta name="description"
     content="متجر الشرقاوي لتوزيع المواد الغذائية - اطلب المنتجات بسهولة مع خدمة توصيل سريعة وأسعار مميزة">
-    <meta name="description" content="متجر الشرقاوي يقدم أفضل تشكيلة من الحلويات والمنتجات عالية الجودة. اطلب الآن .">
-    <meta name="keywords" content="حلويات، الشرقاوي، متجر، طلبات، تسوق اونلاين">
     <!-- Open Graph for WhatsApp sharing -->
     <meta property="og:type" content="website">
+    <meta property="twitter:description" content="Twitter link preview description">
+    <meta name="google-site-verification" content="uzQX-OoWEDnEaqAvZ1UZt2n0QxJU7w-02FZ1Gspm2rM" />
     <meta property="og:site_name" content="الشرقاوي">
     <meta id="og-title" property="og:title" content="الشرقاوي - متجر المواد الغذائية">
     <meta id="og-description" property="og:description" content="متجر الشرقاوي لتوزيع المواد الغذائية - اطلب المنتجات بسهولة">
     <meta id="og-image" property="og:image" content="logo.png">
-    <meta id="og-url" property="og:url" content="https://sharkawey.netlify.app">
+    <meta id="og-url" property="og:url" content="https://sharkaweystore.vercel.app">
     <meta name="twitter:card" content="summary_large_image">
     <meta id="tw-title" name="twitter:title" content="الشرقاوي - متجر المواد الغذائية">
     <meta id="tw-image" name="twitter:image" content="logo.png">
@@ -229,7 +228,7 @@
     <!-- ===== FIXED TOP HEADER (Amazon-style) ===== -->
     <header class="top-header">
         <div class="header-right">
-            <a href="#" class="header-logo">
+            <a href="#" class="header-logo" onclick="goHome();return false">
                 <span class="logo-icon">🛒</span>
                 <span class="logo-text">الشرقاوي</span>
             </a>
@@ -253,12 +252,12 @@
 <!-- ====================================================================================================================================== -->
 
 <!-- نافذة الطلبات -->
-<div id="orders-modal" class="orders-modal">
+    <div id="orders-modal" class="orders-modal">
     <div class="orders-header">
-        <h3 class="orders-title">طلباتي</h3>
-        <button class="orders-close-top" onclick="closeModal('orders-modal')">
+        <button class="back-btn" onclick="closeModal('orders-modal')">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
         </button>
+        <h3 class="orders-title">طلباتي</h3>
     </div>
     <div id="orders-list" class="orders-list">
         جاري التحميل...
@@ -268,7 +267,7 @@
 <!-- ====================================================================================================================================== -->
 
     <div id="profile-modal" class="profile-modal">
-        <button class="close-modal-btn" onclick="closeModal('profile-modal')">
+        <button class="back-btn" onclick="closeModal('profile-modal')">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
         </button>
         <div class="profile-tabs">
@@ -323,7 +322,7 @@
         <div class="phone-num-row"><span class="num" id="num1"><a href="tel:01062063425">01062063425</a></span><button class="copybtn" onclick="copyNumber('num1')">نسخ 📋</button></div>
         <div class="phone-num-row"><span class="num" id="num2"><a href="tel:01202530125">01202530125</a></span><button class="copybtn" onclick="copyNumber('num2')">نسخ 📋</button></div>
         <hr>
-        <button class="phone-modal-close-btn" onclick="document.getElementById('phoneWindow').close()">إغلاق</button>
+        <button class="back-btn text-btn" onclick="document.getElementById('phoneWindow').close()">إغلاق</button>
     </dialog>
 
 <!-- ====================================================================================================================================== -->
@@ -335,10 +334,10 @@
 
     <div id="cart-modal" class="cart-dialog">
         <div class="cart-header">
-            <h2>🛒 سلة المشتريات</h2>
-            <button class="cart-close-icon" onclick="closeCart()">
+            <button class="back-btn" onclick="closeCart()">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
             </button>
+            <h2>🛒 سلة المشتريات</h2>
         </div>
         <div id="cart-items"></div>
         <div id="cart-summary" class="cart-summary" style="display:none;">
@@ -356,10 +355,10 @@
 <div id="review-modal" class="review-dialog">
     <div class="review-modal-inner">
         <div class="review-header">
-            <h3>📋 تأكيد الطلب</h3>
-            <button class="review-close-btn" onclick="closeModal('review-modal')">
+            <button class="back-btn" onclick="closeModal('review-modal')">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
             </button>
+            <h3>📋 تأكيد الطلب</h3>
         </div>
         <div class="review-body">
             <div class="review-section-label">🛒 المنتجات</div>
@@ -384,19 +383,19 @@
 <dialog id="success-modal" class="custom-modal">
     <h3>تم إرسال طلبك  ! ✅</h3>
     <p>سيتم التواصل معك في أقرب وقت.</p>
-    <button class="phone-modal-close-btn"  onclick="document.getElementById('success-modal').close()">حسناً</button>
+    <button class="back-btn text-btn" onclick="document.getElementById('success-modal').close()">حسناً</button>
 </dialog>
 <!-- اشعار السلة فارغة -->
 <dialog id="alert-modal" class="success-modal">
     <h3 style="color: #ff4d4d;">⚠️ السلة فارغة</h3>
     <p>لم تقم بإضافة أي منتجات بعد!</p>
-    <button class="phone-modal-close-btn" onclick="document.getElementById('alert-modal').close()">حسناً</button>
+    <button class="back-btn text-btn" onclick="document.getElementById('alert-modal').close()">حسناً</button>
 </dialog>
 <!-- اشعار أكمل البيانات -->
 <dialog id="validation-modal" class="success-modal">
     <h3 style="color: #ff9800;">⚠️ أكمل  بياناتك اولا</h3>
     <p>يرجى ملء جميع البيانات المطلوبة</p>
-    <button class="phone-modal-close-btn" onclick="document.getElementById('validation-modal').close()">حسناً</button>
+    <button class="back-btn text-btn" onclick="document.getElementById('validation-modal').close()">حسناً</button>
 </dialog>
 
 <!-- ====================================================================================================================================== -->
@@ -425,7 +424,7 @@
 <!-- ====================================================================================================================================== -->
 <!-- شاشة المنتج الكاملة (غير dialog لتجنب مشاكل المتصفح) -->
 <div id="product-overlay" class="product-overlay"> 
-    <button class="modal-close" onclick="closeProductModal()">
+    <button class="back-btn" onclick="closeProductModal()">
         <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5"/><polyline points="12 19 5 12 12 5"/></svg>
     </button>
     <button class="modal-share-btn" onclick="shareProduct()"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg></button>
@@ -463,7 +462,7 @@
         "@context":"https://schema.org",
         "@type":"Store",
         "name":"متجر الشرقاوي",
-        "url":"https://sharkawey.netlify.app"
+        "url":"https://sharkaweystore.vercel.app"
     }
     </script>
 

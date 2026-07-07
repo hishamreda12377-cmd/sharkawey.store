@@ -168,14 +168,6 @@ body.light-mode .product-overlay {
     -webkit-backdrop-filter: blur(20px);
     color: #222;
 }
-body.light-mode .modal-close {
-    background: rgba(0,0,0,0.04);
-    color: #888;
-}
-body.light-mode .modal-close:hover {
-    background: rgba(255,68,68,0.08);
-    color: #ff4444;
-}
 body.light-mode .modal-share-btn {
     background: rgba(255,152,0,0.1);
     color: #e68900;
@@ -224,14 +216,6 @@ body.light-mode .cart-header {
 }
 body.light-mode .cart-header h2 {
     color: #222;
-}
-body.light-mode .cart-close-icon {
-    background: rgba(0,0,0,0.04);
-    color: #888;
-}
-body.light-mode .cart-close-icon:hover {
-    background: rgba(255,68,68,0.08);
-    color: #ff4444;
 }
 
 /* عناصر السلة */
@@ -392,14 +376,6 @@ body.light-mode .success-modal {
     background: linear-gradient(145deg, #ffffff, #f5f5f5);
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
 }
-body.light-mode .close-modal-btn {
-    background: rgba(0,0,0,0.04);
-    color: #888;
-}
-body.light-mode .close-modal-btn:hover {
-    background: rgba(255,68,68,0.08);
-    color: #ff4444;
-}
 
 /* ===========================================================================================
    11. شاشة حسابي (Profile Modal)
@@ -444,14 +420,6 @@ body.light-mode .profile-form .save-btn {
 }
 body.light-mode .profile-form .save-btn:hover {
     box-shadow: 0 8px 25px rgba(255, 152, 0, 0.4);
-}
-body.light-mode .profile-modal .close-modal-btn {
-    background: rgba(0,0,0,0.04);
-    color: #888;
-}
-body.light-mode .profile-modal .close-modal-btn:hover {
-    background: rgba(255,68,68,0.08);
-    color: #ff4444;
 }
 
 /* تابات الملف الشخصي */
@@ -531,16 +499,6 @@ body.light-mode .orders-header {
 }
 body.light-mode .orders-title {
     color: #222;
-}
-body.light-mode .orders-close-top {
-    background: rgba(0,0,0,0.04);
-    border-color: rgba(0,0,0,0.08);
-    color: #888;
-}
-body.light-mode .orders-close-top:hover {
-    background: rgba(255,68,68,0.08);
-    color: #ff4444;
-    border-color: rgba(255,68,68,0.2);
 }
 
 /* كروت الطلبات */
