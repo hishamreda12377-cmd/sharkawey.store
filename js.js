@@ -51,6 +51,43 @@ checkMaintenanceMode();
 // تهيئة EmailJS
 try { if (typeof emailjs !== 'undefined') emailjs.init("3xKGgYOdYgVChJOsh"); } catch(e) {}
 
+// تهيئة عنوان وميتا الصفحة (عربي دائماً)
+document.title = 'متجر الشرقاوي لتوزيع المواد الغذائية والحلويات';
+(function setMetaTags() {
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) metaDescription.setAttribute('content', 'متجر الشرقاوي لتوزيع المواد الغذائية - اطلب المنتجات بسهولة مع خدمة توصيل سريعة وأسعار مميزة');
+    const metaKeywords = document.querySelector('meta[name="keywords"]');
+    if (metaKeywords) metaKeywords.setAttribute('content', 'مواد غذائية, جملة, توزيع مواد غذائية, متجر الشرقاوي, طلبات اونلاين, حلويات, تسوق اونلاين');
+    const ogTitle = document.querySelector('meta[property="og:title"]');
+    if (ogTitle) ogTitle.setAttribute('content', 'متجر الشرقاوي لتوزيع المواد الغذائية والحلويات');
+    const ogDescription = document.querySelector('meta[property="og:description"]');
+    if (ogDescription) ogDescription.setAttribute('content', 'متجر الشرقاوي لتوزيع المواد الغذائية - اطلب المنتجات بسهولة مع خدمة توصيل سريعة وأسعار مميزة');
+})();
+
+// تحديث تسميات النموذج (عربي دائماً)
+(function updateFormLabels() {
+    const placeholders = {
+        '#user-shop': 'اسمك أو اسم المحل',
+        '#user-phone': 'رقم الهاتف للتواصل',
+        '#user-address': 'عنوان التوصيل بالتفصيل',
+    };
+    Object.keys(placeholders).forEach(selector => {
+        const element = document.querySelector(selector);
+        if (element) element.placeholder = placeholders[selector];
+    });
+    const saveBtn = document.querySelector('.save-btn');
+    if (saveBtn) {
+        const textElements = saveBtn.querySelectorAll('span, button');
+        textElements.forEach(el => {
+            el.textContent = 'حفظ البيانات';
+        });
+    }
+    const emptyCartBtn = document.querySelector('.cart-empty .cart-shop-btn');
+    if (emptyCartBtn) {
+        emptyCartBtn.textContent = 'اذهب للتسوق';
+    }
+})();
+
 // ولشاشة التحميل (الـ Loader)
 // إضافة تأثير التحميل للصور فور تحميل الـ DOM (قبل ما الصور تنتهي)
 document.addEventListener('DOMContentLoaded', () => {
@@ -353,6 +390,18 @@ function showOrderReview() {
     document.getElementById('review-total-amount').textContent = total + ' ج.م';
     document.getElementById('review-address-input').value = profile.address || '';
     openModal('review-modal');
+}
+
+// إغلاق جميع الشاشات والنوافذ المفتوحة (مع استثناء شاشة واحدة هنفتحها)
+function closeAllOverlays(exceptId) {
+    ['orders-modal', 'profile-modal', 'cart-modal', 'review-modal'].forEach(function (id) {
+        if (id !== exceptId) closeModal(id);
+    });
+    if (exceptId !== 'cart-modal') closeModal('cart-modal');
+    const phoneWin = document.getElementById('phoneWindow');
+    if (phoneWin && typeof phoneWin.close === 'function') phoneWin.close();
+    const zoom = document.getElementById('zoom-modal');
+    if (zoom) zoom.style.display = 'none';
 }
 
 // فتح نافذة السلة (بدون pushState عشان ما يعملش back)
@@ -906,7 +955,6 @@ document.querySelectorAll('dialog').forEach(d => dialogObserver.observe(d, { att
 
 
 
-
     // 3. تسجيل تطبيق الويب (PWA) عشان ينزل على الموبايل
     if ('serviceWorker' in navigator) {
         navigator.serviceWorker.register('./sw.js')
@@ -1389,7 +1437,7 @@ function shareProduct() {
 
     // تحديث OG meta tags
     document.getElementById('og-title').setAttribute('content', name + ' - الشرقاوي');
-    document.getElementById('og-description').setAttribute('content', 'اطلب ' + name + ' من متجر الشرقاوي - أسعار مميزة وتوصيل سريع');
+    document.getElementById('og-description').setAttribute('content', ' ' + name + ' من متجر الشرقاوي - أسعار مميزة وتوصيل سريع');
     document.getElementById('og-image').setAttribute('content', img);
     document.getElementById('og-url').setAttribute('content', url);
     document.getElementById('tw-title').setAttribute('content', name + ' - الشرقاوي');
@@ -1469,58 +1517,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
 
 
-
-
-// function scrollSlider(direction, containerId) {
-//     const container = document.getElementById(containerId);
-//     if (!container) return;
-    
-//     // مقدار الحركة
-//     const scrollAmount = 250; 
-//     container.scrollBy({
-//         left: direction === 'left' ? -scrollAmount : scrollAmount,
-//         behavior: 'smooth'
-//     });
-// }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const SUPABASE_URL = 'https://zqqpknqexsnskowhiwfj.supabase.co';
-// const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxcXBrbnFleHNuc2tvd2hpd2ZqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMzE2MjQsImV4cCI6MjA5NjcwNzYyNH0.hcD0__qb6FNhpgAyyU0F7RFZyewJrkt2WR4E79UJP9E';
-// // إنشاء العميل
-// const supabaseClient = createClient('https://zqqpknqexsnskowhiwfj.supabase.co',  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InpxcXBrbnFleHNuc2tvd2hpd2ZqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODExMzE2MjQsImV4cCI6MjA5NjcwNzYyNH0.hcD0__qb6FNhpgAyyU0F7RFZyewJrkt2WR4E79UJP9E');
-
 // إخفاء الـ bottom-nav عند ظهور الكيبورد عشان يفضل ثابت في مكانه
 let searchInput = document.getElementById('searchInput');
 if (searchInput) {
@@ -1567,6 +1563,8 @@ function renderProductsFromDB(products) {
 
     const categories = {};
     products.forEach(p => {
+        // تجاهل المنتجات غير المرئية (المخفية من لوحة التحكم)
+        if (p.visible === false) return;
         const cat = p.category || 'بدون تصنيف';
         if (!categories[cat]) categories[cat] = [];
         categories[cat].push(p);
@@ -1584,7 +1582,7 @@ function renderProductsFromDB(products) {
     let html = '';
     for (const [catName, catProducts] of sortedCats) {
         html += `<div class="section-box" data-category="${catName}">`;
-        html += `<h1 class="section-title">${catName}</h1><hr color="black"><article class="A">`;
+        html += `<h1 class="section-title">${catName}</h1><article class="A">`;
         catProducts.forEach(p => {
             const images = p.images ? p.images.split(',').map(s => s.trim()).filter(s => s) : [];
             const firstImage = images[0] || '';
@@ -1596,10 +1594,16 @@ function renderProductsFromDB(products) {
             const modalCssAttr = p.modal_custom_css ? `"${p.modal_custom_css.replace(/"/g, '&quot;')}"` : 'undefined';
             const imageCssArr = p.image_custom_css ? p.image_custom_css.split(',').map(s => s.trim()) : [];
             const imageCssStr = JSON.stringify(imageCssArr);
-            html += `<article class="a1">`;
-            html += `<img src="${firstImage}" class="product-image"${cssStyle} onclick='openProductModal(${JSON.stringify(p.name)}, "${p.price} ج.م", ${imagesStr}, "${desc}", "${pack}", ${flavorsStr}, ${modalCssAttr}, ${imageCssStr})' width="230" height="200">`;
+            const outOfStock = p.available === false;
+            html += `<article class="a1${outOfStock ? ' unavailable' : ''}">`;
+            html += `<div class="product-thumb">${outOfStock ? '<span class="oos-badge">غير متوفر</span>' : ''}<img src="${firstImage}" class="product-image"${cssStyle}${outOfStock ? ' style="opacity:.5"' : ''} onclick='${outOfStock ? '' : `openProductModal(${JSON.stringify(p.name)}, "${p.price} ج.م", ${imagesStr}, "${desc}", "${pack}", ${flavorsStr}, ${modalCssAttr}, ${imageCssStr})`}'></div>`;
             html += `<p>${p.name}</p>`;
-            html += `<button class="order-button" onclick="addToCart('${p.name.replace(/'/g, "\\'")}', ${p.price})">🛒اضف الي السلة</button>`;
+            html += `<div class="product-price">${p.price} ج.م</div>`;
+            if (outOfStock) {
+                html += `<button class="order-button disabled" disabled>❌ غير متوفر</button>`;
+            } else {
+                html += `<button class="order-button" onclick="addToCart('${p.name.replace(/'/g, "\\'")}', ${p.price})">🛒 أضف للسلة</button>`;
+            }
             html += `</article>`;
         });
         html += `</article></div>`;
@@ -1631,5 +1635,3 @@ window.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
-
-

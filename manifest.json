@@ -1,7 +1,7 @@
 {
-  "name": "متجر الشرقاوي",
+  "name": "متجر الشرقاوي لتوزيع المواد الغذائية والحلويات",
   "short_name": "الشرقاوي",
-  "description": "أفضل منتجات الشرقاوي بأعلى جودة",
+  "description": "متجر الشرقاوي لتوزيع المواد الغذائية والحلويات - اطلب المنتجات بسهولة مع خدمة توصيل سريعة وأسعار مميزة",
   "start_url": "./index.html",
   "display": "standalone",
   "background_color": "#332e2e",
@@ -11,12 +11,12 @@
   "scope": "./",
   "icons": [
     {
-      "src": "الاصيل لوجو.png",
+      "src": "logo.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "الاصيل لوجو.png",
+      "src": "logo.png",
       "sizes": "512x512",
       "type": "image/png"
     }

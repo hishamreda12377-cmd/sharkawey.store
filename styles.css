@@ -110,6 +110,26 @@ body.light-mode .header-search-expanded.closing { background: #f5f5f5; }
 body.light-mode .header-search-expanded input { background: #f5f5f5; color: #222; }
 body.light-mode .header-search-expanded button { color: #888; }
 
+/* أزرار الهيدر في الوضع الفاتح */
+body.light-mode .header-actions .ha-btn {
+    color: #333;
+}
+body.light-mode .header-actions .ha-btn:hover {
+    border-color: rgba(0, 0, 0, 0.12);
+    background: rgba(0, 0, 0, 0.04);
+}
+body.light-mode .header-actions .ha-btn .ha-label {
+    color: #777;
+}
+body.light-mode .header-actions .ha-badge {
+    background: #ff9800;
+    color: #fff;
+}
+body.light-mode .nav-badge {
+    background: #ff9800;
+    color: #fff;
+}
+
 /* شريط البحث */
 body.light-mode .search-bar {
     background-color: #ffffff;
@@ -130,30 +150,56 @@ body.light-mode .search-bar::placeholder {
    4. عناوين الأقسام والكروت
    =========================================================================================== */
 body.light-mode h1.section-title {
-    color: #333;
+    color: #1a1a1a;
     text-shadow: none;
+    background: linear-gradient(90deg, rgba(255, 152, 0, 0.1), transparent);
+    border-right-color: #ff9800;
 }
 
 /* ===========================================================================================
-   5. بطاقات المنتجات (Product Cards)
-   =========================================================================================== */
+    5. بطاقات المنتجات (Product Cards)
+    =========================================================================================== */
+body.light-mode .A {
+    gap: 14px;
+}
 body.light-mode .a1 {
-    background: rgba(255, 255, 255, 0.7);
+    background: #ffffff;
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border: 1px solid rgba(224, 224, 224, 0.5);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
 }
 body.light-mode .a1:hover {
-    border-color: #ff9800;
-    box-shadow: 0 8px 20px rgba(255, 152, 0, 0.15);
+    border-color: rgba(255, 152, 0, 0.5);
+    box-shadow: 0 14px 32px rgba(255, 152, 0, 0.15);
 }
 body.light-mode .a1 p {
-    color: #444;
+    color: #222;
     text-shadow: none;
 }
+body.light-mode .product-thumb {
+    background: #f5f5f5;
+}
+body.light-mode .product-price {
+    color: #e68900;
+}
+body.light-mode .a1.unavailable { opacity: 0.85; }
+body.light-mode .oos-badge {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background: rgba(255, 91, 91, 0.92); color: #fff; font-size: 12px; font-weight: 800;
+    padding: 5px 12px; border-radius: 10px; z-index: 2; white-space: nowrap;
+}
+body.light-mode .order-button.disabled {
+    background: #c9cdd8; color: #7a829a; box-shadow: none; cursor: not-allowed; transform: none;
+}
+}
 body.light-mode .a1 img {
-    box-shadow: 4px 2px 5px rgba(0,0,0,0.15);
+    background-color: transparent;
+    box-shadow: none;
+}
+body.light-mode .a1 img {
+    background-color: #f5f5f5;
+    box-shadow: none;
 }
 
 /* ===========================================================================================
